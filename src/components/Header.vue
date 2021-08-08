@@ -1,0 +1,269 @@
+<template>
+  <div>
+
+    <div class="header container">
+
+      <div class="logo">
+        <img src="../assets/logo.png" alt=""/>
+      </div>
+
+      <div class="contacts">
+        <div class="contacts__description">
+          <img src="../assets/time.png" alt=""/>
+          <p>
+            пн-пт 10:00 до 18:00 <br/>
+            сб-вс выходной
+          </p>
+        </div>
+        <div class="contacts__description">
+          <img src="../assets/location.png" alt=""/>
+          <p>г. Харьков</p>
+        </div>
+        <div class="contacts__description">
+          <img src="../assets/calling.png" alt=""/>
+          <p>+380 63 144 34 06</p>
+        </div>
+      </div>
+
+      <div to="#mobile-contacts" v-if="mobile">
+        <div class="contacts">
+          <div class="contacts__description">
+            <img src="../assets/time.png" alt=""/>
+            <p>9 - 19 сб - вс</p>
+          </div>
+          <div class="contacts__description">
+            <img src="../assets/location.png" alt=""/>
+            <p>Ул Пушкинка 666 -2345</p>
+          </div>
+          <div class="contacts__description">
+            <img src="../assets/calling.png" alt=""/>
+            <p>8 800 555 35 35</p>
+          </div>
+        </div>
+        <div
+            class="header__button"
+            @click="scrollToContacts($event)"
+        >
+          Перезвоните Мне
+        </div>
+      </div>
+
+      <div
+          class="header__button"
+          id="contacts"
+          @click="scrollToContacts($event)"
+      >
+        Перезвоните Мне
+      </div>
+    </div>
+
+    <div class="menu__wrapper">
+      <div id="header-container" class="container">
+        <div class="menu">
+          <div class="web">
+            <div id="nav">
+              <div class="menu_btn">Главная</div>
+              <div class="menu_btn">Каталог</div>
+              <div id="about" class="menu_btn"> О Нас</div>
+              <div id="contacts" class="menu_btn"> Контакты</div>
+            </div>
+          </div><!--v-if--><!--v-if--></div>
+      </div>
+    </div>
+
+    <!--    <div class="nav">-->
+    <!--      <div class="table">-->
+    <!--        <ul id="horizontal-list">-->
+    <!--          <li><a href="#">Some text</a></li>-->
+    <!--          <li><a href="#">Some text</a></li>-->
+    <!--          <li><a href="#">Some text</a></li>-->
+    <!--          <li><a href="#">Some text</a></li>-->
+    <!--        </ul>-->
+    <!--      </div>-->
+    <!--    </div>-->
+
+  </div>
+</template>
+
+<script>
+import Nav from "./Nav";
+
+export default {
+  components: {
+    Nav
+  }
+}
+</script>
+
+<!--<script>-->
+<!--// import {} from "@vue/composition-api";-->
+<!--// import { defineComponent, computed } from "@vue/runtime-core";-->
+<!--// import { useRouter } from "vue-router";-->
+<!--// import Nav from "./Nav";-->
+<!--// import windowWidth from "@/mixins/windowWidth";-->
+<!--import { useStore } from "vuex";-->
+
+<!--export default defineComponent({-->
+<!--  components: {-->
+<!--    // Nav,-->
+<!--  },-->
+<!--  emits: ["scrollToElement", "scrollToContacts"],-->
+<!--  // mixins: [windowWidth],-->
+<!--  setup(props, context) {-->
+<!--    const router = useRouter();-->
+<!--    const store = useStore();-->
+
+<!--    const mobile = computed(() => {-->
+<!--      return store.getters.getMobile;-->
+<!--    });-->
+
+<!--    const ScrollToEl = (value) => {-->
+<!--      if (router.currentRoute.path !== "/") {-->
+<!--        router.push("/").then(() => {-->
+<!--          context.emit("scrollName", value);-->
+<!--        });-->
+<!--      }-->
+<!--      console.log(value);-->
+<!--      context.emit("scrollToElement", value);-->
+<!--    };-->
+<!--    const scrollToContacts = (event) => {-->
+<!--      let value = event.target.id;-->
+<!--      if (router.currentRoute.path !== "/") {-->
+<!--        router.push("/").then(() => {-->
+<!--          context.emit("scrollName", value);-->
+<!--        });-->
+<!--      }-->
+<!--      console.log(value);-->
+<!--      context.emit("scrollToContacts", value);-->
+<!--    };-->
+<!--    return { ScrollToEl, scrollToContacts, mobile };-->
+<!--  },-->
+<!--});-->
+<!--</script>-->
+
+<style lang="scss" scoped>
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 20px;
+  margin-left: 100px;
+  margin-right: 100px;
+
+  &__button {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 21px;
+    line-height: 2.3;
+    color: #f6f6f6;
+
+    width: 285px;
+    height: 55px;
+    left: 1598px;
+
+    background: rgba(182, 12, 12, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    @media (max-width: 992px) {
+      width: 230px;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  @media (max-width: 992px) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    background-color: #000000;
+    top: 0;
+    left: -50px;
+    width: 1px;
+    height: 100px;
+    @media (max-width: 1200px) {
+      display: none;
+    }
+  }
+}
+
+.contacts__description {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+
+  @media (max-width: 992px) {
+    padding-left: 0px;
+    p {
+      width: 178px;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  img {
+    margin-right: 18px;
+  }
+}
+
+// header menu
+
+.menu__wrapper{
+  width: 100%;
+  height: 81px;
+  background: #f6f6f6;
+  box-sizing: border-box;
+  box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+}
+
+#header-container{
+  margin-right: 40px;
+}
+
+//.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+//  max-width: 1320px;
+//}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 81px;
+  position: relative;
+}
+
+#nav {
+  display: flex;
+  justify-content: center;
+}
+
+.menu_btn {
+  margin-right: 170px;
+  cursor: pointer;
+}
+
+</style>
