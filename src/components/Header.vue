@@ -11,8 +11,8 @@
         <div class="contacts__description">
           <img src="../assets/time.png" alt=""/>
           <p>
-            пн-пт 10:00 до 18:00 <br/>
-            сб-вс выходной
+            <span>Пн-Пт</span> 10:00 до 18:00 <br/>
+            <span>Cб-Вс</span> - выходной
           </p>
         </div>
         <div class="contacts__description">
@@ -21,7 +21,7 @@
         </div>
         <div class="contacts__description">
           <img src="../assets/calling.png" alt=""/>
-          <p>+380 63 144 34 06</p>
+          <span>+380 63 144 34 06</span>
         </div>
       </div>
 
@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import CardCarousel from './CardCarousel'
+import CardCarousel from './Carousel.vue'
 
 export default {
   components: {
@@ -146,6 +146,10 @@ export default {
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 15px;
+
+  span {
+    font-weight: bold;
+  }
 
   @media (max-width: 992px) {
     padding-left: 0px;
