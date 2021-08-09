@@ -48,6 +48,6 @@ export default {
 
 .swiper-button-prev,
 .swiper-button-next{
-  color:black;
+  color:black !important;
 }
 </style>
