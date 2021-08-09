@@ -87,6 +87,12 @@
           производителей косметики, фармацевтики, бытовой химии, автохимии, пищевых добавок.
         </div>
     </div>
+
+<!--    goods-->
+    <div>
+      <span class="description-container-title">Каталог товаров</span>
+    </div>
+
   </div>
 </template>
 
@@ -218,7 +224,6 @@ export default {
 
 .description-container-title {
   display: block;
-  margin-top: 50px;
   margin-bottom: 30px;
   padding-top:30px;
   font-family: Roboto;
@@ -232,6 +237,7 @@ export default {
 
 .description-container{
   margin-top:50px;
+  padding-bottom: 50px;
   background: #f6f6f6;
 }
 
@@ -241,6 +247,7 @@ export default {
   margin: 0px auto;
   width: 80%;
   text-align: center;
+
 }
 
 
