@@ -1,8 +1,7 @@
 <template>
   <div class="product">
-    <div :class="'product-inner ' + product.color">
+    <div class='product-inner'>
       <div class="product-text-wrap">
-        <h2 class="bg-text">{{ product.bgtext }}</h2>
       </div>
       <div class="product-image-wrap">
         <img :src="product.src" class="image" />
@@ -10,6 +9,7 @@
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{product.description}}</p>
+        <button id="card-btn" class="btn btn-success">Buy</button>
       </div>
     </div>
   </div>
@@ -35,24 +35,14 @@ export default {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   perspective: 1000px;
 }
-.product-inner.green {
-  background-image: linear-gradient(to bottom right, #24D484, #116432);
-}
-.product-inner.blue {
-  background-image: linear-gradient(to bottom left, #24D484, #2474C4 70%);
-}
-.product-inner.pink {
-  background-image: linear-gradient(to bottom right, #F444A4, #1168D4);
-}
 
 .product-text-wrap {
-
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
+  //top: 0;
+  //left: 0;
+  //right: 0;
+  //bottom: 0;
+  //z-index: 0;
   overflow: hidden;
   perspective: 1000px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -70,6 +60,8 @@ export default {
   position: relative;
   z-index: 1;
   transform-origin: center;
+  //margin-bottom: 25px;
+  background-color:blue;
 }
 .product-image-wrap .image {
   width: 100%;
@@ -96,5 +88,8 @@ export default {
   color: #676767;
 }
 
+#card-btn{
+  cursor:pointer;
+}
 
 </style>

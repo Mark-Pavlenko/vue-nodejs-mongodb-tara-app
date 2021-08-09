@@ -43,59 +43,37 @@ import Header from '@/components/Header.vue'
 import Card from '@/components/Card.vue'
 
 export default {
+  components: {
+    Card,
+    Header
+  },
   data() {
     return {
       products: [
         {
           title: 'Nike Air Max',
-          color: 'green',
           // bgtext: 'NIKE',
-          src: require('../assets/green-shoe.png'),
-          description: 'Desc 1'
+          src: require('../assets/about-img.png'),
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
         {
           title: 'Nike flex',
-          color: 'blue',
+
           // bgtext: 'AIR',
-          src: require('../assets/blue-shoe.png'),
-          description: 'Desc 2'
+          src: require('../assets/card-img.png'),
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
         {
           title: 'Nike Roche Runs',
-          color: 'pink',
+
           // bgtext: 'MAX',
-          src: require('../assets/pink-shoe.png'),
-          description: 'Desc 3'
+          src: require('../assets/card-img.png'),
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
-        // {
-        //   title: 'Nike Air Max2',
-        //   color: 'green',
-        //   // bgtext: 'NIKE',
-        //   src: require('../assets/green-shoe.png'),
-        //   description: 'Desc 1'
-        // },
-        // {
-        //   title: 'Nike flex2',
-        //   color: 'blue',
-        //   // bgtext: 'AIR',
-        //   src: require('../assets/blue-shoe.png'),
-        //   description: 'Desc 2'
-        // },
-        // {
-        //   title: 'Nike Roche Runs2',
-        //   color: 'pink',
-        //   // bgtext: 'MAX',
-        //   src: require('../assets/pink-shoe.png'),
-        //   description: 'Desc 3'
-        // },
       ]
     }
   },
   name: 'Home',
-  components: {
-    Card,
-    Header
-  }
 }
 </script>
 
@@ -148,7 +126,7 @@ export default {
   margin: 0 auto;
 }
 
-.product-card{
+.product-card {
   //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
