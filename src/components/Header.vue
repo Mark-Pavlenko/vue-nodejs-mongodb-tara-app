@@ -148,8 +148,6 @@ export default {
   align-items: center;
   margin-top: 25px;
   margin-bottom: 20px;
-  margin-left: 100px;
-  margin-right: 100px;
 
   &__button {
     font-family: Roboto;
@@ -240,7 +238,7 @@ export default {
 }
 
 #header-container{
-  margin-right: 40px;
+  //margin-right: 40px;
 }
 
 //.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
