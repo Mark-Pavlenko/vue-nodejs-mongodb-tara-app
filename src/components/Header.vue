@@ -65,81 +65,25 @@
               <div class="menu_btn">Главная</div>
               <div class="menu_btn">Каталог</div>
               <div id="about" class="menu_btn"> О Нас</div>
-              <div id="contacts" class="menu_btn"> Контакты</div>
+              <div id="contacts-list-item" class="menu_btn"> Контакты</div>
             </div>
-          </div><!--v-if--><!--v-if--></div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <!--    <div class="nav">-->
-    <!--      <div class="table">-->
-    <!--        <ul id="horizontal-list">-->
-    <!--          <li><a href="#">Some text</a></li>-->
-    <!--          <li><a href="#">Some text</a></li>-->
-    <!--          <li><a href="#">Some text</a></li>-->
-    <!--          <li><a href="#">Some text</a></li>-->
-    <!--        </ul>-->
-    <!--      </div>-->
-    <!--    </div>-->
-
+    <CardCarousel/>
   </div>
 </template>
 
 <script>
-import Nav from "./Nav";
+import CardCarousel from './CardCarousel'
 
 export default {
   components: {
-    Nav
-  }
+    CardCarousel
+  },
 }
 </script>
-
-<!--<script>-->
-<!--// import {} from "@vue/composition-api";-->
-<!--// import { defineComponent, computed } from "@vue/runtime-core";-->
-<!--// import { useRouter } from "vue-router";-->
-<!--// import Nav from "./Nav";-->
-<!--// import windowWidth from "@/mixins/windowWidth";-->
-<!--import { useStore } from "vuex";-->
-
-<!--export default defineComponent({-->
-<!--  components: {-->
-<!--    // Nav,-->
-<!--  },-->
-<!--  emits: ["scrollToElement", "scrollToContacts"],-->
-<!--  // mixins: [windowWidth],-->
-<!--  setup(props, context) {-->
-<!--    const router = useRouter();-->
-<!--    const store = useStore();-->
-
-<!--    const mobile = computed(() => {-->
-<!--      return store.getters.getMobile;-->
-<!--    });-->
-
-<!--    const ScrollToEl = (value) => {-->
-<!--      if (router.currentRoute.path !== "/") {-->
-<!--        router.push("/").then(() => {-->
-<!--          context.emit("scrollName", value);-->
-<!--        });-->
-<!--      }-->
-<!--      console.log(value);-->
-<!--      context.emit("scrollToElement", value);-->
-<!--    };-->
-<!--    const scrollToContacts = (event) => {-->
-<!--      let value = event.target.id;-->
-<!--      if (router.currentRoute.path !== "/") {-->
-<!--        router.push("/").then(() => {-->
-<!--          context.emit("scrollName", value);-->
-<!--        });-->
-<!--      }-->
-<!--      console.log(value);-->
-<!--      context.emit("scrollToContacts", value);-->
-<!--    };-->
-<!--    return { ScrollToEl, scrollToContacts, mobile };-->
-<!--  },-->
-<!--});-->
-<!--</script>-->
 
 <style lang="scss" scoped>
 .header {
@@ -229,7 +173,7 @@ export default {
 
 // header menu
 
-.menu__wrapper{
+.menu__wrapper {
   width: 100%;
   height: 81px;
   background: #f6f6f6;
@@ -237,8 +181,9 @@ export default {
   box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
 }
 
-#header-container{
-  //margin-right: 40px;
+#header-container {
+  //margin: 0px auto;
+  //padding-left:50px;
 }
 
 //.container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
@@ -252,6 +197,7 @@ export default {
   width: 100%;
   height: 81px;
   position: relative;
+  margin-left: 50px;
 }
 
 #nav {
