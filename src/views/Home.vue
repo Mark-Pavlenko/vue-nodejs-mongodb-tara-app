@@ -22,8 +22,11 @@
     <div>
       <span class="description-container-title">Каталог товаров</span>
       <div id="goods-list">
-        <div class="products">
-          <Card v-for="product in products"
+        <div class="catalog__wrapper row justify-content-between">
+          <div>
+
+          </div>
+          <Card class="product-card" v-for="product in products"
                 :key="product.color"
                 :product="product"
           />
@@ -63,14 +66,35 @@ export default {
           // bgtext: 'MAX',
           src: require('../assets/pink-shoe.png'),
           description: 'Desc 3'
-        }
+        },
+        // {
+        //   title: 'Nike Air Max2',
+        //   color: 'green',
+        //   // bgtext: 'NIKE',
+        //   src: require('../assets/green-shoe.png'),
+        //   description: 'Desc 1'
+        // },
+        // {
+        //   title: 'Nike flex2',
+        //   color: 'blue',
+        //   // bgtext: 'AIR',
+        //   src: require('../assets/blue-shoe.png'),
+        //   description: 'Desc 2'
+        // },
+        // {
+        //   title: 'Nike Roche Runs2',
+        //   color: 'pink',
+        //   // bgtext: 'MAX',
+        //   src: require('../assets/pink-shoe.png'),
+        //   description: 'Desc 3'
+        // },
       ]
     }
   },
   name: 'Home',
   components: {
-    Header,
-    Card
+    Card,
+    Header
   }
 }
 </script>
@@ -109,10 +133,9 @@ export default {
 //products
 
 #goods-list {
-  min-height: 100vh;
+  //min-height: 100vh;
   overflow: hidden;
-
-  background-color: #EEE;
+  //background-color: #EEE;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,4 +147,10 @@ export default {
   padding: 25px;
   margin: 0 auto;
 }
+
+.product-card{
+  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
 </style>
