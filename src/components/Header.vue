@@ -40,10 +40,7 @@
             <p>8 800 555 35 35</p>
           </div>
         </div>
-        <div
-            class="header__button"
-            @click="scrollToContacts($event)"
-        >
+        <div class="header__button" @click="scrollToContacts($event)">
           Перезвоните Мне
         </div>
       </div>
@@ -71,27 +68,6 @@
 
     <CardCarousel/>
 
-    <div class="description-container" ref="about">
-        <span class="description-container-title">О нас</span>
-<!--      <div class="container-image-title">-->
-<!--        <img src="../assets/logo.png" alt=""/>-->
-<!--      </div>-->
-        <div class="description-container-text">
-          Мы являемся национальным производителем и представляем тару разного
-          объёма. <br/>
-          Данная тара практична в использовании и позволяет хранить различную продукцию <br/>
-          косметической, фармацевтической и пищевой промышлености.<br/>
-          Для её производства используется качественное импортное сырьё. <br/>
-          Вся продукция является сертифицированной. <br/>
-          Компания DecoPlastLine изготовляет косметическую упаковку для <br/>
-          производителей косметики, фармацевтики, бытовой химии, автохимии, пищевых добавок.
-        </div>
-    </div>
-
-<!--    goods-->
-    <div>
-      <span class="description-container-title">Каталог товаров</span>
-    </div>
 
   </div>
 </template>
@@ -220,34 +196,6 @@ export default {
 .menu_btn {
   margin-right: 170px;
   cursor: pointer;
-}
-
-.description-container-title {
-  display: block;
-  margin-bottom: 30px;
-  padding-top:30px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 64px;
-  line-height: 75px;
-
-  color: rgba(0, 0, 0, 0.85);
-}
-
-.description-container{
-  margin-top:50px;
-  padding-bottom: 50px;
-  background: #f6f6f6;
-}
-
-.description-container-text{
-  line-height: 2;
-  font-size: 18px;
-  margin: 0px auto;
-  width: 80%;
-  text-align: center;
-
 }
 
 
