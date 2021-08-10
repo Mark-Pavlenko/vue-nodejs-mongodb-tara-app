@@ -42,8 +42,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.swiper-wrapper{
+}
+
 .swiper-container {
   margin-top:40px;
+  @media (max-width: 850px){
+    height: 300px;
+  }
+}
+
+.swiper-slide img{
+  @media (max-width: 850px){
+    height: 300px;
+  }
 }
 
 .swiper-button-prev,

@@ -4,7 +4,7 @@
     <div class="header container">
 
       <div class="logo">
-        <img src="../assets/logo.png" alt=""/>
+        <img id="header-logo-img" src="../assets/logo.png" alt=""/>
       </div>
 
       <div class="contacts">
@@ -17,7 +17,7 @@
         </div>
         <div class="contacts__description">
           <img src="../assets/location.png" alt=""/>
-          <p>г. Харьков</p>
+          <p id="city">г. Харьков</p>
         </div>
         <div class="contacts__description">
           <img src="../assets/calling.png" alt=""/>
@@ -100,12 +100,23 @@ export default {
 
 <style lang="scss" scoped>
 
+.container{
+  @media(max-width: 992px){
+    //max-width: 770px;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-top: 25px;
   margin-bottom: 20px;
+
+  @media (max-width: 992px){
+    margin-top:0px;
+    margin-bottom: 0px ;
+  }
 
   &__button {
     font-family: Roboto;
@@ -128,10 +139,30 @@ export default {
     cursor: pointer;
 
     @media (max-width: 992px) {
-      width: 230px;
+      width: 400px;
       margin: 0;
       padding: 0;
     }
+
+  }
+}
+
+#header-logo-img{
+  @media(max-width: 992px){
+    width: 95%;
+    margin-left: -40px;
+  }
+}
+
+.header__button{
+  @media(max-width: 992px){
+    width: 250px;
+    margin-left: 20px;
+    text-decoration: none;
+
+    //font-size:20px;
+    //padding-left:10px;
+    //padding-right:10px;
   }
 }
 
@@ -169,10 +200,17 @@ export default {
     font-weight: bold;
   }
 
+
+
   @media (max-width: 992px) {
+
+    #city {
+      margin-left: -35px !important;
+    }
+
     padding-left: 0px;
     p {
-      width: 178px;
+      width: 160px;
     }
   }
 
@@ -190,7 +228,6 @@ export default {
   }
 }
 
- header menu
 
 .menu__wrapper {
   width: 100%;
@@ -223,6 +260,8 @@ export default {
     margin-left:30px;
   }
 
+
+
 }
 
 #nav {
@@ -251,5 +290,7 @@ export default {
   text-decoration: none;
   font-weight: normal !important;
 }
+
+
 
 </style>
