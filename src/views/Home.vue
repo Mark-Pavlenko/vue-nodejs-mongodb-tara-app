@@ -4,7 +4,7 @@
 
     <!--description block -->
     <div class="description-container" ref="about">
-      <span class="description-container-title">О нас</span>
+      <span id="about-us" class="description-container-title">О нас</span>
 
       <div class="description-container-text">
         Мы являемся национальным производителем и представляем тару разного

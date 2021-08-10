@@ -40,7 +40,7 @@
             <p>8 800 555 35 35</p>
           </div>
         </div>
-        <anchor-router-link :to="{name:'Home', hash:'#contacts-card-body'}"  class="header__button">
+        <anchor-router-link :to="{name:'Home', hash:'#contacts-card-body'}" class="header__button">
           Перезвоните Мне
         </anchor-router-link>
       </div>
@@ -57,10 +57,23 @@
         <div class="menu">
           <div class="web">
             <div id="nav">
-              <div class="menu_btn">Главная</div>
-              <div class="menu_btn">Каталог</div>
-              <div id="about" class="menu_btn"> О Нас</div>
-              <div id="contacts-list-item" class="menu_btn"> Контакты</div>
+              <div class="menu_btn">
+                <router-link to="/" class="router-link">Главная</router-link>
+              </div>
+              <div class="menu_btn">
+                <router-link to="/catalog" class="router-link">Каталог</router-link>
+
+              </div>
+              <div id="about" class="menu_btn">
+                <anchor-router-link  :to="{name:'Home', hash:'#about-us'}" class="router-link">О Нас</anchor-router-link>
+              </div>
+
+              <div id="contacts-list-item" class="menu_btn">
+                <anchor-router-link class="router-link" :to="{name:'Home', hash:'#contacts-card-body'}">
+                  Контакты
+                </anchor-router-link>
+
+              </div>
             </div>
           </div>
         </div>
@@ -205,5 +218,9 @@ export default {
   cursor: pointer;
 }
 
+.router-link{
+  text-decoration: none;
+  font-weight: normal !important;
+}
 
 </style>
