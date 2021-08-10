@@ -175,6 +175,7 @@ export default {
     margin-bottom: 30px;
   }
 
+
   &::after {
     content: "";
     position: absolute;
