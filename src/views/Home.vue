@@ -31,11 +31,11 @@
 
     <!--contacts-->
     <div class="contacts-container" ref="contacts">
-      <span class="description-container-title">Обратная связь</span>
+      <span  class="description-container-title">Обратная связь</span>
       <div class="contacts-form">
         <div id="contacts-card-body" class="row">
           <div class="col-lg-6 col-12">
-            <div class="contacts-wrapper">
+            <div  class="contacts-wrapper">
               <div class="input">
                 <label>Имя</label>
                 <input

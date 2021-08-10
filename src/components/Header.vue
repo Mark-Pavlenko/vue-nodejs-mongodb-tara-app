@@ -45,9 +45,10 @@
         </div>
       </div>
 
-      <span id="contacts" class="header__button" @click="scrollToContacts($event)">
+      <router-link :to="{name:'Home', hash:'#contacts-card-body'}" id="contacts" class="header__button">
         Перезвоните Мне
-      </span>
+      </router-link>
+
 
     </div>
 
