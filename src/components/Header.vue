@@ -99,6 +99,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -155,6 +156,7 @@ export default {
       display: none;
     }
   }
+
 }
 
 .contacts__description {
@@ -188,7 +190,7 @@ export default {
   }
 }
 
-// header menu
+ header menu
 
 .menu__wrapper {
   width: 100%;
@@ -199,23 +201,50 @@ export default {
 }
 
 .menu {
-  display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
+  margin-left: 40px;
   width: 100%;
   height: 81px;
-  position: relative;
-  margin-left: 50px;
+
+  &__wrapper {
+    width: 100%;
+    height: 81px;
+    // padding: 0 64px;
+    background: #f6f6f6;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  @media (max-width: 992px) {
+    margin-top: 30px;
+    margin-left:30px;
+  }
+
 }
 
 #nav {
   display: flex;
   justify-content: center;
+
+  @media (max-width: 992px) {
+    padding: 0 !important;
+  }
+
 }
 
 .menu_btn {
   margin-right: 170px;
   cursor: pointer;
+
+  @media(max-width:1200px){
+    margin-right: 160px;
+  }
+  @media(max-width:992px){
+    margin-right: 110px;
+  }
 }
 
 .router-link{

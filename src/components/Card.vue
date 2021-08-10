@@ -4,11 +4,11 @@
       <div class="product-text-wrap">
       </div>
       <div class="product-image-wrap">
-        <img :src="product.src" class="image" />
+        <img :src="product.src" class="image"/>
       </div>
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
-        <p>{{product.description}}</p>
+        <p>{{ product.description }}</p>
         <button id="card-btn" class="btn btn-success">Buy</button>
       </div>
     </div>
@@ -28,7 +28,12 @@ export default {
   width: 100%;
   padding: 25px;
   margin-bottom: 30px;
+
+  @media (max-width: 1024px) {
+    flex: 1 1 45%;
+  }
 }
+
 
 .product-inner {
   position: relative;
@@ -62,8 +67,9 @@ export default {
   z-index: 1;
   transform-origin: center;
   //margin-bottom: 25px;
-  background-color:blue;
+  background-color: blue;
 }
+
 .product-image-wrap .image {
   width: 100%;
   filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
@@ -89,8 +95,8 @@ export default {
   color: #676767;
 }
 
-#card-btn{
-  cursor:pointer;
+#card-btn {
+  cursor: pointer;
 }
 
 </style>

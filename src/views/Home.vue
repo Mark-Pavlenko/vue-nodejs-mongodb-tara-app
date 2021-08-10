@@ -30,40 +30,40 @@
     </div>
 
     <!--contacts-->
-    <div class="contacts-container" ref="contacts">
-      <span class="description-container-title">Обратная связь</span>
-      <div class="contacts-form">
-        <div id="contacts-card-body" class="row">
-          <div class="col-lg-6 col-12">
-            <div class="contacts-wrapper">
-              <div class="input">
-                <label>Имя</label>
-                <input type="text"/>
-              </div>
-              <div class="input">
-                <label>Электронный адрес</label>
-                <input type="email"/>
-              </div>
-              <div class="input">
-                <label>Моб. Телефон</label>
-                <input type="text"/>
-              </div>
-              <button>Отправить</button>
-            </div>
-          </div>
-          <div class="col-lg-6 col-12 d-flex justify-content-center">
-            <div class="contacts-image">
-              <div class="contacts-user">
-                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
-              </div>
-              <div class="contacts-desc">
-                Введите ваши данные и мы с вами свяжемся
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--    <div class="contacts-container" ref="contacts">-->
+<!--      <span class="description-container-title">Обратная связь</span>-->
+<!--      <div class="contacts-form">-->
+<!--        <div id="contacts-card-body" class="row">-->
+<!--          <div class="col-lg-6 col-12">-->
+<!--            <div class="contacts-wrapper">-->
+<!--              <div class="input">-->
+<!--                <label>Имя</label>-->
+<!--                <input type="text"/>-->
+<!--              </div>-->
+<!--              <div class="input">-->
+<!--                <label>Электронный адрес</label>-->
+<!--                <input type="email"/>-->
+<!--              </div>-->
+<!--              <div class="input">-->
+<!--                <label>Моб. Телефон</label>-->
+<!--                <input type="text"/>-->
+<!--              </div>-->
+<!--              <button>Отправить</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-lg-6 col-12 d-flex justify-content-center">-->
+<!--            <div class="contacts-image">-->
+<!--              <div class="contacts-user">-->
+<!--                <img src="../assets/Profile.png" class="img-fluid" alt=""/>-->
+<!--              </div>-->
+<!--              <div class="contacts-desc">-->
+<!--                Введите ваши данные и мы с вами свяжемся-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 
 
     <!--go up btn-->
@@ -102,25 +102,45 @@ export default {
     return {
       products: [
         {
-          title: 'Nike Air Max',
+          title: 'Nike Air Max 1',
           // bgtext: 'NIKE',
           src: require('../assets/about-img.png'),
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
         {
-          title: 'Nike flex',
+          title: 'Nike flex 2',
 
           // bgtext: 'AIR',
-          src: require('../assets/card-img.png'),
+          src: require('../assets/about-img.png'),
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
         {
-          title: 'Nike Roche Runs',
-
-          // bgtext: 'MAX',
-          src: require('../assets/card-img.png'),
+          title: 'Nike Air Max 3',
+          // bgtext: 'NIKE',
+          src: require('../assets/about-img.png'),
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
+        {
+          title: 'Nike Roche Runs 4',
+
+          // bgtext: 'MAX',
+          src: require('../assets/about-img.png'),
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+          title: 'Nike Roche Runs 5',
+
+          // bgtext: 'MAX',
+          src: require('../assets/about-img.png'),
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        },
+        {
+          title: 'Nike Roche Runs 6',
+
+          // bgtext: 'MAX',
+          src: require('../assets/about-img.png'),
+          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        }
       ],
       windowTop: 0
     }
