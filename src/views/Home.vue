@@ -18,46 +18,43 @@
       </div>
     </div>
 
-      <!--goods-->
-      <span class="description-container-title">Каталог товаров</span>
-      <div id="goods-list">
-        <div class="catalog__wrapper row justify-content-between">
-          <Card class="product-card" v-for="product in products"
-                :key="product.color"
-                :product="product"
-          />
-        </div>
+    <!--goods-->
+    <span class="description-container-title">Каталог товаров</span>
+    <div id="goods-list">
+      <div class="catalog__wrapper row justify-content-between">
+        <Card class="product-card" v-for="product in products"
+              :key="product.color"
+              :product="product"
+        />
       </div>
+    </div>
 
     <!--contacts-->
     <div class="contacts-container" ref="contacts">
-      <span  class="description-container-title">Обратная связь</span>
+      <span class="description-container-title">Обратная связь</span>
       <div class="contacts-form">
         <div id="contacts-card-body" class="row">
           <div class="col-lg-6 col-12">
-            <div  class="contacts-wrapper">
+            <div class="contacts-wrapper">
               <div class="input">
                 <label>Имя</label>
-                <input
-                    type="text"
-                    v-maska="{ mask: 'Z*', tokens: { Z: { pattern: /[а-яА-Я]/ } } }"
-                />
+                <input type="text"/>
               </div>
               <div class="input">
                 <label>Электронный адрес</label>
-                <input type="email" v-maska="" />
+                <input type="email"/>
               </div>
               <div class="input">
                 <label>Моб. Телефон</label>
-                <input type="text" v-maska="'+38 (###) ##-##-##'" />
+                <input type="text"/>
               </div>
-              <button @click="sendmail">Отправить</button>
+              <button>Отправить</button>
             </div>
           </div>
           <div class="col-lg-6 col-12 d-flex justify-content-center">
             <div class="contacts-image">
               <div class="contacts-user">
-                <img src="../assets/Profile.png" class="img-fluid" alt="" />
+                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
               </div>
               <div class="contacts-desc">
                 Введите ваши данные и мы с вами свяжемся
@@ -68,10 +65,19 @@
       </div>
     </div>
 
+
+    <!--go up btn-->
+
+    <button class="go-top-button" v-if="this.windowTop >= 250" @click="goToTop()">
+      <!--      v-if="scrollFromTop >= 1400" @click="goToTop"-->
+
+      <img src="@/assets/arrow-up.png" alt=""/>
+    </button>
+
     <!--footer-->
     <Footer/>
 
-    </div>
+  </div>
 </template>
 
 <script>
@@ -81,11 +87,17 @@ import Card from '@/components/Card.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
+
+  beforeDestroy() {
+    window.removeEventListener("scroll", this.onScroll);
+  },
+
   components: {
     Card,
     Footer,
     Header
   },
+
   data() {
     return {
       products: [
@@ -109,14 +121,29 @@ export default {
           src: require('../assets/card-img.png'),
           description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         },
-      ]
+      ],
+      windowTop: 0
     }
+  },
+  methods: {
+    goToTop() {
+      window.scrollTo(0, 0);
+    },
+
+    onScroll(e) {
+      this.windowTop = e.target.documentElement.scrollTop;
+    },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
   },
   name: 'Home',
 }
 </script>
 
 <style lang="scss" scoped>
+
+@import "../scss/_variables.scss";
 
 //description block
 .description-container-title {
@@ -166,9 +193,9 @@ export default {
 }
 
 //contacts
-.contacts-container{
+.contacts-container {
   background: #f6f6f6;
-  height:725px;
+  height: 725px;
 }
 
 .contacts-form {
@@ -180,10 +207,10 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 12px;
   margin: 0px auto;
-  margin-bottom:100px;
+  margin-bottom: 100px;
 }
 
-#contacts-card-body{
+#contacts-card-body {
   padding-bottom: 10px;
 }
 
@@ -191,6 +218,7 @@ export default {
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
+
   input {
     width: 342px;
     height: 58px;
@@ -201,6 +229,7 @@ export default {
     border: none;
     padding-left: 20px;
   }
+
   label {
     margin-bottom: 10px;
   }
@@ -246,6 +275,7 @@ export default {
 
   margin-bottom: 40px;
 }
+
 .contacts-desc {
   font-family: Roboto;
   font-style: normal;
@@ -265,6 +295,21 @@ export default {
   @media (max-width: 992px) {
     margin-top: 50px;
   }
+}
+
+//go to top btn
+.go-top-button {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(182, 12, 12, 0.8);
+  border-radius: 100%;
+  bottom: calc(15px);
+  right: 15px;
+  cursor: pointer;
 }
 
 </style>

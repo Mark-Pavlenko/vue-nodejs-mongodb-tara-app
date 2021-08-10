@@ -40,14 +40,14 @@
             <p>8 800 555 35 35</p>
           </div>
         </div>
-        <div class="header__button" @click="scrollToContacts($event)">
+        <anchor-router-link :to="{name:'Home', hash:'#contacts-card-body'}"  class="header__button">
           Перезвоните Мне
-        </div>
+        </anchor-router-link>
       </div>
 
-      <router-link :to="{name:'Home', hash:'#contacts-card-body'}" id="contacts" class="header__button">
+      <anchor-router-link :to="{name:'Home', hash:'#contacts-card-body'}" id="contacts" class="header__button">
         Перезвоните Мне
-      </router-link>
+      </anchor-router-link>
 
 
     </div>
@@ -74,10 +74,12 @@
 </template>
 
 <script>
-import CardCarousel from './Carousel.vue'
+import CardCarousel from './Carousel.vue';
+import AnchorRouterLink from 'vue-anchor-router-link';
 
 export default {
   components: {
+    AnchorRouterLink,
     CardCarousel
   },
 }
