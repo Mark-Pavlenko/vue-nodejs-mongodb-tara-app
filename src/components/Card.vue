@@ -9,7 +9,7 @@
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <button id="card-btn" class="btn btn-success">Посмотреть / заказать</button>
+        <router-link to="/product/:id" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
       </div>
     </div>
   </div>

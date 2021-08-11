@@ -45,6 +45,7 @@
     </div>
 
     <Footer/>
+
   </div>
 </template>
 
@@ -165,8 +166,14 @@ export default {
   border-radius: 5px;
 }
 
-
-
 //cards block
+#goods-list {
+  //min-height: 100vh;
+  overflow: hidden;
+  //background-color: #EEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 </style>
