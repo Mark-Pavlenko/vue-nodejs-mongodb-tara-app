@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <Header/>
-
+    <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">
       <span id="about-us" class="description-container-title">О нас</span>
@@ -30,40 +30,40 @@
     </div>
 
     <!--contacts-->
-<!--    <div class="contacts-container" ref="contacts">-->
-<!--      <span class="description-container-title">Обратная связь</span>-->
-<!--      <div class="contacts-form">-->
-<!--        <div id="contacts-card-body" class="row">-->
-<!--          <div class="col-lg-6 col-12">-->
-<!--            <div class="contacts-wrapper">-->
-<!--              <div class="input">-->
-<!--                <label>Имя</label>-->
-<!--                <input type="text"/>-->
-<!--              </div>-->
-<!--              <div class="input">-->
-<!--                <label>Электронный адрес</label>-->
-<!--                <input type="email"/>-->
-<!--              </div>-->
-<!--              <div class="input">-->
-<!--                <label>Моб. Телефон</label>-->
-<!--                <input type="text"/>-->
-<!--              </div>-->
-<!--              <button>Отправить</button>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-lg-6 col-12 d-flex justify-content-center">-->
-<!--            <div class="contacts-image">-->
-<!--              <div class="contacts-user">-->
-<!--                <img src="../assets/Profile.png" class="img-fluid" alt=""/>-->
-<!--              </div>-->
-<!--              <div class="contacts-desc">-->
-<!--                Введите ваши данные и мы с вами свяжемся-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <div class="contacts-container" ref="contacts">
+      <span class="description-container-title">Обратная связь</span>
+      <div class="contacts-form">
+        <div id="contacts-card-body" class="row">
+          <div class="col-lg-6 col-12">
+            <div class="contacts-wrapper">
+              <div class="input">
+                <label>Имя</label>
+                <input type="text"/>
+              </div>
+              <div class="input">
+                <label>Электронный адрес</label>
+                <input type="email"/>
+              </div>
+              <div class="input">
+                <label>Моб. Телефон</label>
+                <input type="text"/>
+              </div>
+              <button>Отправить</button>
+            </div>
+          </div>
+          <div class="col-lg-6 col-12 d-flex justify-content-center">
+            <div class="contacts-image">
+              <div class="contacts-user">
+                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
+              </div>
+              <div class="contacts-desc">
+                Введите ваши данные и мы с вами свяжемся
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     <!--go up btn-->
@@ -82,9 +82,10 @@
 
 <script>
 // @ is an alias to /src
-import Header from '@/components/Header.vue'
-import Card from '@/components/Card.vue'
-import Footer from '@/components/Footer.vue'
+import Card from '../components/Card.vue'
+import CardCarousel from "../components/Carousel"
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
 
 export default {
 
@@ -94,6 +95,7 @@ export default {
 
   components: {
     Card,
+    CardCarousel,
     Footer,
     Header
   },
@@ -216,18 +218,28 @@ export default {
 .contacts-container {
   background: #f6f6f6;
   height: 725px;
+
+  @media(max-width: 992px) {
+
+  }
 }
 
 .contacts-form {
   width: 100%;
   max-width: 839px;
   height: auto;
-  padding: 30px 0;
+  padding: 15px 0;
   background: white;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 12px;
   margin: 0px auto;
-  margin-bottom: 100px;
+  /* border-radius: 12px; */
+  /* margin: 0px auto; */
+  /* margin-bottom: -26px; */
+
+
+  @media (max-width: 992px) {
+  margin-bottom: 20px;
+  }
 }
 
 #contacts-card-body {
@@ -294,6 +306,10 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   margin-bottom: 40px;
+
+  @media (max-width: 992px) {
+    display: none
+  }
 }
 
 .contacts-desc {
@@ -305,6 +321,10 @@ export default {
   text-align: center;
   color: rgba(0, 0, 0, 0.85);
   width: 345px;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 }
 
 .contacts-image {
@@ -312,6 +332,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   @media (max-width: 992px) {
     margin-top: 50px;
   }
@@ -331,7 +352,6 @@ export default {
   right: 15px;
   cursor: pointer;
 }
-
 
 
 </style>

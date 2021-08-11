@@ -48,8 +48,6 @@
       <anchor-router-link :to="{name:'Home', hash:'#contacts-card-body'}" id="contacts" class="header__button">
         Перезвоните Мне
       </anchor-router-link>
-
-
     </div>
 
     <div class="menu__wrapper">
@@ -79,9 +77,6 @@
         </div>
       </div>
     </div>
-
-    <CardCarousel/>
-
 
   </div>
 </template>
@@ -174,7 +169,6 @@ export default {
     margin-top: 30px;
     margin-bottom: 30px;
   }
-
 
   &::after {
     content: "";

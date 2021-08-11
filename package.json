@@ -14,6 +14,7 @@
     "vue-awesome-swiper": "^4.1.1",
     "vue-product-card": "^1.4.0",
     "vue-router": "^3.2.0",
+    "vue-simple-search-dropdown": "^1.0.1",
     "vuetify": "^2.5.8",
     "vuex": "^3.4.0"
   },

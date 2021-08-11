@@ -9,7 +9,7 @@
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <button id="card-btn" class="btn btn-success">Buy</button>
+        <button id="card-btn" class="btn btn-success">Посмотреть / заказать</button>
       </div>
     </div>
   </div>
