@@ -1,4 +1,4 @@
-import https from "../https-common";
+import https from "../http-common";
 
 class TutorialDataService {
     getAll() {
