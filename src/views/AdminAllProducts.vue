@@ -4,11 +4,13 @@
     <div class="col-8 form-wrapper">
       <div class="products">
         <h1>Список товаров</h1>
-        </br>
+        <br/>
         <div v-for="product in products" :key="product._id" class="product">
 <!--          <img class="img-fluid" :src="product.image" alt="product image" />-->
 <!--          <img class="img-fluid" src=`/public/images/upload_images/{{product.image}}` alt="product image" />-->
           <img class="img-fluid" src="../assets/card-img.png" alt="product image" />
+          <div class="product-title">{{ product.id }}</div>
+          <div class="product-title">{{ product.image }}</div>
           <div class="product-title">{{ product.title }}</div>
           <div class="product-desc">{{ product.description }}</div>
           <div class="product-desc">{{ product.color }}</div>
@@ -17,7 +19,7 @@
 
 <!--          <img class="product-desc" alt="User Pic" src="public/images/upload_images/test.jpg"> class="img-circle img-responsive">-->
 <!--          <div class="product-desc">{{ product.image }}</div>-->
-          <button @click="deleteProduct(product._id)">Удалить</button>
+          <button @click="deleteProduct(product.id)">Удалить</button>
         </div>
       </div>
     </div>
@@ -27,7 +29,7 @@
 
 <script>
 import Sidebar from '@/components/Sidebar'
-import TutorialDataService from "../services/ProductsDataServices";
+import ProductDataService from "../services/ProductsDataServices";
 
 export default {
   components:{
@@ -36,11 +38,13 @@ export default {
   data() {
     return {
       products: [],
+      currentProduct: null,
+      product: null
     }
   },
   methods:{
     retrieveTutorials() {
-      TutorialDataService.getAll()
+      ProductDataService.getAll()
           .then(response => {
             this.products = response.data;
             console.log(response.data);
@@ -50,6 +54,18 @@ export default {
             console.log(e);
           });
     },
+    deleteProduct(id) {
+      ProductDataService.delete(id)
+          .then(response => {
+            console.log(response.data);
+            window.location.reload()
+            // this.$router.push({ name: "products" });
+          })
+          .catch(e => {
+            console.log(e);
+
+          });
+    }
   },
   mounted() {
     this.retrieveTutorials();
