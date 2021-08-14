@@ -22,7 +22,17 @@ const routes = [
     path: '/product/:id',
     name: 'ProductPage',
     component: () => import(/* webpackChunkName: "about" */ '../views/ProductPage.vue')
-  }
+  },
+  {
+    path: '/admin/add',
+    name: 'AdminAddProduct',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AdminAddProduct.vue')
+  },
+  {
+    path: '/admin/products',
+    name: 'AdminAllProducts',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AdminAllProducts.vue')
+  },
 ]
 
 const router = new VueRouter({
