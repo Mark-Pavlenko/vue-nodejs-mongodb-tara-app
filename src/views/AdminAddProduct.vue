@@ -4,7 +4,8 @@
     <div class="col-6 form-wrapper" v-if="!submitted">
       <div class="form">
 
-        <input type="file" name="file" id="file" />
+<!--        <input type="file" name="uploaded_image"  v-on="product.image" id="file" />-->
+        <input type="text" name="uploaded_image"  v-model="product.image" id="file" />
 
         <label for="title">Заголовок</label>
         <input
@@ -83,7 +84,8 @@ import ProductsDataServices from "../services/ProductsDataServices";
           description: "",
           color: "",
           volume: "",
-          cost: null
+          cost: null,
+          image: ""
         },
         submitted: false
       };
@@ -95,7 +97,8 @@ import ProductsDataServices from "../services/ProductsDataServices";
           description: this.product.description,
           color: this.product.color,
           volume: this.product.volume,
-          cost: this.product.cost
+          cost: this.product.cost,
+          image: this.product.image
         };
 
         ProductsDataServices.create(data)

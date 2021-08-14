@@ -1,10 +1,12 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const fileUpload = require('express-fileupload');
 
 const path = __dirname + '/app/views/';
 
 const app = express();
+app.use(fileUpload());
 
 app.use(express.static(path));
 

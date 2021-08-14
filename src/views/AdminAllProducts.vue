@@ -18,9 +18,31 @@
 
 <script>
 import Sidebar from '@/components/Sidebar'
+import TutorialDataService from "../services/ProductsDataServices";
+
 export default {
   components:{
     Sidebar
+  },
+  data() {
+    return {
+      tutorials: [],
+    }
+  },
+  methods:{
+    retrieveTutorials() {
+      TutorialDataService.getAll()
+          .then(response => {
+            this.tutorials = response.data;
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+  },
+  mounted() {
+    this.retrieveTutorials();
   }
 }
 </script>

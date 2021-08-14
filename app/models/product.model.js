@@ -14,6 +14,9 @@ module.exports = (sequelize, Sequelize) => {
     },
     cost:{
       type: Sequelize.DOUBLE
+    },
+    image:{
+      type: Sequelize.STRING
     }
   });
   return Tutorial;
