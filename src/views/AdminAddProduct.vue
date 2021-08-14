@@ -70,7 +70,7 @@
 <script>
 import Sidebar from "../components/Sidebar";
 
-import ProductsDataService from "../services/GoodsDataServices";
+import ProductsDataServices from "../services/ProductsDataServices";
   export default {
     components:{
       Sidebar
@@ -98,7 +98,7 @@ import ProductsDataService from "../services/GoodsDataServices";
           cost: this.product.cost
         };
 
-        ProductsDataService.create(data)
+        ProductsDataServices.create(data)
             .then(response => {
               this.product.id = response.data.id;
               console.log(response.data);

@@ -25,7 +25,7 @@ const routes = [
   },
   {
     path: '/admin/add',
-    alias: "/tutorials",
+    // alias: "/products",
     name: 'AdminAddProduct',
     component: () => import(/* webpackChunkName: "about" */ '../views/AdminAddProduct.vue')
   },
