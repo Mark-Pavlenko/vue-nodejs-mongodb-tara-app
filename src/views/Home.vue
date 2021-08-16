@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-<!--    <Header/>-->
+    <!--    <Header/>-->
     <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">
@@ -30,68 +30,49 @@
     </div>
 
     <!--contacts-->
-    <div class="contacts-container" ref="contacts">
+    <div id="contacts-card">
       <section class="ftco-section">
-        <div id="contacts-container-body" class="container">
-
-          <div id="contacts-header" class="row justify-content-center">
-            <div class="col-md-6 text-center">
+        <div class="container">
+          <div id="contacts-title-block" class="row justify-content-center">
+            <div class="col-md-8 text-center">
               <h2 class="description-container-title">Контакты</h2>
             </div>
           </div>
 
           <div class="row justify-content-center">
-            <div class="col-lg-10 col-md-12">
-              <div class="wrapper">
-                <div class="row justify-content-center">
-                  <div class="col-lg-8">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="dbox w-100 text-center">
-                            <div class="contacts-image">
-                              <div class="contacts-user">
-                                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
-                              </div>
-                            </div>
+            <div id="form-body" class="wrapper">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="dbox w-100 text-center">
+                        <div class="contacts-image">
+                          <div class="contacts-user">
+                            <img src="../assets/Profile.png" class="img-fluid" alt=""/>
+                          </div>
                         </div>
                       </div>
-
                     </div>
                   </div>
-                  <div class="col-lg-8">
-                    <div id="contacts-card-body" class="contact-wrap">
-                      <h3 class="mb-4 text-center">Давайте оставаться на связи!</h3>
-                      <form method="POST" id="contacts-wrapper" name="contactForm" class="contacts-wrapper">
-                        <div class="row">
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <textarea name="message" class="form-control" id="message" cols="30" rows="8"
-                                        placeholder="Message"></textarea>
-                            </div>
-                          </div>
-                          <div class="col-md-12">
-                            <div class="form-group">
-                              <input type="submit" value="Send Message" class="btn btn-primary">
-                              <div class="submitting"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
+                </div>
+                <div id="test" class="col-lg-10">
+                  <div class="contacts-wrapper">
+                    <h3 class="mb-4 text-center">Напишите нам, и мы обязательно с вами свяжемся!</h3>
+
+                    <div class="contacts-wrapper">
+                      <div class="input">
+                        <label>Имя</label>
+                        <input type="text"/>
+                      </div>
+                      <div class="input">
+                        <label>Электронный адрес</label>
+                        <input type="email"/>
+                      </div>
+                      <div class="input">
+                        <label>Моб. Телефон</label>
+                        <input type="text"/>
+                      </div>
+                      <button>Отправить</button>
                     </div>
                   </div>
                 </div>
@@ -101,8 +82,6 @@
         </div>
       </section>
     </div>
-
-
     <!--go up btn-->
 
     <button class="go-top-button" v-if="this.windowTop >= 250" @click="goToTop()">
@@ -244,6 +223,16 @@ export default {
   align-items: center;
 }
 
+#contacts-card {
+  //min-height: 100vh;
+  overflow: hidden;
+  //background-color: #EEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f6f6f6;
+}
+
 .products {
   display: flex;
   max-width: 1280px;
@@ -252,11 +241,11 @@ export default {
 }
 
 //contacts
-.contacts-container {
-  margin-top:20px;
+.ftco-section {
+  margin-top: 50px;
+  margin-bottom: 50px;
   background: #f6f6f6;
-  //height: 725px;
-  margin-top:20px;
+
   @media(max-width: 992px) {
 
   }
@@ -327,6 +316,7 @@ export default {
     border: none;
 
     margin-top: 30px;
+    margin-bottom: 50px;
   }
 }
 
@@ -388,8 +378,8 @@ export default {
 }
 
 //
-#contacts-container-body{
-  margin-top:10px;
+#contacts-title-block,
+#form-body{
   background-color:white;
 }
 
