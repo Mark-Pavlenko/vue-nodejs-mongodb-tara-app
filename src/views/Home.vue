@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <Header/>
+<!--    <Header/>-->
     <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">
@@ -31,38 +31,75 @@
 
     <!--contacts-->
     <div class="contacts-container" ref="contacts">
-      <span class="description-container-title">Обратная связь</span>
-      <div class="contacts-form">
-        <div id="contacts-card-body" class="row">
-          <div class="col-lg-6 col-12">
-            <div class="contacts-wrapper">
-              <div class="input">
-                <label>Имя</label>
-                <input type="text"/>
-              </div>
-              <div class="input">
-                <label>Электронный адрес</label>
-                <input type="email"/>
-              </div>
-              <div class="input">
-                <label>Моб. Телефон</label>
-                <input type="text"/>
-              </div>
-              <button>Отправить</button>
+      <section class="ftco-section">
+        <div id="contacts-container-body" class="container">
+
+          <div id="contacts-header" class="row justify-content-center">
+            <div class="col-md-6 text-center">
+              <h2 class="description-container-title">Контакты</h2>
             </div>
           </div>
-          <div class="col-lg-6 col-12 d-flex justify-content-center">
-            <div class="contacts-image">
-              <div class="contacts-user">
-                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
-              </div>
-              <div class="contacts-desc">
-                Введите ваши данные и мы с вами свяжемся
+
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+              <div class="wrapper">
+                <div class="row justify-content-center">
+                  <div class="col-lg-8">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="dbox w-100 text-center">
+                            <div class="contacts-image">
+                              <div class="contacts-user">
+                                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div id="contacts-card-body" class="contact-wrap">
+                      <h3 class="mb-4 text-center">Давайте оставаться на связи!</h3>
+                      <form method="POST" id="contacts-wrapper" name="contactForm" class="contacts-wrapper">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <input type="text" class="form-control" name="name" id="name" placeholder="Name">
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject">
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <textarea name="message" class="form-control" id="message" cols="30" rows="8"
+                                        placeholder="Message"></textarea>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <input type="submit" value="Send Message" class="btn btn-primary">
+                              <div class="submitting"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
 
 
@@ -170,7 +207,7 @@ export default {
 //description block
 .description-container-title {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-top: 30px;
   font-family: Roboto;
   font-style: normal;
@@ -216,9 +253,10 @@ export default {
 
 //contacts
 .contacts-container {
+  margin-top:20px;
   background: #f6f6f6;
-  height: 725px;
-
+  //height: 725px;
+  margin-top:20px;
   @media(max-width: 992px) {
 
   }
@@ -238,7 +276,7 @@ export default {
 
 
   @media (max-width: 992px) {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -306,10 +344,6 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   margin-bottom: 40px;
-
-  @media (max-width: 992px) {
-    display: none
-  }
 }
 
 .contacts-desc {
@@ -353,5 +387,10 @@ export default {
   cursor: pointer;
 }
 
+//
+#contacts-container-body{
+  margin-top:10px;
+  background-color:white;
+}
 
 </style>
