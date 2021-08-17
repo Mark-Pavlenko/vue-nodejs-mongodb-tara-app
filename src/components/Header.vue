@@ -40,7 +40,7 @@
           <div class="dbox w-100 text-center">
             <div class=" align-items-center justify-content-center">
               <div class="align-middle">
-                <anchor-router-link :to="{name:'Home', hash:'#contacts-card-body'}" id="contacts"
+                <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
                                     class="header__button">
                   Перезвоните Мне
                 </anchor-router-link>
@@ -69,7 +69,7 @@
               </div>
 
               <div id="contacts-list-item" class="menu_btn">
-                <anchor-router-link class="router-link" :to="{name:'Home', hash:'#contacts-card-body'}">
+                <anchor-router-link class="router-link" :to="{name:'Home', hash:'#contacts-card'}">
                   Контакты
                 </anchor-router-link>
 
