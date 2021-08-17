@@ -1,6 +1,7 @@
 <template>
   <div>
 
+    <!--main header-->
     <div class="header">
       <div class="row">
         <div class="col-md-4">
@@ -51,32 +52,32 @@
       </div>
     </div>
 
+    <!--menu-->
     <div class="menu__wrapper">
       <div id="header-container" class="container">
         <div class="menu">
           <div class="web">
+
             <div id="nav">
               <div class="menu_btn">
                 <router-link to="/" class="router-link">Главная</router-link>
               </div>
               <div class="menu_btn">
                 <router-link to="/catalog" class="router-link">Каталог</router-link>
-
               </div>
               <div id="about" class="menu_btn">
                 <anchor-router-link :to="{name:'Home', hash:'#about-us'}" class="router-link">О Нас</anchor-router-link>
               </div>
-
               <div id="contacts-list-item" class="menu_btn">
                 <anchor-router-link class="router-link" :to="{name:'Home', hash:'#contacts-card'}">
                   Контакты
                 </anchor-router-link>
-
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
 
   </div>
@@ -257,8 +258,6 @@ export default {
   @media (max-width: 710px) {
     margin-left: 20px;
   }
-
-
 }
 
 #nav {
@@ -301,10 +300,19 @@ export default {
   --bs-gutter-x: 0rem !important;
 }
 
-.header-contacts-data{
-  @media(max-width:992px){
-    margin-left:30px;
+.header-contacts-data {
+  @media(max-width: 992px) {
+    margin-left: 30px;
   }
+}
+
+#header-cart-icon-block{
+  margin-top:-30px;
+  margin-left: 0 !important
+}
+
+#header-cart-icon {
+  width: 25%;
 }
 
 </style>
