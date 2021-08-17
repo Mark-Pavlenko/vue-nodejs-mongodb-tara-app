@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-4">
           <div class="dbox w-100 text-center">
-            <div class=" ">
+            <div class="header-contacts-data">
 
               <div class="d-flex justify-content-center">
                 <div class="contacts">
@@ -108,8 +108,8 @@ export default {
   padding-bottom: 25px;
 
   @media (max-width: 992px) {
-    margin-top: 0px;
-    margin-bottom: 0px;
+    //margin-top: 0px;
+    //margin-bottom: 0px;
   }
 
   &__button {
@@ -143,7 +143,7 @@ export default {
     line-height: 150px;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 710px) {
     line-height: 100px;
   }
 }
@@ -156,7 +156,7 @@ export default {
     line-height: 150px;
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 710px) {
     line-height: 100px;
   }
 }
@@ -300,6 +300,12 @@ export default {
 
 .row {
   --bs-gutter-x: 0rem !important;
+}
+
+.header-contacts-data{
+  @media(max-width:992px){
+    margin-left:30px;
+  }
 }
 
 </style>
