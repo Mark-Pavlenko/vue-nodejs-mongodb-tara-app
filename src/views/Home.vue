@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-<!--        <Header/>-->
+        <Header/>
     <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">

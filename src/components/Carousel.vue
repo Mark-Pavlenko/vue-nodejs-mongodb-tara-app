@@ -1,10 +1,10 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-    <swiper-slide><img src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img src="../assets/tara-img.png"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
