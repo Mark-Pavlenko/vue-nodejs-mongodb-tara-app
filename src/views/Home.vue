@@ -5,7 +5,10 @@
     <!--description block -->
     <div class="description-container" ref="about">
       <span id="about-us" class="description-container-title">О нас</span>
-
+      <div class="logo">
+        <img src="../assets/logo.png" class="img-fluid" alt=""/>
+      </div>
+      <br/>
       <div class="description-container-text">
         Мы являемся национальным производителем и представляем тару разного
         объёма. <br/>
@@ -207,7 +210,7 @@ export default {
   line-height: 2;
   font-size: 18px;
   margin: 0px auto;
-  width: 80%;
+  width: 90%;
   text-align: center;
 
 }

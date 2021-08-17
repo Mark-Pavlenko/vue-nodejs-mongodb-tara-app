@@ -2,37 +2,28 @@
   <div class="home">
     <Header/>
 
-    <!--dropdowns block-->
-    <div class="menu__wrapper">
-      <div id="dropdowns-container" class="container">
-        <div class="menu">
-          <div class="web">
-            <div id="nav">
-              <div class="dropdowns_btn">
+    <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap" >
+      <div class="p-2" >
+        <Dropdown
+            :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
+            :disabled="false"
+            name="color"
+            :maxItem="10"
+            placeholder="Выберите объем">
+        </Dropdown>
+      </div>
+      <div class="p-2">
                 <Dropdown
-                    class="goods-dropdowns"
-                    :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
-                    :disabled="false"
-                    name="volume"
-                    :maxItem="10"
-                    placeholder="Выберите объем">
-                </Dropdown>
-              </div>
-              <div class="dropdowns_btn">
-                <Dropdown
-                    class="goods-dropdowns"
                     :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
                     :disabled="false"
                     name="color"
                     :maxItem="10"
                     placeholder="Выберите цвет">
                 </Dropdown>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
+
+
 
     <!--    goods cards block-->
     <div id="goods-list">
@@ -113,6 +104,10 @@ export default {
 
 <style lang="scss" scoped>
 
+#dropdowns-container{
+  margin-top:20px;
+}
+
 //dropdowns-items block
 .menu__wrapper {
   width: 100%;
@@ -175,5 +170,9 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
+//.dropdown .dropdown-input{
+//  text-align:center !important;
+//}
 
 </style>
