@@ -140,12 +140,11 @@ export default {
 
 .logo {
   @media (max-width: 992px) {
-    //display:  table-cell;
     line-height: 150px;
-    //vertical-align:  middle;
-    //margin-top:20px;
-    //padding-left:10px;
-    //margin-left:10px;
+  }
+
+  @media (max-width: 992px) {
+    line-height: 100px;
   }
 }
 
@@ -155,6 +154,10 @@ export default {
 
   @media (max-width: 992px) {
     line-height: 150px;
+  }
+
+  @media (max-width: 992px) {
+    line-height: 100px;
   }
 }
 
