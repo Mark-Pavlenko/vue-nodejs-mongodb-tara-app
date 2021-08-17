@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!--    <Header/>-->
+<!--        <Header/>-->
     <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">
@@ -245,7 +245,7 @@ export default {
   margin-top: 50px;
   margin-bottom: 50px;
   background: #f6f6f6;
-
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media(max-width: 992px) {
 
   }
@@ -358,7 +358,7 @@ export default {
   align-items: center;
 
   @media (max-width: 992px) {
-    margin-top: 50px;
+    //margin-top: 50px;
   }
 }
 
