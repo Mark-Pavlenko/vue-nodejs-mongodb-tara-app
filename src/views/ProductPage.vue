@@ -1,48 +1,42 @@
 <template>
-  <div class="home">
+  <div class="page">
     <Header/>
-
     <div class="thumb-example">
       <!-- swiper1 -->
       <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
-        <swiper-slide class="slide-1"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-2"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-3"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-4"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-5"><img src="../assets/tara-img.png"></swiper-slide>
+        <swiper-slide class="slide-1"></swiper-slide>
+        <swiper-slide class="slide-2"></swiper-slide>
+        <swiper-slide class="slide-3"></swiper-slide>
+        <swiper-slide class="slide-4"></swiper-slide>
+        <swiper-slide class="slide-5"></swiper-slide>
         <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
         <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
       </swiper>
       <!-- swiper2 Thumbs -->
       <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-        <swiper-slide class="slide-1"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-2"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-3"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-4"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-5"><img src="../assets/tara-img.png"></swiper-slide>
+        <swiper-slide class="slide-1"></swiper-slide>
+        <swiper-slide class="slide-2"></swiper-slide>
+        <swiper-slide class="slide-3"></swiper-slide>
+        <swiper-slide class="slide-4"></swiper-slide>
+        <swiper-slide class="slide-5"></swiper-slide>
       </swiper>
     </div>
-
-<Footer/>
   </div>
+
 </template>
 
 <script>
-
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import Header from '../components/Header';
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
 export default {
-  components:{
+  components: {
     Header,
-    Footer,
     Swiper,
     SwiperSlide
   },
-  data(){
+  data() {
     return {
       swiperOptionTop: {
         loop: true,
@@ -71,20 +65,17 @@ export default {
       swiperTop.controller.control = swiperThumbs
       swiperThumbs.controller.control = swiperTop
     })
-  },
-  name: 'swiper-example-thumbs-gallery',
-  title: 'Thumbs gallery with Two-way control',
-
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-
-//slider styles
-
 .thumb-example {
   height: 480px;
-  background-color: black;
+  width: 710px;
+  background-color: #e3e3e3;
+  margin-top:25px;
+  padding-bottom: 5px;
 }
 
 .swiper {
@@ -93,20 +84,29 @@ export default {
     background-position: center;
 
     &.slide-1 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top:5px;
     }
+
     &.slide-2 {
-      //background-image:url('../assets/tara-img.png');
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top:5px;
     }
+
     &.slide-3 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top:5px;
     }
+
     &.slide-4 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top:5px;
     }
+
     &.slide-5 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top:5px;
+
     }
   }
 
@@ -114,24 +114,28 @@ export default {
     height: 80%;
     width: 100%;
   }
+
   &.gallery-thumbs {
     height: 20%;
     box-sizing: border-box;
-    //padding: $gap 0;
+    padding: 5px;
+    cursor: pointer;
   }
+
   &.gallery-thumbs .swiper-slide {
     width: 25%;
     height: 100%;
     opacity: 0.4;
   }
+
   &.gallery-thumbs .swiper-slide-active {
     opacity: 1;
+
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: black !important;
   }
 }
-
-.swiper-button-prev,
-.swiper-button-next{
-  color:black !important;
-}
-
 </style>
