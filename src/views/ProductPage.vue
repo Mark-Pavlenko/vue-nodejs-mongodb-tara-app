@@ -1,26 +1,50 @@
 <template>
   <div class="page">
     <Header/>
-    <div class="thumb-example">
-      <!-- swiper1 -->
-      <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
-        <swiper-slide class="slide-1"></swiper-slide>
-        <swiper-slide class="slide-2"></swiper-slide>
-        <swiper-slide class="slide-3"></swiper-slide>
-        <swiper-slide class="slide-4"></swiper-slide>
-        <swiper-slide class="slide-5"></swiper-slide>
-        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-      </swiper>
-      <!-- swiper2 Thumbs -->
-      <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-        <swiper-slide class="slide-1"></swiper-slide>
-        <swiper-slide class="slide-2"></swiper-slide>
-        <swiper-slide class="slide-3"></swiper-slide>
-        <swiper-slide class="slide-4"></swiper-slide>
-        <swiper-slide class="slide-5"></swiper-slide>
-      </swiper>
+
+    <div class="container-fluid">
+      <div id="catalog-back" class="">
+        <p>Каталог</p>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div id="thumb-example" class="container-fluid">
+            <!-- swiper1 -->
+            <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
+              <swiper-slide class="slide-1"></swiper-slide>
+              <swiper-slide class="slide-2"></swiper-slide>
+              <swiper-slide class="slide-3"></swiper-slide>
+              <swiper-slide class="slide-4"></swiper-slide>
+              <swiper-slide class="slide-5"></swiper-slide>
+              <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+              <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+            </swiper>
+            <!-- swiper2 Thumbs -->
+            <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+              <swiper-slide class="slide-1"></swiper-slide>
+              <swiper-slide class="slide-2"></swiper-slide>
+              <swiper-slide class="slide-3"></swiper-slide>
+              <swiper-slide class="slide-4"></swiper-slide>
+              <swiper-slide class="slide-5"></swiper-slide>
+            </swiper>
+          </div>
+        </div>
+        <div class="col">
+          <div class="description-wrapper">
+            Мы предлагаем Вам оригинальную тару для косметики и парфюмерии: —
+            стеклянные флаконы с кисточками для лака (гель лака);<br />
+            — стеклянные и пластиковые флаконы для парфюмерии и
+            автопарфюмерии;<br />
+            — пластиковые, металлические, стеклянные баночки для кремов и
+            лосьонов;<br />
+            — триггеры, дозаторы, спреи, а также другие комплектующие.
+            {{ windowWidth }}
+          </div>
+        </div>
+      </div>
     </div>
+
+
   </div>
 
 </template>
@@ -70,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.thumb-example {
+#thumb-example {
   height: 480px;
   width: 710px;
   background-color: #e3e3e3;
@@ -118,7 +142,7 @@ export default {
   &.gallery-thumbs {
     height: 20%;
     box-sizing: border-box;
-    padding: 5px;
+    //padding: 5px;
     cursor: pointer;
   }
 
