@@ -1,48 +1,77 @@
 <template>
-  <div class="home">
+  <div class="page">
     <Header/>
 
-    <div class="thumb-example">
-      <!-- swiper1 -->
-      <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
-        <swiper-slide class="slide-1"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-2"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-3"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-4"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-5"><img src="../assets/tara-img.png"></swiper-slide>
-        <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-        <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
-      </swiper>
-      <!-- swiper2 Thumbs -->
-      <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
-        <swiper-slide class="slide-1"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-2"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-3"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-4"><img src="../assets/tara-img.png"></swiper-slide>
-        <swiper-slide class="slide-5"><img src="../assets/tara-img.png"></swiper-slide>
-      </swiper>
+    <div id="main-container" class="container-fluid">
+      <div id="catalog-back">
+        <p>Каталог</p>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div id="thumb-example" class="container-fluid">
+              <!-- swiper1 -->
+              <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
+                <swiper-slide class="slide-1"></swiper-slide>
+                <swiper-slide class="slide-2"></swiper-slide>
+                <swiper-slide class="slide-3"></swiper-slide>
+                <swiper-slide class="slide-4"></swiper-slide>
+                <swiper-slide class="slide-5"></swiper-slide>
+                <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
+                <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+              </swiper>
+              <!-- swiper2 Thumbs -->
+              <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">
+                <swiper-slide class="slide-1"></swiper-slide>
+                <swiper-slide class="slide-2"></swiper-slide>
+                <swiper-slide class="slide-3"></swiper-slide>
+                <swiper-slide class="slide-4"></swiper-slide>
+                <swiper-slide class="slide-5"></swiper-slide>
+              </swiper>
+            </div>
+          </div>
+          <div class="col">
+            <div class="description-wrapper" >
+              Мы предлагаем Вам оригинальную тару для косметики и парфюмерии: —
+              стеклянные флаконы с кисточками для лака (гель лака);<br/>
+              — стеклянные и пластиковые флаконы для парфюмерии и
+              автопарфюмерии;<br/>
+              — пластиковые, металлические, стеклянные баночки для кремов и
+              лосьонов;<br/>
+              — триггеры, дозаторы, спреи, а также другие комплектующие.
+            </div>
+
+            <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
+                                class="buy-btn">
+              Перезвоните Мне
+            </anchor-router-link>
+
+          </div>
+        </div>
+      </div>
     </div>
 
-<Footer/>
+    <Footer/>
   </div>
+
 </template>
 
 <script>
-
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-
-import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
+import AnchorRouterLink from 'vue-anchor-router-link';
 import 'swiper/css/swiper.css'
 
 export default {
-  components:{
+  components: {
+    AnchorRouterLink,
     Header,
     Footer,
     Swiper,
     SwiperSlide
   },
-  data(){
+  data() {
     return {
       swiperOptionTop: {
         loop: true,
@@ -71,20 +100,26 @@ export default {
       swiperTop.controller.control = swiperThumbs
       swiperThumbs.controller.control = swiperTop
     })
-  },
-  name: 'swiper-example-thumbs-gallery',
-  title: 'Thumbs gallery with Two-way control',
-
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 
-//slider styles
+#main-container {
+  margin-bottom: 50px
+}
 
-.thumb-example {
+#catalog-back {
+  margin-top: 20px;
+}
+
+#thumb-example {
   height: 480px;
-  background-color: black;
+  width: 710px;
+  background-color: #e3e3e3;
+  margin-top: 25px;
+  padding-bottom: 5px;
 }
 
 .swiper {
@@ -93,20 +128,29 @@ export default {
     background-position: center;
 
     &.slide-1 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top: 5px;
     }
+
     &.slide-2 {
-      //background-image:url('../assets/tara-img.png');
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top: 5px;
     }
+
     &.slide-3 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top: 5px;
     }
+
     &.slide-4 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top: 5px;
     }
+
     &.slide-5 {
-      background-color: #f6f6f6;
+      background-image: url('../assets/gold-bank.png');
+      margin-top: 5px;
+
     }
   }
 
@@ -114,24 +158,65 @@ export default {
     height: 80%;
     width: 100%;
   }
+
   &.gallery-thumbs {
     height: 20%;
     box-sizing: border-box;
-    //padding: $gap 0;
+    //padding: 5px;
+    cursor: pointer;
   }
+
   &.gallery-thumbs .swiper-slide {
     width: 25%;
     height: 100%;
     opacity: 0.4;
   }
+
   &.gallery-thumbs .swiper-slide-active {
     opacity: 1;
+
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: black !important;
   }
 }
 
-.swiper-button-prev,
-.swiper-button-next{
-  color:black !important;
+.description-wrapper {
+  width: 80%;
+  margin-left: 40px;
+  margin-top: 50px !important;
+}
+
+.buy-btn {
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  color: #f6f6f6;
+
+  line-height: 100px;
+
+  background: rgba(182, 12, 12, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+
+  cursor: pointer;
+
+  padding: 10px;
+  text-decoration: none;
+
+  @media (max-width: 992px) {
+    line-height: 150px;
+  }
+
+  @media (max-width: 710px) {
+    line-height: 100px;
+  }
 }
 
 </style>

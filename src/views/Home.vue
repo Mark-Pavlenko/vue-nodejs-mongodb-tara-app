@@ -1,11 +1,14 @@
 <template>
   <div class="home">
-    <Header/>
+        <Header/>
     <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">
       <span id="about-us" class="description-container-title">О нас</span>
-
+      <div class="logo">
+        <img src="../assets/logo.png" class="img-fluid" alt=""/>
+      </div>
+      <br/>
       <div class="description-container-text">
         Мы являемся национальным производителем и представляем тару разного
         объёма. <br/>
@@ -30,42 +33,58 @@
     </div>
 
     <!--contacts-->
-    <div class="contacts-container" ref="contacts">
-      <span class="description-container-title">Обратная связь</span>
-      <div class="contacts-form">
-        <div id="contacts-card-body" class="row">
-          <div class="col-lg-6 col-12">
-            <div class="contacts-wrapper">
-              <div class="input">
-                <label>Имя</label>
-                <input type="text"/>
-              </div>
-              <div class="input">
-                <label>Электронный адрес</label>
-                <input type="email"/>
-              </div>
-              <div class="input">
-                <label>Моб. Телефон</label>
-                <input type="text"/>
-              </div>
-              <button>Отправить</button>
+    <div id="contacts-card">
+      <section class="ftco-section">
+        <div class="container">
+          <div id="contacts-title-block" class="row justify-content-center">
+            <div class="col-md-8 text-center">
+              <h2 class="description-container-title">Контакты</h2>
             </div>
           </div>
-          <div class="col-lg-6 col-12 d-flex justify-content-center">
-            <div class="contacts-image">
-              <div class="contacts-user">
-                <img src="../assets/Profile.png" class="img-fluid" alt=""/>
-              </div>
-              <div class="contacts-desc">
-                Введите ваши данные и мы с вами свяжемся
+
+          <div class="row justify-content-center">
+            <div id="form-body" class="wrapper">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="dbox w-100 text-center">
+                        <div class="contacts-image">
+                          <div class="contacts-user">
+                            <img src="../assets/Profile.png" class="img-fluid" alt=""/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="test" class="col-lg-10">
+                  <div class="contacts-wrapper">
+                    <h3 class="mb-4 text-center">Напишите нам, и мы обязательно с вами свяжемся!</h3>
+
+                    <div class="contacts-wrapper">
+                      <div class="input">
+                        <label>Имя</label>
+                        <input type="text"/>
+                      </div>
+                      <div class="input">
+                        <label>Электронный адрес</label>
+                        <input type="email"/>
+                      </div>
+                      <div class="input">
+                        <label>Моб. Телефон</label>
+                        <input type="text"/>
+                      </div>
+                      <button>Отправить</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-
-
     <!--go up btn-->
 
     <button class="go-top-button" v-if="this.windowTop >= 250" @click="goToTop()">
@@ -170,7 +189,7 @@ export default {
 //description block
 .description-container-title {
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-top: 30px;
   font-family: Roboto;
   font-style: normal;
@@ -191,7 +210,7 @@ export default {
   line-height: 2;
   font-size: 18px;
   margin: 0px auto;
-  width: 80%;
+  width: 90%;
   text-align: center;
 
 }
@@ -207,6 +226,16 @@ export default {
   align-items: center;
 }
 
+#contacts-card {
+  //min-height: 100vh;
+  overflow: hidden;
+  //background-color: #EEE;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f6f6f6;
+}
+
 .products {
   display: flex;
   max-width: 1280px;
@@ -215,10 +244,11 @@ export default {
 }
 
 //contacts
-.contacts-container {
+.ftco-section {
+  margin-top: 50px;
+  margin-bottom: 50px;
   background: #f6f6f6;
-  height: 725px;
-
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media(max-width: 992px) {
 
   }
@@ -238,7 +268,7 @@ export default {
 
 
   @media (max-width: 992px) {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -289,6 +319,7 @@ export default {
     border: none;
 
     margin-top: 30px;
+    margin-bottom: 50px;
   }
 }
 
@@ -306,10 +337,6 @@ export default {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
   margin-bottom: 40px;
-
-  @media (max-width: 992px) {
-    display: none
-  }
 }
 
 .contacts-desc {
@@ -334,7 +361,7 @@ export default {
   align-items: center;
 
   @media (max-width: 992px) {
-    margin-top: 50px;
+    //margin-top: 50px;
   }
 }
 
@@ -353,5 +380,10 @@ export default {
   cursor: pointer;
 }
 
+//
+#contacts-title-block,
+#form-body{
+  background-color:white;
+}
 
 </style>
