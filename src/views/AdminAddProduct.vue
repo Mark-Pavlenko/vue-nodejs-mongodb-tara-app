@@ -117,6 +117,8 @@ export default {
         complectation: this.product.complectation,
       };
 
+
+
       ProductsDataService.create(data)
           .then(response => {
             this.product.id = response.data.id;

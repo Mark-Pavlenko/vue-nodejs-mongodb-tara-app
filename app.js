@@ -2,13 +2,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+const fileUpload = require('express-fileupload');
+
 const path = __dirname + '/app/views/';
 
 const app = express();
 
 app.use(express.static(path));
-
 app.use(cors());
+app.use(fileUpload());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -29,6 +31,25 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/turorial.routes")(app);
+
+app.post('/upload', (req, res) => {
+
+    if (!req.files) {
+        return res.status(500).send({ msg: "file is not found" })
+    }
+
+    const myFile = req.files.file;
+
+    // Use the mv() method to place the file somewhere on your server
+    myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+        if (err) {
+            console.log(err)
+            return res.status(500).send({ msg: "fuck eroor" });
+        }
+        return res.send({ file: myFile.name, path: `/${myFile.name}`, ty: myFile.type });
+    });
+})
+
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

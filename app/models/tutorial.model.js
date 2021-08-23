@@ -12,7 +12,7 @@ module.exports = (sequelize, Sequelize) => {
             volume: {
                 type: Sequelize.INTEGER
             },
-            material:{
+            material: {
                 type: Sequelize.STRING
             },
             complectation: {
