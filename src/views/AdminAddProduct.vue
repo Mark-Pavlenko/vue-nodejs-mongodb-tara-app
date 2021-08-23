@@ -75,8 +75,8 @@
       </div>
     </div>
     <div v-else>
-      <h4>You submitted successfully!</h4>
-      <button class="btn btn-success" @click="newProduct">Add</button>
+      <h4>Товар был успешно добавлен!</h4>
+      <button class="btn btn-success" @click="newProduct">Добавить еще один</button>
     </div>
   </div>
 </template>
