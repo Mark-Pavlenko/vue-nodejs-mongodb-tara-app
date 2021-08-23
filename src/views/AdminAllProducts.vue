@@ -21,15 +21,11 @@
         <div v-for="product in products" :key="product._id" class="product">
           <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`" alt="product image">
           <div class="product-title">{{ product.title }}</div>
-          <div class="product-title">{{ product.image }}</div>
           <div class="product-desc">{{ product.description }}</div>
           <div class="product-desc">{{ product.color }}</div>
           <div class="product-desc">{{ product.volume }}</div>
           <div class="product-desc">{{ product.material }}</div>
           <div class="product-desc">{{ product.complectation }}</div>
-
-          <!--          <img class="product-desc" alt="User Pic" src="public/images/upload_images/test.jpg"> class="img-circle img-responsive">-->
-          <!--          <div class="product-desc">{{ product.image }}</div>-->
           <button @click="deleteProduct(product.id)">Удалить</button>
         </div>
       </div>
@@ -91,10 +87,11 @@ export default {
 .products {
   display: flex;
   flex-direction: column;
+
 }
 
 .product {
-
+  font-size: 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -105,8 +102,8 @@ export default {
   box-shadow: 0px 1px 4px 1px rgb(204, 202, 202);
 
   img {
-    width: 50px;
-    height: 50px;
+
+    height: 125px;
   }
 
   &-title {
