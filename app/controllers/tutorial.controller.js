@@ -18,7 +18,8 @@ exports.create = (req, res) => {
     description: req.body.description,
     color: req.body.color,
     volume: req.body.volume,
-    cost: req.body.cost
+    material: req.body.material,
+    complectation: req.body.complectation,
   };
 
   // Save Tutorial in the database

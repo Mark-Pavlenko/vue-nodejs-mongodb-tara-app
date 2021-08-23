@@ -85,8 +85,8 @@
         </div>
       </section>
     </div>
-    <!--go up btn-->
 
+    <!--go up btn-->
     <button class="go-top-button" v-if="this.windowTop >= 250" @click="goToTop()">
       <!--      v-if="scrollFromTop >= 1400" @click="goToTop"-->
 

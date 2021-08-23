@@ -15,7 +15,7 @@
         />
 
         <label for="description">Описание</label>
-        <input
+        <textarea
             class="form-control"
             id="description"
             required
@@ -28,9 +28,12 @@
           <div class="color">
             <label for="color">Цвет: </label>
             <select v-model="product.color" name="color" id="color">
+              <option value="Белый">Белый</option>
               <option value="Золотой">Золотой</option>
-              <option value="Красный">Красный</option>
-              <option value="Синий">Синий</option>
+              <option value="Перламутровый">Перламутровый</option>
+              <option value="Серебрянный ">Серебрянный</option>
+              <option value="Черный">Черный</option>
+              <option value="Прозрачный">Прозрачный</option>
             </select>
           </div>
 
@@ -47,13 +50,23 @@
           </div>
         </div>
 
-        <label for="description">Стоимость</label>
+        <label for="material">Материал</label>
         <input
             class="form-control"
-            id="cost"
+            id="material"
             required
-            v-model="product.cost"
-            name="cost"
+            v-model="product.material"
+            name="material"
+        />
+
+
+        <label for="complectation">Комплектация</label>
+        <input
+            class="form-control"
+            id="complectation"
+            required
+            v-model="product.complectation"
+            name="complectation"
         />
 
         <button type="submit" @click="saveProduct">Добавить товар</button>
@@ -83,7 +96,9 @@ import ProductsDataService from "../services/GoodsDataServices";
           description: "",
           color: "",
           volume: "",
-          cost: null
+          material: "",
+          complectation: "",
+
         },
         submitted: false
       };
@@ -95,7 +110,8 @@ import ProductsDataService from "../services/GoodsDataServices";
           description: this.product.description,
           color: this.product.color,
           volume: this.product.volume,
-          cost: this.product.cost
+          material: this.product.material,
+          complectation: this.product.complectation,
         };
 
         ProductsDataService.create(data)
