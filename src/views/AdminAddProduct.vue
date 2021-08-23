@@ -1,10 +1,12 @@
 <template>
-  <div class="row">
-    <div class="col-4"><Sidebar /></div>
+  <div id="add-product-page" class="row">
+    <div class="col-4">
+      <Sidebar/>
+    </div>
     <div class="col-6 form-wrapper" v-if="!submitted">
       <div class="form">
 
-        <input type="file" name="file" id="file" />
+        <input type="file" name="file" id="file"/>
 
         <label for="title">Заголовок</label>
         <input
@@ -84,65 +86,80 @@
 import Sidebar from "../components/Sidebar";
 
 import ProductsDataService from "../services/GoodsDataServices";
-  export default {
-    components:{
-      Sidebar
-    },
-    data() {
-      return {
-        product: {
-          id: null,
-          title: "",
-          description: "",
-          color: "",
-          volume: "",
-          material: "",
-          complectation: "",
 
-        },
-        submitted: false
-      };
-    },
-    methods:{
-      saveProduct() {
-        let data = {
-          title: this.product.title,
-          description: this.product.description,
-          color: this.product.color,
-          volume: this.product.volume,
-          material: this.product.material,
-          complectation: this.product.complectation,
-        };
+export default {
+  components: {
+    Sidebar
+  },
+  data() {
+    return {
+      product: {
+        id: null,
+        title: "",
+        description: "",
+        color: "",
+        volume: "",
+        material: "",
+        complectation: "",
 
-        ProductsDataService.create(data)
-            .then(response => {
-              this.product.id = response.data.id;
-              console.log(response.data);
-              this.submitted = true;
-            })
-            .catch(e => {
-              console.log(e);
-            });
       },
-      newProduct() {
-        this.submitted = false;
-        this.product = {};
-      }
+      submitted: false
+    };
+  },
+  methods: {
+    saveProduct() {
+      let data = {
+        title: this.product.title,
+        description: this.product.description,
+        color: this.product.color,
+        volume: this.product.volume,
+        material: this.product.material,
+        complectation: this.product.complectation,
+      };
+
+      ProductsDataService.create(data)
+          .then(response => {
+            this.product.id = response.data.id;
+            console.log(response.data);
+            this.submitted = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+    newProduct() {
+      this.submitted = false;
+      this.product = {};
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
+
+
+#add-product-page{
+  height:100%;
+}
+
 .form-wrapper {
   margin-top: 100px;
 }
+
 .form {
   display: flex;
   flex-direction: column;
+
   button {
     margin-top: 20px;
   }
+
+  input{
+    margin-top:10px;
+    margin-bottom:10px;
+  }
 }
+
 .selects-wrapper {
   display: flex;
   justify-content: center;
@@ -150,7 +167,19 @@ import ProductsDataService from "../services/GoodsDataServices";
   margin-top: 20px;
 }
 
+.color {
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+
 .volume {
-  margin-right: 50px;
+  padding-left: 50px;
+
+  label {
+    margin-right: 10px;
+  }
 }
 </style>
