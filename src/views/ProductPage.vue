@@ -9,7 +9,8 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <div id="thumb-example" class="container-fluid">
+            <div id="thumb-example" class="container--fluid">
+
               <!-- swiper1 -->
               <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">
                 <swiper-slide class="slide-1"></swiper-slide>
@@ -28,8 +29,10 @@
                 <swiper-slide class="slide-4"></swiper-slide>
                 <swiper-slide class="slide-5"></swiper-slide>
               </swiper>
+
             </div>
           </div>
+
           <div class="col">
             <div class="description-wrapper">
               Мы предлагаем Вам оригинальную тару для косметики и парфюмерии:<br/><br/>
@@ -76,6 +79,8 @@ export default {
   data() {
     return {
       currentProduct: null,
+      productImage: [],
+      repeatedImages: [],
 
       swiperOptionTop: {
         loop: true,
@@ -101,14 +106,19 @@ export default {
     getProduct(id) {
       ProductDataService.get(id)
           .then(response => {
-            this.currentTutorial = response.data;
+            this.currentProduct = response.data;
             console.log(response.data);
+
+            //get five images
+            for (let i = 0; i < 5; i++) {
+              this.repeatedImages.push(this.currentProduct.image);
+              // console.log(this.repeatedImages);
+            }
           })
           .catch(e => {
             console.log(e);
           });
-    }
-
+    },
 
   },
   mounted() {
