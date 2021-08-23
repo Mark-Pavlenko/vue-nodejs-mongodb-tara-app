@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="col">
-            <div class="description-wrapper" >
+            <div class="description-wrapper">
               Мы предлагаем Вам оригинальную тару для косметики и парфюмерии: —
               стеклянные флаконы с кисточками для лака (гель лака);<br/>
               — стеклянные и пластиковые флаконы для парфюмерии и
@@ -63,6 +63,8 @@ import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import AnchorRouterLink from 'vue-anchor-router-link';
 import 'swiper/css/swiper.css'
 
+import ProductDataService from "../services/GoodsDataServices";
+
 export default {
   components: {
     AnchorRouterLink,
@@ -73,6 +75,8 @@ export default {
   },
   data() {
     return {
+      currentProduct: null,
+
       swiperOptionTop: {
         loop: true,
         loopedSlides: 5, // looped slides should be the same
@@ -93,7 +97,24 @@ export default {
       }
     }
   },
+  methods: {
+    getProduct(id) {
+      ProductDataService.get(id)
+          .then(response => {
+            this.currentTutorial = response.data;
+            console.log(response.data);
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    }
+
+
+  },
   mounted() {
+
+    this.getProduct(this.$route.params.id);
+
     this.$nextTick(() => {
       const swiperTop = this.$refs.swiperTop.$swiper
       const swiperThumbs = this.$refs.swiperThumbs.$swiper

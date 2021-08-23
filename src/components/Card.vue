@@ -13,7 +13,7 @@
         <p>Объем: {{ product.volume }}</p>
         <p>Материал: {{ product.material }}</p>
         <p>Комплектация: {{ product.complectation }}</p>
-        <router-link to="/product/:id" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
+        <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-success">Просмотреть</router-link>
       </div>
     </div>
   </div>
@@ -48,11 +48,6 @@ export default {
 
 .product-text-wrap {
   position: absolute;
-  //top: 0;
-  //left: 0;
-  //right: 0;
-  //bottom: 0;
-  //z-index: 0;
   overflow: hidden;
   perspective: 1000px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
