@@ -12,6 +12,9 @@ exports.create = (req, res) => {
     return;
   }
 
+  // const myFile = req.files.file;
+  // console.log(myFile.name);
+
   // Create a Tutorial
   const tutorial = {
     title: req.body.title,
@@ -20,6 +23,7 @@ exports.create = (req, res) => {
     volume: req.body.volume,
     material: req.body.material,
     complectation: req.body.complectation,
+    image: req.body.image
   };
 
   // Save Tutorial in the database

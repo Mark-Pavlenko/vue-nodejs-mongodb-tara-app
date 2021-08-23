@@ -4,9 +4,20 @@
       <Sidebar/>
     </div>
     <div class="col-6 form-wrapper" v-if="!submitted">
+      <h2 class="mb-4">Добавить товар</h2>
       <div class="form">
 
-        <input type="file" name="file" id="file"/>
+        <label for="title">Загрузите изображение</label>
+        <input type="file" @change="onFileChange"/>
+
+        <label for="image">Введите название изображения (имена должны совпадать)!</label>
+        <input
+            type="text"
+            id="image"
+            required
+            v-model="product.image"
+            name="image"
+        />
 
         <label for="title">Заголовок</label>
         <input
@@ -86,6 +97,7 @@
 import Sidebar from "../components/Sidebar";
 
 import ProductsDataService from "../services/GoodsDataServices";
+import axios from "axios";
 
 export default {
   components: {
@@ -101,13 +113,40 @@ export default {
         volume: "",
         material: "",
         complectation: "",
+        image: ""
 
       },
       submitted: false
     };
   },
   methods: {
+    onFileChange(e) {
+      const selectedFile = e.target.files[0]; // accessing file
+      this.selectedFile = selectedFile;
+      this.progress = 0;
+    },
     saveProduct() {
+
+      const formData = new FormData();
+      formData.append("file", this.selectedFile); // appending file
+
+      // sending file to backend
+      axios
+          .post("http://localhost:8080/upload", formData, {
+            onUploadProgress: ProgressEvent => {
+              let progress =
+                  Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
+                  "%";
+              this.progress = progress;
+            }
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
       let data = {
         title: this.product.title,
         description: this.product.description,
@@ -115,9 +154,8 @@ export default {
         volume: this.product.volume,
         material: this.product.material,
         complectation: this.product.complectation,
+        image: this.product.image
       };
-
-
 
       ProductsDataService.create(data)
           .then(response => {

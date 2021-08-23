@@ -17,7 +17,10 @@ module.exports = (sequelize, Sequelize) => {
             },
             complectation: {
                 type: Sequelize.STRING
-            }
+            },
+            image: {
+                type: Sequelize.STRING
+            },
         },
         {
             charset: 'utf8',

@@ -7,7 +7,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
         collate: 'utf8_general_ci',
         timestamps: true
     },
-    logging: false,
+    // logging: false,
 
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
