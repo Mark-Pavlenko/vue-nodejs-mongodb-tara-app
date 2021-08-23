@@ -41,14 +41,15 @@ app.post('/upload', (req, res) => {
     const myFile = req.files.file;
 
     // Use the mv() method to place the file somewhere on your server
-    myFile.mv(`${__dirname}/public/${myFile.name}`, function (err) {
+    myFile.mv(`${__dirname}/app/images/${myFile.name}`, function (err) {
         if (err) {
             console.log(err)
-            return res.status(500).send({ msg: "fuck eroor" });
+            return res.status(500).send({ msg: "smth went wrong!" });
         }
         return res.send({ file: myFile.name, path: `/${myFile.name}`, ty: myFile.type });
     });
 })
+
 
 
 // set port, listen for requests
