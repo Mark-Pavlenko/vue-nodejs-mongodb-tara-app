@@ -26,7 +26,7 @@
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between">
         <Card class="product-card" v-for="product in products"
-              :key="product.color"
+              :key="product.id"
               :product="product"
         />
       </div>

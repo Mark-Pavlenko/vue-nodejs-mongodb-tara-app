@@ -1,5 +1,10 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
+<!--    output images of added products from the hoisting-->
+<!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
+<!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
+<!--    </swiper-slide>-->
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
     <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
     <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
     <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
@@ -14,6 +19,8 @@
 import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
+import ProductDataService from "../services/GoodsDataServices";
+
 export default {
   name: 'swiper-example-loop',
   title: 'Loop mode / Infinite loop',
@@ -23,6 +30,7 @@ export default {
   },
   data() {
     return {
+      products: [],
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -37,6 +45,22 @@ export default {
         }
       }
     }
+  },
+  methods:{
+    retrieveProducts() {
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data;
+            console.log(response.data);
+
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+  },
+  mounted() {
+    this.retrieveProducts();
   }
 }
 </script>

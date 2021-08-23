@@ -13,7 +13,7 @@
         <p>Объем: {{ product.volume }}</p>
         <p>Материал: {{ product.material }}</p>
         <p>Комплектация: {{ product.complectation }}</p>
-        <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-success">Просмотреть</router-link>
+        <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
       </div>
     </div>
   </div>
