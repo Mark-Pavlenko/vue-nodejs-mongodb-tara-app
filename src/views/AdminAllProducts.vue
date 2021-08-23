@@ -9,22 +9,19 @@
       <div id="content" class="p-4 p-md-5">
         <h2 class="mb-4">Список товаров</h2>
 
-        <div class="products-title">
-          <p>Image</p>
-          <p>Title</p>
-          <p>description</p>
-          <p>color</p>
-          <p>volume</p>
-          <p>material</p>
-          <p>complectation</p>
-        </div>
+<!--        <div class="products-title">-->
+<!--          <p>Image</p>-->
+<!--          <p>Title</p>-->
+<!--          <p>description</p>-->
+<!--          <p>color</p>-->
+<!--          <p>volume</p>-->
+<!--          <p>material</p>-->
+<!--          <p>complectation</p>-->
+<!--        </div>-->
         <div v-for="product in products" :key="product._id" class="product">
-          <!--          <img class="img-fluid" :src="product.image" alt="product image" />-->
-          <!--          <img class="img-fluid" src=`/public/images/upload_images/{{product.image}}` alt="product image" />-->
-          <img class="img-fluid" src="../assets/card-img.png" alt="product image"/>
-          <!--          <div class="product-title">{{ product.id }}</div>-->
-          <div class="product-title">{{ product.image }}</div>
+          <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`" alt="product image">
           <div class="product-title">{{ product.title }}</div>
+          <div class="product-title">{{ product.image }}</div>
           <div class="product-desc">{{ product.description }}</div>
           <div class="product-desc">{{ product.color }}</div>
           <div class="product-desc">{{ product.volume }}</div>
@@ -45,6 +42,8 @@
 import Sidebar from '@/components/Sidebar'
 import ProductDataService from "../services/GoodsDataServices";
 
+const path = '../../app/images/';
+
 export default {
   components: {
     Sidebar
@@ -53,7 +52,8 @@ export default {
     return {
       products: [],
       currentProduct: null,
-      product: null
+      product: null,
+      // image: '../../app/images/test.jpg'
     }
   },
   methods: {

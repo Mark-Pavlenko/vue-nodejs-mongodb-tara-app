@@ -34,11 +34,6 @@ const routes = [
     name: 'AdminAllProducts',
     component: () => import(/* webpackChunkName: "about" */ '../views/AdminAllProducts.vue')
   },
-  {
-    path: '/admin/addImage',
-    name: 'AdminAddImage',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AdminAddImage.vue')
-  },
 ]
 
 const router = new VueRouter({

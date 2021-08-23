@@ -1,7 +1,6 @@
 <template>
   <div class="sidebar">
     <router-link class="link" to="/admin/add">Добавить продукт</router-link>
-    <router-link class="link" to="/admin/addImage">Добавить изображение</router-link>
     <router-link class="link" to="/admin/products">Все товары</router-link>
 
   </div>
