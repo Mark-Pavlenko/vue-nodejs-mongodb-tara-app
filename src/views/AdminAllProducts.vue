@@ -38,8 +38,6 @@
 import Sidebar from '@/components/Sidebar'
 import ProductDataService from "../services/GoodsDataServices";
 
-const path = '../../app/images/';
-
 export default {
   components: {
     Sidebar

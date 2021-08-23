@@ -21,7 +21,7 @@
       </div>
     </div>
 
-    <!--goods-->
+    <!--products-->
     <span class="description-container-title">Каталог товаров</span>
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between">
@@ -106,6 +106,8 @@ import CardCarousel from "../components/Carousel"
 import Header from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
 
+import ProductDataService from "../services/GoodsDataServices";
+
 export default {
 
   beforeDestroy() {
@@ -121,52 +123,22 @@ export default {
 
   data() {
     return {
-      products: [
-        {
-          title: 'Nike Air Max 1',
-          // bgtext: 'NIKE',
-          src: require('../assets/about-img.png'),
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          title: 'Nike flex 2',
-
-          // bgtext: 'AIR',
-          src: require('../assets/about-img.png'),
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          title: 'Nike Air Max 3',
-          // bgtext: 'NIKE',
-          src: require('../assets/about-img.png'),
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          title: 'Nike Roche Runs 4',
-
-          // bgtext: 'MAX',
-          src: require('../assets/about-img.png'),
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          title: 'Nike Roche Runs 5',
-
-          // bgtext: 'MAX',
-          src: require('../assets/about-img.png'),
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        },
-        {
-          title: 'Nike Roche Runs 6',
-
-          // bgtext: 'MAX',
-          src: require('../assets/about-img.png'),
-          description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        }
-      ],
-      windowTop: 0
+      windowTop: 0,
+      products: [],
     }
   },
   methods: {
+    retrieveProducts() {
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data;
+            console.log(response.data);
+
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
     goToTop() {
       window.scrollTo(0, 0);
     },
@@ -177,6 +149,7 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
+    this.retrieveProducts();
   },
   name: 'Home',
 }

@@ -4,11 +4,15 @@
       <div class="product-text-wrap">
       </div>
       <div class="product-image-wrap">
-        <img :src="product.src" class="image"/>
+        <img :src="`https://decoplastline.ua/app/images/${product.image}`" class="image"/>
       </div>
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
+        <p>Цвет: {{ product.color}}</p>
+        <p>Объем: {{ product.volume }}</p>
+        <p>Материал: {{ product.material }}</p>
+        <p>Комплектация: {{ product.complectation }}</p>
         <router-link to="/product/:id" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
       </div>
     </div>
@@ -67,7 +71,7 @@ export default {
   z-index: 1;
   transform-origin: center;
   //margin-bottom: 25px;
-  background-color: blue;
+  //background-color: blue;
 }
 
 .product-image-wrap .image {
