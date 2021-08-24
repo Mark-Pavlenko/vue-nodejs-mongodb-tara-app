@@ -73,18 +73,19 @@ export default {
     retrieveProducts() {
       ProductDataService.getAll()
           .then(response => {
-            let test = response.data;
-            this.products = test.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
+
+            //sort products
+            this.products = response.data.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
 
             for (let i = 0; i < this.products.length; i++) {
               this.repeatedColorsOptions.push(this.products[i].color);
               this.repeatedVolumeOptions.push(this.products[i].volume)
             }
 
+            //filter repeated params in dropdowns
             function filter(data) {
               return data.filter((value, index) => data.indexOf(value) === index);
             }
-
             this.colorsOptions = filter(this.repeatedColorsOptions.sort());
             this.volumeOptions = filter(this.repeatedVolumeOptions.sort((a,b)=>a-b));
 
@@ -102,7 +103,7 @@ export default {
 
       ProductDataService.getAll()
           .then(response => {
-            this.products = response.data;
+            this.products = response.data.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
 
             // console.log(this.products);
 
@@ -151,7 +152,7 @@ export default {
 
       ProductDataService.getAll()
           .then(response => {
-            this.products = response.data;
+            this.products = response.data.sort((a, b) => (a.color > b.color) ? 1 : -1);
 
             let selectedColorParam = this.selectedDropdownColor;
             let selectedVolumeParam = this.selectedDropdownVolume;
