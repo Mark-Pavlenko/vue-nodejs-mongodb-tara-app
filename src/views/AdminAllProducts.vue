@@ -1,28 +1,26 @@
 <template>
   <div>
-    <div class="wrapper d-flex align-items-stretch">
-      <nav id="sidebar">
-        <Sidebar/>
-      </nav>
+    <nav id="sidebar">
+      <Sidebar/>
+    </nav>
 
-      <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5">
-        <h2 class="mb-4">Список товаров</h2>
-        <div v-for="product in products" :key="product._id" class="product">
-          <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`" alt="product image">
-          <div class="product-title">{{ product.title }}</div>
-          <div class="product-desc">{{ product.description }}</div>
-          <div class="product-desc">{{ product.color }}</div>
-          <div class="product-desc">{{ product.volume }}</div>
-          <div class="product-desc">{{ product.material }}</div>
-          <div class="product-desc">{{ product.complectation }}</div>
-          <button @click="deleteProduct(product.id)">Удалить</button>
-        </div>
+    <!-- Page Content  -->
+    <div id="content" class="p-4 p-md-5">
+      <h2 class="mb-4">Список товаров</h2>
+      <div v-for="product in products" :key="product._id" class="product">
+        <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`" alt="product image">
+        <div class="product-title">{{ product.title }}</div>
+        <div class="product-desc">{{ product.description }}</div>
+        <div class="product-desc">{{ product.color }}</div>
+        <div class="product-desc">{{ product.volume }}</div>
+        <div class="product-desc">{{ product.material }}</div>
+        <div class="product-desc">{{ product.complectation }}</div>
+        <button @click="deleteProduct(product.id)">Удалить</button>
       </div>
     </div>
   </div>
-</template>
 
+</template>
 
 <script>
 import Sidebar from '@/components/Sidebar'
@@ -128,3 +126,4 @@ export default {
 
 
 </style>
+
