@@ -1,103 +1,66 @@
 <template>
-  <div id="add-product-page" class="row">
-    <div class="col-4">
-      <Sidebar/>
-    </div>
-    <div class="col-6 form-wrapper" v-if="!submitted">
-      <h2 class="mb-4">Добавить товар</h2>
-      <div class="form">
+  <div>
+    <Sidebar/>
 
-        <label for="title">Загрузите изображение</label>
-        <input type="file" @change="onFileChange"/>
-
-        <label for="image">Введите название изображения (имена должны совпадать)!</label>
-        <input
-            type="text"
-            id="image"
-            required
-            v-model="product.image"
-            name="image"
-        />
-
-        <label for="title">Заголовок</label>
-        <input
-            type="text"
-            id="title"
-            required
-            v-model="product.title"
-        />
-
-        <label for="description">Описание</label>
-        <textarea
-            class="form-control"
-            id="description"
-            required
-            v-model="product.description"
-            name="description"
-        />
-
-        <div class="selects-wrapper">
-
-          <div class="color">
-            <label for="color">Цвет: </label>
-            <select v-model="product.color" name="color" id="color">
-              <option value="Белый">Белый</option>
-              <option value="Золотой">Золотой</option>
-              <option value="Перламутровый">Перламутровый</option>
-              <option value="Серебрянный ">Серебрянный</option>
-              <option value="Черный">Черный</option>
-              <option value="Прозрачный">Прозрачный</option>
-            </select>
+    <!--add-product-->
+    <div id="add-product-card">
+      <section class="ftco-section">
+        <div class="container">
+          <div id="add-product-title-block" class="row justify-content-center">
+            <div class="col-md-8 text-center">
+              <h2 class="description-container-title">Добавить продукт</h2>
+            </div>
           </div>
 
-          <div class="volume">
-            <label for="volume">Объём: </label>
-            <select v-model="product.volume" name="volume" id="volume">
-              <option value="10">10 ml</option>
-              <option value="25">25 ml</option>
-              <option value="50">50 ml</option>
-              <option value="100">100 ml</option>
-              <option value="250">250 ml</option>
-              <option value="550">550 ml</option>
-            </select>
+          <div class="row justify-content-center">
+            <div id="form-body" class="wrapper">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="dbox w-100 text-center">
+                        <div class="add-product-image">
+                          <div class="add-product-user">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="test" class="col-lg-10">
+                  <div class="add-product-wrapper">
+
+                    <div class="add-product-wrapper">
+                      <div class="input">
+                        <label>Имя</label>
+                        <input type="text"/>
+                      </div>
+                      <div class="input">
+                        <label>Электронный адрес</label>
+                        <input type="email"/>
+                      </div>
+                      <div class="input">
+                        <label>Моб. Телефон</label>
+                        <input type="text"/>
+                      </div>
+                      <button>Отправить</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <label for="material">Материал</label>
-        <input
-            class="form-control"
-            id="material"
-            required
-            v-model="product.material"
-            name="material"
-        />
-
-
-        <label for="complectation">Комплектация</label>
-        <input
-            class="form-control"
-            id="complectation"
-            required
-            v-model="product.complectation"
-            name="complectation"
-        />
-
-        <button type="submit" @click="saveProduct">Добавить товар</button>
-      </div>
+      </section>
     </div>
-    <div v-else>
-      <h4>Товар был успешно добавлен!</h4>
-      <button class="btn btn-success" @click="newProduct">Добавить еще один</button>
-    </div>
+
   </div>
 </template>
 
 
 <script>
-import Sidebar from "../components/Sidebar";
-
-import ProductsDataService from "../services/GoodsDataServices";
-import axios from "axios";
+import Sidebar from '../components/Sidebar'
+import ProductDataService from "../services/GoodsDataServices";
 
 export default {
   components: {
@@ -105,121 +68,200 @@ export default {
   },
   data() {
     return {
-      product: {
-        id: null,
-        title: "",
-        description: "",
-        color: "",
-        volume: "",
-        material: "",
-        complectation: "",
-        image: ""
-
-      },
-      submitted: false
-    };
+      products: [],
+      currentProduct: null,
+      product: null,
+    }
   },
   methods: {
-    onFileChange(e) {
-      const selectedFile = e.target.files[0]; // accessing file
-      this.selectedFile = selectedFile;
-      this.progress = 0;
-    },
-    saveProduct() {
-
-      const formData = new FormData();
-      formData.append("file", this.selectedFile); // appending file
-
-      // sending file to backend
-      axios
-          .post("http://localhost:8080/upload", formData, {
-            onUploadProgress: ProgressEvent => {
-              let progress =
-                  Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
-                  "%";
-              this.progress = progress;
-            }
-          })
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-
-      let data = {
-        title: this.product.title,
-        description: this.product.description,
-        color: this.product.color,
-        volume: this.product.volume,
-        material: this.product.material,
-        complectation: this.product.complectation,
-        image: this.product.image
-      };
-
-      ProductsDataService.create(data)
+    retrieveTutorials() {
+      ProductDataService.getAll()
           .then(response => {
-            this.product.id = response.data.id;
+            this.products = response.data;
             console.log(response.data);
-            this.submitted = true;
+
           })
           .catch(e => {
             console.log(e);
           });
     },
-    newProduct() {
-      this.submitted = false;
-      this.product = {};
+    deleteProduct(id) {
+      ProductDataService.delete(id)
+          .then(response => {
+            console.log(response.data);
+            window.location.reload()
+            // this.$router.push({ name: "products" });
+          })
+          .catch(e => {
+            console.log(e);
+
+          });
     }
+  },
+  mounted() {
+    this.retrieveTutorials();
   }
 }
 </script>
 
 <style lang="scss" scoped>
 
-
-#add-product-page{
-  height:100%;
-}
-
-.form-wrapper {
-  margin-top: 100px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-
-  button {
-    margin-top: 20px;
-  }
-
-  input{
-    margin-top:10px;
-    margin-bottom:10px;
-  }
-}
-
-.selects-wrapper {
+#add-product-card {
+  //min-height: 100vh;
+  overflow: hidden;
+  //background-color: #EEE;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f6f6f6;
+}
+
+.products {
+  display: flex;
+  max-width: 1280px;
+  padding: 25px;
+  margin: 0 auto;
+}
+
+//add-product
+.ftco-section {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background: #f6f6f6;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  @media(max-width: 992px) {
+
+  }
+}
+
+.add-product-form {
+  width: 100%;
+  max-width: 839px;
+  height: auto;
+  padding: 15px 0;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0px auto;
+  /* border-radius: 12px; */
+  /* margin: 0px auto; */
+  /* margin-bottom: -26px; */
+
+
+  @media (max-width: 992px) {
+    margin-bottom: 20px;
+  }
+}
+
+#add-product-card-body {
+  padding-bottom: 10px;
+}
+
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+
+  input {
+    width: 342px;
+    height: 58px;
+    background: #ffffff;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+  }
+
+  label {
+    margin-bottom: 10px;
+  }
+}
+
+.add-product-wrapper {
+  padding: 0 10px 0 10px;
+  // width: 100%;
+  // height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    width: 342px;
+    height: 58px;
+    color: white;
+
+    background: rgba(182, 12, 12, 0.8);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+    outline: none;
+    border: none;
+
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+}
+
+.add-product-user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 20px;
+}
+
+.add-product-desc {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 25px;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.85);
+  width: 345px;
+
+  @media (max-width: 992px) {
+    display: none;
+  }
+}
+
+.add-product-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 992px) {
+    //margin-top: 50px;
+  }
+}
+
+//go to top btn
+.go-top-button {
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(182, 12, 12, 0.8);
+  border-radius: 100%;
+  bottom: calc(15px);
+  right: 15px;
+  cursor: pointer;
+}
+
+//
+#add-product-title-block,
+#form-body {
+  background-color: white;
+}
+
+.description-container-title {
   margin-top: 20px;
+  margin-bottom: 10px;
 }
 
-.color {
-
-  label {
-    margin-right: 10px;
-  }
-}
-
-
-.volume {
-  padding-left: 50px;
-
-  label {
-    margin-right: 10px;
-  }
-}
 </style>
