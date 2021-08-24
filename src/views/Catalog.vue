@@ -73,8 +73,8 @@ export default {
     retrieveProducts() {
       ProductDataService.getAll()
           .then(response => {
-            this.products = response.data;
-            // console.log(this.products);
+            let test = response.data;
+            this.products = test.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
 
             for (let i = 0; i < this.products.length; i++) {
               this.repeatedColorsOptions.push(this.products[i].color);
