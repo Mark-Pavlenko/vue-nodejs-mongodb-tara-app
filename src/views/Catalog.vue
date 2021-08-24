@@ -85,8 +85,8 @@ export default {
               return data.filter((value, index) => data.indexOf(value) === index);
             }
 
-            this.colorsOptions = filter(this.repeatedColorsOptions);
-            this.volumeOptions = filter(this.repeatedVolumeOptions);
+            this.colorsOptions = filter(this.repeatedColorsOptions.sort());
+            this.volumeOptions = filter(this.repeatedVolumeOptions.sort((a,b)=>a-b));
 
             // console.log(this.colorsOptions);
             // console.log(this.volumeOptions);
@@ -95,6 +95,7 @@ export default {
             console.log(e);
           });
     },
+
     getColorParams(selectedColor) {
       this.selectedDropdownColor = selectedColor;
       // console.log(this.selectedDropdownColor);
@@ -124,6 +125,7 @@ export default {
             console.log(e);
           });
     },
+
     getVolumeParams(selectedVolume) {
       this.selectedDropdownVolume = selectedVolume;
       console.log(this.selectedDropdownVolume);
