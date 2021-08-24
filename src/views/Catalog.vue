@@ -104,7 +104,7 @@ export default {
           .then(response => {
             this.products = response.data;
 
-            console.log(this.products);
+            // console.log(this.products);
 
             // let test = [];
             // console.log(this.selectedDropdownColor);
@@ -114,7 +114,7 @@ export default {
 
             if(!this.selectedDropdownVolume){
 
-              console.log('no volume was chosen!');
+              // console.log('no volume was chosen!');
 
               let selectedProductsByColor = this.products.filter(function(filteredElem){
 
@@ -124,17 +124,17 @@ export default {
                 return filteredElem.color === selectedColorParam;
               });
 
-              console.log(selectedProductsByColor)
+              // console.log(selectedProductsByColor)
               this.products = selectedProductsByColor;
 
             }else{
-              console.log(`volume was chosen:${this.selectedDropdownVolume}`);
+              // console.log(`volume was chosen:${this.selectedDropdownVolume}`);
 
               let selectedProductsByColor = this.products.filter(function(filteredElem){
                 return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam ;
               });
 
-              console.log(selectedProductsByColor)
+              // console.log(selectedProductsByColor);
               this.products = selectedProductsByColor;
             }
 
@@ -158,23 +158,23 @@ export default {
 
             if(!this.selectedDropdownColor){
 
-              console.log('no color was chosen!');
+              // console.log('no color was chosen!');
 
               let selectedProductsByVolume = this.products.filter(function(filteredElem){
                 return filteredElem.volume === selectedVolumeParam;
               });
 
-              console.log(selectedProductsByVolume)
+              // console.log(selectedProductsByVolume)
               this.products = selectedProductsByVolume;
             }
             else{
-              console.log(`color was chosen:${this.selectedDropdownColor}`)
+              // console.log(`color was chosen:${this.selectedDropdownColor}`)
 
               let selectedProductsByVolume = this.products.filter(function(filteredElem){
                 return filteredElem.color === selectedColorParam  && filteredElem.volume === selectedVolumeParam ;
               });
 
-              console.log(selectedProductsByVolume)
+              // console.log(selectedProductsByVolume)
               this.products = selectedProductsByVolume;
             }
 

@@ -9,8 +9,8 @@
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <p style="font-weight: bold">Цвет: {{ product.color}}</p>
-        <p style="font-weight: bold">Объем: {{ product.volume }}</p>
+        <p>Цвет: {{ product.color}}</p>
+        <p>Объем: {{ product.volume }}</p>
         <p>Материал: {{ product.material }}</p>
         <p>Комплектация: {{ product.complectation }}</p>
         <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
