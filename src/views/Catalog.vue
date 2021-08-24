@@ -2,24 +2,25 @@
   <div class="home">
     <Header/>
 
-    <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap" >
-      <div class="p-2" >
+    <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap">
+      <div class="p-2">
         <Dropdown
-            :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
+            :options="colorsOptions"
+            v-on:selected="validateSelectionVolume"
+            v-on:filter="getDropdownValuesVolumes"
             :disabled="false"
-            name="color"
-            :maxItem="10"
-            placeholder="Выберите объем">
+            placeholder="Пожалуйста, выберите объем.">
         </Dropdown>
       </div>
       <div class="p-2">
-                <Dropdown
-                    :options="[{ id: 1, name: 'Option 1'}, { id: 2, name: 'Option 2'}]"
-                    :disabled="false"
-                    name="color"
-                    :maxItem="10"
-                    placeholder="Выберите цвет">
-                </Dropdown>
+        <!--        <Dropdown-->
+
+        <!--            :options="colorsOptions[0]"-->
+        <!--            v-on:selected="validateSelectionColors"-->
+        <!--            v-on:filter="getDropdownValuesColors"-->
+        <!--            :disabled="false"-->
+        <!--            placeholder="Пожалуйста, выберите цвет.">-->
+        <!--        </Dropdown>-->
       </div>
     </div>
 
@@ -56,31 +57,49 @@ export default {
   data() {
     return {
       products: [],
+      colorsOptions: []
     }
   },
-  methods:{
+  methods: {
     retrieveProducts() {
       ProductDataService.getAll()
           .then(response => {
             this.products = response.data;
-            console.log(response.data);
+            // console.log(response.data);
 
+            // for (let i = 0; i < this.products.length; i++) {
+            //   this.colorsOptions.push(this.products[i].color);
+            // }
+            // console.log(this.colorsOptions);
+
+            for (let i = 0; i < this.products.length; i++) {
+              let color = {
+                id: this.products[i].id,
+                color: this.products[i].color
+              }
+              // console.log(color);
+              this.colorsOptions.push(color);
+
+            }
+            console.log(this.colorsOptions);
           })
           .catch(e => {
             console.log(e);
           });
     },
+
   },
   mounted() {
     this.retrieveProducts();
+
   }
 }
 </script>
 
 <style lang="scss" scoped>
 
-#dropdowns-container{
-  margin-top:20px;
+#dropdowns-container {
+  margin-top: 20px;
 }
 
 //dropdowns-items block

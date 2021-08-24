@@ -132,7 +132,7 @@ export default {
       ProductDataService.getAll()
           .then(response => {
             this.products = response.data;
-            console.log(response.data);
+            // console.log(response.data);
 
           })
           .catch(e => {

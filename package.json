@@ -26,6 +26,7 @@
     "vue": "^2.6.11",
     "vue-anchor-router-link": "^0.8.5",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-dropdowns": "^1.1.2",
     "vue-product-card": "^1.4.0",
     "vue-router": "^3.2.0",
     "vue-simple-search-dropdown": "^1.0.1",
