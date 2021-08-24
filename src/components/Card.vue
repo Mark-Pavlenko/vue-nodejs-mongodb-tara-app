@@ -1,8 +1,6 @@
 <template>
   <div class="product">
     <div class='product-inner'>
-      <div class="product-text-wrap">
-      </div>
       <div class="product-image-wrap">
         <img :src="`https://decoplastline.ua/app/images/${product.image}`" class="image"/>
       </div>

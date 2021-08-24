@@ -23,12 +23,26 @@
 
     <!--    goods cards block-->
     <div id="goods-list">
-      <div class="catalog__wrapper row justify-content-between">
+      <!--      <div class="catalog__wrapper row justify-content-between" v-if="this.products.length !== 0" >-->
+      <div class="catalog__wrapper row justify-content-between" v-if="this.products.length !== 0">
         <Card class="product-card" v-for="product in products"
               :key="product.id"
               :product="product"
         />
       </div>
+
+      <div class="product" v-else>
+        <div class='product-inner'>
+          <div class="product-image-wrap">
+            <img :src="`https://decoplastline.ua/no-image.png`" class="image"/>
+          </div>
+          <div class="product-detail">
+            <h2>Продукт с выбранными характеристиками отстутствует!</h2>
+          </div>
+        </div>
+      </div>
+
+
     </div>
 
     <Footer/>
@@ -76,6 +90,7 @@ export default {
 
             //sort products
             this.products = response.data.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
+            console.log(this.products);
 
             for (let i = 0; i < this.products.length; i++) {
               this.repeatedColorsOptions.push(this.products[i].color);
@@ -86,8 +101,9 @@ export default {
             function filter(data) {
               return data.filter((value, index) => data.indexOf(value) === index);
             }
+
             this.colorsOptions = filter(this.repeatedColorsOptions.sort());
-            this.volumeOptions = filter(this.repeatedVolumeOptions.sort((a,b)=>a-b));
+            this.volumeOptions = filter(this.repeatedVolumeOptions.sort((a, b) => a - b));
 
             // console.log(this.colorsOptions);
             // console.log(this.volumeOptions);
@@ -113,11 +129,11 @@ export default {
             let selectedVolumeParam = this.selectedDropdownVolume;
 
 
-            if(!this.selectedDropdownVolume){
+            if (!this.selectedDropdownVolume) {
 
               // console.log('no volume was chosen!');
 
-              let selectedProductsByColor = this.products.filter(function(filteredElem){
+              let selectedProductsByColor = this.products.filter(function (filteredElem) {
 
                 // console.log(filteredElem.color);
                 // console.log(selectedColorParam);
@@ -128,18 +144,17 @@ export default {
               // console.log(selectedProductsByColor)
               this.products = selectedProductsByColor;
 
-            }else{
+            } else {
               // console.log(`volume was chosen:${this.selectedDropdownVolume}`);
 
-              let selectedProductsByColor = this.products.filter(function(filteredElem){
-                return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam ;
+              let selectedProductsByColor = this.products.filter(function (filteredElem) {
+                return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam;
               });
 
               // console.log(selectedProductsByColor);
               this.products = selectedProductsByColor;
+              console.log(this.products);
             }
-
-
           })
           .catch(e => {
             console.log(e);
@@ -157,28 +172,27 @@ export default {
             let selectedColorParam = this.selectedDropdownColor;
             let selectedVolumeParam = this.selectedDropdownVolume;
 
-            if(!this.selectedDropdownColor){
+            if (!this.selectedDropdownColor) {
 
               // console.log('no color was chosen!');
 
-              let selectedProductsByVolume = this.products.filter(function(filteredElem){
+              let selectedProductsByVolume = this.products.filter(function (filteredElem) {
                 return filteredElem.volume === selectedVolumeParam;
               });
 
               // console.log(selectedProductsByVolume)
               this.products = selectedProductsByVolume;
-            }
-            else{
+            } else {
               // console.log(`color was chosen:${this.selectedDropdownColor}`)
 
-              let selectedProductsByVolume = this.products.filter(function(filteredElem){
-                return filteredElem.color === selectedColorParam  && filteredElem.volume === selectedVolumeParam ;
+              let selectedProductsByVolume = this.products.filter(function (filteredElem) {
+                return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam;
               });
 
               // console.log(selectedProductsByVolume)
               this.products = selectedProductsByVolume;
+              console.log(this.products);
             }
-
 
 
           })
@@ -265,6 +279,83 @@ export default {
 
 .dropdown-select {
   width: 200px;
+}
+
+//-------------
+
+.product {
+  flex: 1 1 33.333%;
+  width: 100%;
+  padding: 25px;
+  margin-bottom: 30px;
+
+  @media (max-width: 1024px) {
+    flex: 1 1 45%;
+  }
+}
+
+
+.product-inner {
+  position: relative;
+  padding: 25px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  perspective: 1000px;
+  width: 75%;
+  margin: 0px auto;
+}
+
+.product-text-wrap {
+  position: absolute;
+  overflow: hidden;
+  perspective: 1000px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.product-text-wrap h2 {
+  color: #313131;
+  font-size: 128px;
+  font-weight: 900;
+  opacity: 0.2;
+  transform-origin: center;
+}
+
+.product-image-wrap {
+  position: relative;
+  z-index: 1;
+  transform-origin: center;
+  width: 75%;
+  margin:0px auto;
+  //margin-bottom: 25px;
+  //background-color: blue;
+}
+
+.product-image-wrap .image {
+  width: 100%;
+  filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
+}
+
+.product-detail {
+  background-color: #FFF;
+  padding: 25px;
+  margin: 0px -25px -25px;
+}
+
+.product-detail h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #676767;
+  margin-bottom: 15px;
+}
+
+.product-detail p {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #676767;
+}
+
+#card-btn {
+  cursor: pointer;
 }
 
 </style>
