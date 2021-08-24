@@ -15,18 +15,7 @@
           <div class="row justify-content-center">
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
-                <div class="col-lg-8">
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="dbox w-100 text-center">
-                        <div class="add-product-image">
-                          <div class="add-product-user">
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div id="test" class="col-lg-10">
                   <div class="add-product-wrapper">
 
@@ -110,7 +99,7 @@ export default {
   //min-height: 100vh;
   overflow: hidden;
   //background-color: #EEE;
-  display: flex;
+  //display: flex;
   justify-content: center;
   align-items: center;
   background: #f6f6f6;
@@ -128,7 +117,7 @@ export default {
   margin-top: 50px;
   margin-bottom: 50px;
   background: #f6f6f6;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   @media(max-width: 992px) {
 
   }
@@ -162,14 +151,18 @@ export default {
   margin-bottom: 30px;
 
   input {
-    width: 342px;
-    height: 58px;
+    width: 500px;
+    height: 50px;
     background: #ffffff;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     outline: none;
     border: none;
     padding-left: 20px;
+
+    @media(max-width: 710px){
+      width: 300px;
+    }
   }
 
   label {
@@ -208,7 +201,7 @@ export default {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-bottom: 20px;
 }
 
