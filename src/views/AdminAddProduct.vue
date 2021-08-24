@@ -7,34 +7,104 @@
       <section class="ftco-section">
         <div class="container">
           <div id="add-product-title-block" class="row justify-content-center">
-            <div class="col-md-8 text-center">
-              <h2 class="description-container-title">Добавить продукт</h2>
-            </div>
+
           </div>
 
           <div class="row justify-content-center">
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
-
                 <div id="test" class="col-lg-10">
-                  <div class="add-product-wrapper">
 
-                    <div class="add-product-wrapper">
-                      <div class="input">
-                        <label>Имя</label>
-                        <input type="text"/>
-                      </div>
-                      <div class="input">
-                        <label>Электронный адрес</label>
-                        <input type="email"/>
-                      </div>
-                      <div class="input">
-                        <label>Моб. Телефон</label>
-                        <input type="text"/>
-                      </div>
-                      <button>Отправить</button>
+                  <div class="add-product-wrapper" v-if="!submitted" >
+                    <div class="col-md-8 text-center">
+                      <h2 class="description-container-title">Добавить продукт</h2>
                     </div>
+                    <div class="input">
+                      <br/>
+                      <label for="image">Загрузите изображение</label>
+                      <input id="image-loader" type="file" @change="onFileChange"/>
+                    </div>
+                    <div class="input">
+                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>
+                      <input
+                          type="text"
+                          id="image"
+                          required
+                          v-model="product.image"
+                          name="image"
+                      />
+                    </div>
+                    <div class="input">
+                      <label for="title">Заголовок</label>
+                      <input
+                          type="text"
+                          id="title"
+                          required
+                          v-model="product.title"
+                      />
+                    </div>
+                    <div class="input">
+                      <label for="description">Описание</label>
+                      <textarea
+                          class="form-control"
+                          id="description"
+                          required
+                          v-model="product.description"
+                          name="description"
+                      />
+                    </div>
+                    <div class="input">
+                      <label for="color">Цвет: </label>
+                      <select v-model="product.color" name="color" id="color">
+                        <option value="Белый">Белый</option>
+                        <option value="Золотой">Золотой</option>
+                        <option value="Перламутровый">Перламутровый</option>
+                        <option value="Серебрянный ">Серебрянный</option>
+                        <option value="Черный">Черный</option>
+                        <option value="Прозрачный">Прозрачный</option>
+                      </select>
+                    </div>
+                    <div class="input">
+                      <label for="volume">Объём: </label>
+                      <select v-model="product.volume" name="volume" id="volume" style="width: 150px;">
+                        <option value="10">10 ml</option>
+                        <option value="25">25 ml</option>
+                        <option value="50">50 ml</option>
+                        <option value="100">100 ml</option>
+                        <option value="250">250 ml</option>
+                        <option value="550">550 ml</option>
+                      </select>
+                    </div>
+                    <div class="input">
+                      <label for="material">Материал</label>
+                      <input
+                          class="form-control"
+                          id="material"
+                          required
+                          v-model="product.material"
+                          name="material"
+                      />
+                    </div>
+                    <div class="input">
+                      <label for="complectation">Комплектация</label>
+                      <input
+                          class="form-control"
+                          id="complectation"
+                          required
+                          v-model="product.complectation"
+                          name="complectation"
+                      />
+                    </div>
+                    <button type="submit" @click="saveProduct">Отправить</button>
+
                   </div>
+
+                  <div class="add-product-wrapper" v-else>
+                    <br/>
+                    <h4>Товар был успешно добавлен!</h4>
+                    <button class="btn btn-success" @click="newProduct">Добавить еще один</button>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -46,10 +116,11 @@
   </div>
 </template>
 
-
 <script>
-import Sidebar from '../components/Sidebar'
-import ProductDataService from "../services/GoodsDataServices";
+import Sidebar from "../components/Sidebar";
+
+import ProductsDataService from "../services/GoodsDataServices";
+import axios from "axios";
 
 export default {
   components: {
@@ -57,41 +128,75 @@ export default {
   },
   data() {
     return {
-      products: [],
-      currentProduct: null,
-      product: null,
-    }
+      product: {
+        id: null,
+        title: "",
+        description: "",
+        color: "",
+        volume: "",
+        material: "",
+        complectation: "",
+        image: ""
+
+      },
+      submitted: false
+    };
   },
   methods: {
-    retrieveTutorials() {
-      ProductDataService.getAll()
-          .then(response => {
-            this.products = response.data;
-            console.log(response.data);
+    onFileChange(e) {
+      const selectedFile = e.target.files[0]; // accessing file
+      this.selectedFile = selectedFile;
+    },
+    saveProduct() {
 
+      const formData = new FormData();
+      formData.append("file", this.selectedFile); // appending file
+
+      // sending file to backend
+      axios
+          .post("http://localhost:8080/upload", formData, {
+            onUploadProgress: ProgressEvent => {
+              let progress =
+                  Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
+                  "%";
+              this.progress = progress;
+            }
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
+      let data = {
+        title: this.product.title,
+        description: this.product.description,
+        color: this.product.color,
+        volume: this.product.volume,
+        material: this.product.material,
+        complectation: this.product.complectation,
+        image: this.product.image
+      };
+
+      ProductsDataService.create(data)
+          .then(response => {
+            this.product.id = response.data.id;
+            console.log(response.data);
+            this.submitted = true;
           })
           .catch(e => {
             console.log(e);
           });
     },
-    deleteProduct(id) {
-      ProductDataService.delete(id)
-          .then(response => {
-            console.log(response.data);
-            window.location.reload()
-            // this.$router.push({ name: "products" });
-          })
-          .catch(e => {
-            console.log(e);
-
-          });
+    newProduct() {
+      this.submitted = false;
+      this.product = {};
     }
-  },
-  mounted() {
-    this.retrieveTutorials();
   }
 }
 </script>
+
 
 <style lang="scss" scoped>
 
@@ -145,12 +250,13 @@ export default {
   padding-bottom: 10px;
 }
 
-.input {
+.input, {
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
 
-  input {
+  input,
+  textarea {
     width: 500px;
     height: 50px;
     background: #ffffff;
@@ -160,7 +266,7 @@ export default {
     border: none;
     padding-left: 20px;
 
-    @media(max-width: 710px){
+    @media(max-width: 710px) {
       width: 300px;
     }
   }
@@ -255,6 +361,10 @@ export default {
 .description-container-title {
   margin-top: 20px;
   margin-bottom: 10px;
+}
+
+#image-loader{
+  padding-top:10px;
 }
 
 </style>
