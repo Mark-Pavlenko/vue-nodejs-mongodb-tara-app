@@ -4,23 +4,20 @@
 
     <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap">
       <div class="p-2">
-        <Dropdown
+        <v-select
+            class="dropdown-select"
             :options="colorsOptions"
-            v-on:selected="validateSelectionVolume"
-            v-on:filter="getDropdownValuesVolumes"
-            :disabled="false"
-            placeholder="Пожалуйста, выберите объем.">
-        </Dropdown>
+            @input="getColorParams"
+            placeholder="Выберите цвет"
+        ></v-select>
       </div>
       <div class="p-2">
-        <!--        <Dropdown-->
-
-        <!--            :options="colorsOptions[0]"-->
-        <!--            v-on:selected="validateSelectionColors"-->
-        <!--            v-on:filter="getDropdownValuesColors"-->
-        <!--            :disabled="false"-->
-        <!--            placeholder="Пожалуйста, выберите цвет.">-->
-        <!--        </Dropdown>-->
+        <v-select
+            class="dropdown-select"
+            :options="volumeOptions"
+            @input="getVolumeParams"
+            placeholder="Выберите объем"
+        ></v-select>
       </div>
     </div>
 
@@ -28,7 +25,7 @@
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between">
         <Card class="product-card" v-for="product in products"
-              :key="product.color"
+              :key="product.id"
               :product="product"
         />
       </div>
@@ -41,23 +38,32 @@
 
 <script>
 import Card from '../components/Card.vue'
-import Dropdown from 'vue-simple-search-dropdown';
+import dropdown from 'vue-dropdowns';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-
 import ProductDataService from "../services/GoodsDataServices";
+
+import 'vue-select/dist/vue-select.css';
 
 export default {
   components: {
     Card,
-    Dropdown,
+    'dropdown': dropdown,
     Header,
     Footer
   },
   data() {
     return {
       products: [],
-      colorsOptions: []
+
+      repeatedColorsOptions: [],
+      colorsOptions: [],
+
+      repeatedVolumeOptions: [],
+      volumeOptions: [],
+
+      selectedDropdownColor: "",
+      selectedDropdownVolume: null
     }
   },
   methods: {
@@ -65,33 +71,42 @@ export default {
       ProductDataService.getAll()
           .then(response => {
             this.products = response.data;
-            // console.log(response.data);
-
-            // for (let i = 0; i < this.products.length; i++) {
-            //   this.colorsOptions.push(this.products[i].color);
-            // }
-            // console.log(this.colorsOptions);
+            console.log(response.data);
 
             for (let i = 0; i < this.products.length; i++) {
-              let color = {
-                id: this.products[i].id,
-                color: this.products[i].color
-              }
-              // console.log(color);
-              this.colorsOptions.push(color);
-
+              this.repeatedColorsOptions.push(this.products[i].color);
+              this.repeatedVolumeOptions.push(this.products[i].volume)
             }
-            console.log(this.colorsOptions);
+
+            function filter(data) {
+              return data.filter((value, index) => data.indexOf(value) === index);
+            }
+
+            this.colorsOptions = filter(this.repeatedColorsOptions);
+            this.volumeOptions = filter(this.repeatedVolumeOptions);
+
+            // console.log(this.colorsOptions);
+            // console.log(this.volumeOptions);
           })
           .catch(e => {
             console.log(e);
           });
     },
+    getColorParams(selectedColor) {
+      this.selectedDropdownColor = selectedColor;
+      console.log(this.selectedDropdownColor);
+    },
+    getVolumeParams(selectedVolume) {
+      this.selectedDropdownVolume = selectedVolume;
+      console.log(this.selectedDropdownVolume);
+    },
+    getFilteredByColorProducts(){
 
+    }
   },
   mounted() {
     this.retrieveProducts();
-
+    this.getFilteredByColorProducts();
   }
 }
 </script>
@@ -165,8 +180,8 @@ export default {
   align-items: center;
 }
 
-//.dropdown .dropdown-input{
-//  text-align:center !important;
-//}
+.dropdown-select {
+  width: 200px;
+}
 
 </style>
