@@ -62,6 +62,9 @@ export default {
       repeatedVolumeOptions: [],
       volumeOptions: [],
 
+      filteredByColorProducts: [],
+      filteredByVolumeProducts: [],
+
       selectedDropdownColor: "",
       selectedDropdownVolume: null
     }
@@ -71,7 +74,7 @@ export default {
       ProductDataService.getAll()
           .then(response => {
             this.products = response.data;
-            console.log(response.data);
+            // console.log(this.products);
 
             for (let i = 0; i < this.products.length; i++) {
               this.repeatedColorsOptions.push(this.products[i].color);
@@ -94,19 +97,66 @@ export default {
     },
     getColorParams(selectedColor) {
       this.selectedDropdownColor = selectedColor;
-      console.log(this.selectedDropdownColor);
+      // console.log(this.selectedDropdownColor);
+
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data;
+
+            console.log(this.products);
+
+            // let test = [];
+            console.log(this.selectedDropdownColor);
+            let selectedColorParam = this.selectedDropdownColor;
+
+            let selectedProductsByColor = this.products.filter(function(filteredElem){
+
+              // console.log(filteredElem.color);
+              // console.log(selectedColorParam);
+
+              return filteredElem.color === selectedColorParam;
+            });
+
+            console.log(selectedProductsByColor)
+            this.products = selectedProductsByColor;
+          })
+          .catch(e => {
+            console.log(e);
+          });
     },
     getVolumeParams(selectedVolume) {
       this.selectedDropdownVolume = selectedVolume;
       console.log(this.selectedDropdownVolume);
-    },
-    getFilteredByColorProducts(){
 
-    }
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data;
+
+            console.log(this.products);
+
+            // let test = [];
+            console.log(this.selectedDropdownVolume);
+            let selectedVolumeParam = this.selectedDropdownVolume;
+
+            let selectedProductsByVolume = this.products.filter(function(filteredElem){
+
+              // console.log(filteredElem.color);
+              // console.log(selectedColorParam);
+
+              return filteredElem.volume === selectedVolumeParam;
+            });
+
+            console.log(selectedProductsByVolume)
+            this.products = selectedProductsByVolume;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+
   },
   mounted() {
     this.retrieveProducts();
-    this.getFilteredByColorProducts();
   }
 }
 </script>
