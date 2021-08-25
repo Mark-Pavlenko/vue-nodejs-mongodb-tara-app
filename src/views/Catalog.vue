@@ -37,7 +37,7 @@
             <img :src="`https://decoplastline.ua/no-image.png`" class="image"/>
           </div>
           <div class="product-detail">
-            <h2>Продукт с выбранными характеристиками отстутствует!</h2>
+            <h2>Продукты с выбранными характеристиками отсутствуют!</h2>
           </div>
         </div>
       </div>
