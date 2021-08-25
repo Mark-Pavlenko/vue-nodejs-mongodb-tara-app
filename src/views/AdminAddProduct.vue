@@ -24,17 +24,17 @@
                       <label for="image">Загрузите изображение</label>
                       <input id="image-loader" type="file" @change="onFileChange"/>
                     </div>
-                    <div class="input">
-                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>
-                      <input
-                          id="image"
-                          type="text"
-                          name="image"
-                          placeholder="Полное название изображения"
-                          v-model="product.image"
+<!--                    <div class="input">-->
+<!--                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>-->
+<!--                      <input-->
+<!--                          id="image"-->
+<!--                          type="text"-->
+<!--                          name="image"-->
+<!--                          placeholder="Полное название изображения"-->
+<!--                          v-model="product.image"-->
 
-                      />
-                    </div>
+<!--                      />-->
+<!--                    </div>-->
                     <div class="input">
                       <label for="title">Заголовок</label>
                       <input
@@ -159,16 +159,8 @@ export default {
       //save image mechanism
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
+      console.log(this.selectedFile.name);
 
-      // sending file to backend
-      axios
-          .post("http://localhost:8080/upload", formData, )
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
 
       let data = {
         title: this.product.title,
@@ -177,7 +169,7 @@ export default {
         volume: this.product.volume,
         material: this.product.material,
         complectation: this.product.complectation,
-        image: this.product.image
+        image: this.selectedFile.name
       };
 
       ProductsDataService.create(data)
@@ -189,6 +181,18 @@ export default {
           .catch(e => {
             console.log(e);
           });
+
+
+      // sending file to backend
+      axios
+          .post("http://localhost:8080/upload", formData, )
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
     },
     newProduct() {
       this.submitted = false;
