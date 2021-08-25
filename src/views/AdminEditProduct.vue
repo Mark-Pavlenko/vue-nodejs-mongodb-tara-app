@@ -180,7 +180,7 @@ export default {
 
       // sending file to backend
       axios
-          .post("http:/localhost:8080/delete/image", dataOfDeletedImage,)
+          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
           })
