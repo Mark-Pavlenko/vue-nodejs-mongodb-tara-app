@@ -252,7 +252,7 @@ export default {
 
   input,
   textarea {
-    width: 500px;
+    width: 800px;
     height: 50px;
     background: #ffffff;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -260,6 +260,10 @@ export default {
     outline: none;
     border: none;
     padding-left: 20px;
+
+    @media(max-width: 910px) {
+      width: 500px;
+    }
 
     @media(max-width: 710px) {
       width: 300px;
