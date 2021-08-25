@@ -17,23 +17,23 @@
 
                   <form class="add-product-wrapper"  @submit.prevent="editProduct">
                     <div class="col-md-8 text-center">
-                      <h2 class="description-container-title">Изменить продукт</h2>
+                      <h2 class="description-container-title">Редактировать продукт</h2>
                     </div>
                     <div class="input">
                       <br/>
-                      <label for="image">Загрузите изображение</label>
-                      <input id="image-loader" type="file" @change="onFileChange"/>
+<!--                      <label for="image">Загрузите изображение</label>-->
+<!--                      <input id="image-loader" type="file" @change="onFileChange"/>-->
                     </div>
                     <div class="input">
-                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>
-                      <input
-                          id="image"
-                          type="text"
-                          name="image"
-                          placeholder="Полное название изображения"
-                          v-model="currentProduct.image"
+<!--                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>-->
+<!--                      <input-->
+<!--                          id="image"-->
+<!--                          type="text"-->
+<!--                          name="image"-->
+<!--                          placeholder="Полное название изображения"-->
+<!--                          v-model="currentProduct.image"-->
 
-                      />
+<!--                      />-->
                     </div>
                     <div class="input">
                       <label for="title">Заголовок</label>
@@ -102,7 +102,7 @@
                           required
                       />
                     </div>
-                      <input type="submit" value="Сохранить изменения" id="addProductInput"  >
+                      <input type="submit" value="Сохранить изменения" id="editProductInput"  >
                   </form>
                 </div>
               </div>
@@ -143,14 +143,19 @@ export default {
             console.log(e);
           });
     },
-
-
-    Console(){
-      console.log('edit product page')
+    editProduct(){
+      ProductsDataService.update(this.currentProduct.id, this.currentProduct)
+          .then(response => {
+            console.log(response.data);
+            this.message = 'The product was updated successfully!';
+          })
+          .catch(e => {
+            console.log(e);
+          });
     }
+
   },
   mounted(){
-    this.Console();
     this.message = '';
     this.getProduct(this.$route.params.id);
   }
@@ -245,7 +250,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  #addProductInput {
+  #editProductInput {
     width: 342px;
     height: 58px;
     color: white;
