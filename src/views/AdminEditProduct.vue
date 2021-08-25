@@ -15,7 +15,7 @@
               <div class="row justify-content-center">
                 <div id="test" class="col-lg-10">
 
-                  <form class="add-product-wrapper"  @submit.prevent="editProduct">
+                  <form class="add-product-wrapper" v-if="!edited"  @submit.prevent="editProduct">
                     <div class="col-md-8 text-center">
                       <h2 class="description-container-title">Редактировать продукт</h2>
                     </div>
@@ -104,6 +104,12 @@
                     </div>
                       <input type="submit" value="Сохранить изменения" id="editProductInput"  >
                   </form>
+
+                  <div class="add-product-wrapper" v-else>
+                    <br/>
+                    <h4>Товар был успешно отредактирован!</h4>
+                    <router-link class="btn btn-success" to="/admin/">Вернуться на главную страницу</router-link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,7 +134,8 @@ export default {
   data() {
     return {
       currentProduct: null,
-      message: ''
+      message: '',
+      edited: false
     };
   },
   methods: {
@@ -148,6 +155,7 @@ export default {
           .then(response => {
             console.log(response.data);
             this.message = 'The product was updated successfully!';
+            this.edited = true;
           })
           .catch(e => {
             console.log(e);
@@ -249,6 +257,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 
   #editProductInput {
     width: 342px;
