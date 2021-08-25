@@ -8,7 +8,10 @@
     <div id="content" class="p-4 p-md-5">
       <h2 class="mb-4">Список товаров</h2>
       <div v-for="product in products" :key="product._id" class="product">
-        <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`" alt="product image">
+        <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`"
+             alt="product image" v-if='product.image !== ""'>
+        <img class="img-fluid" :src="`https://decoplastline.ua/no-image.png`"
+             alt="product image" v-else>
         <div class="product-title">{{ product.title }}</div>
         <div class="product-desc">{{ product.description }}</div>
         <div class="product-desc">{{ product.color }}</div>

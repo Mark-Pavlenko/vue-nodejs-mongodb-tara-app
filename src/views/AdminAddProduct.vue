@@ -15,7 +15,7 @@
               <div class="row justify-content-center">
                 <div id="test" class="col-lg-10">
 
-                  <div class="add-product-wrapper" v-if="!submitted" >
+                  <form class="add-product-wrapper" v-if="!submitted" @submit.prevent="saveProduct">
                     <div class="col-md-8 text-center">
                       <h2 class="description-container-title">Добавить продукт</h2>
                     </div>
@@ -27,11 +27,12 @@
                     <div class="input">
                       <label for="image">Введите полное название изображения (имена должны совпадать)! </label>
                       <input
-                          type="text"
                           id="image"
-                          required
-                          v-model="product.image"
+                          type="text"
                           name="image"
+                          placeholder="Полное название изображения"
+                          v-model="product.image"
+
                       />
                     </div>
                     <div class="input">
@@ -39,23 +40,26 @@
                       <input
                           type="text"
                           id="title"
-                          required
                           v-model="product.title"
+                          placeholder="Заголовок"
+                          required
                       />
                     </div>
                     <div class="input">
                       <label for="description">Описание</label>
                       <textarea
-                          class="form-control"
-                          id="description"
-                          required
-                          v-model="product.description"
                           name="description"
+                          id="description"
+                          class="form-control"
+                          placeholder="Описание"
+                          v-model="product.description"
+                          required
+
                       />
                     </div>
                     <div class="input">
                       <label for="color">Цвет: </label>
-                      <select v-model="product.color" name="color" id="color">
+                      <select v-model="product.color" name="color" id="color" required>
                         <option value="Белый">Белый</option>
                         <option value="Золотой">Золотой</option>
                         <option value="Перламутровый">Перламутровый</option>
@@ -66,7 +70,7 @@
                     </div>
                     <div class="input">
                       <label for="volume">Объём: </label>
-                      <select v-model="product.volume" name="volume" id="volume" style="width: 150px;">
+                      <select v-model="product.volume" name="volume" id="volume" style="width: 150px;" required>
                         <option value="10">10 ml</option>
                         <option value="25">25 ml</option>
                         <option value="50">50 ml</option>
@@ -78,26 +82,29 @@
                     <div class="input">
                       <label for="material">Материал</label>
                       <input
-                          class="form-control"
-                          id="material"
-                          required
-                          v-model="product.material"
                           name="material"
+                          id="material"
+                          class="form-control"
+                          v-model="product.material"
+                          placeholder="Материал"
+                          required
                       />
                     </div>
                     <div class="input">
                       <label for="complectation">Комплектация</label>
                       <input
-                          class="form-control"
                           id="complectation"
-                          required
-                          v-model="product.complectation"
+                          class="form-control"
                           name="complectation"
+                          v-model="product.complectation"
+                          placeholder="Комплектация"
+                          required
                       />
                     </div>
-                    <button type="submit" @click="saveProduct">Отправить</button>
+<!--                    <input type="submit" value="Отправить" id="addProductInput" @click="saveProduct" >-->
+                    <input type="submit" value="Отправить" id="addProductInput"  >
 
-                  </div>
+                  </form>
 
                   <div class="add-product-wrapper" v-else>
                     <br/>
@@ -285,7 +292,7 @@ export default {
   justify-content: center;
   align-items: center;
 
-  button {
+  #addProductInput {
     width: 342px;
     height: 58px;
     color: white;
