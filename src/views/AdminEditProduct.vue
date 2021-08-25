@@ -18,7 +18,7 @@
                     </div>
 
                     <div class="product-image">
-<!--                      <img src="../../app/images/tara-img.png" class="img-fluid" alt=""/>-->
+                      <!--                      <img src="../../app/images/tara-img.png" class="img-fluid" alt=""/>-->
                       <!--                      <img :src="`http:/localhost:8080/app/images/${currentProduct.image}`" class="img-fluid"-->
                       <!--                           v-if='currentProduct.image !== ""'/>-->
                       <!--                      <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>-->
@@ -29,7 +29,6 @@
                     <!--form with main content-->
 
                     <form class="add-product-wrapper" v-if="!edited" @submit.prevent="editProduct">
-
 
 
                       <div class="input">
@@ -177,24 +176,9 @@ export default {
           });
     },
     deleteImage() {
-      // let test = "";
-      let test ='';
-      this.currentProduct.image = test;
-      let obj = {image: test};
-      ProductsDataService.updateImage(this.currentProduct.id, obj)
-          .then(response => {
-            console.log(this.currentProduct.image);
-            console.log(response.data);
-            // this.message = 'The product was updated successfully!';
-            this.edited = true;
-          })
-          .catch(e => {
-            console.log(e);
-          });
-
 
       const formData = this.currentProduct.image;
-      // console.log(formData);
+      console.log(formData);
 
       let dataOfDeletedImage = {
         name: formData
@@ -209,8 +193,23 @@ export default {
           .catch(err => {
             console.log(err);
           });
-    }
 
+
+      let test = '';
+      this.currentProduct.image = test;
+      let obj = {image: test};
+      ProductsDataService.updateImage(this.currentProduct.id, obj)
+          .then(response => {
+            console.log(this.currentProduct.image);
+            console.log(response.data);
+            // this.message = 'The product was updated successfully!';
+            this.edited = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+
+    }
   },
   mounted() {
     this.message = '';

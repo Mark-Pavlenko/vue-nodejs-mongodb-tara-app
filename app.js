@@ -61,7 +61,7 @@ app.post('/delete/image', (req, res) => {
     //     return res.status(500).send({msg: "file is not found"})
     // }
 
-    // console.log('image name for deleting: ' + deletedImage.name);
+    console.log('image name for deleting: ' + deletedImage.name);
 
 
         // here will be image name (sent like parameter)
