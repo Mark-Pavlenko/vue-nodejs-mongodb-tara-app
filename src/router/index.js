@@ -34,6 +34,11 @@ const routes = [
     name: 'AdminAllProducts',
     component: () => import(/* webpackChunkName: "about" */ '../views/AdminAllProducts.vue')
   },
+   {
+      path: '/admin/edit/:id',
+      name: 'AdminEditProduct',
+      component: () => import(/* webpackChunkName: "about" */ '../views/AdminEditProduct.vue')
+    },
 ]
 
 const router = new VueRouter({

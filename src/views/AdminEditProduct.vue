@@ -15,9 +15,9 @@
               <div class="row justify-content-center">
                 <div id="test" class="col-lg-10">
 
-                  <form class="add-product-wrapper" v-if="!submitted" @submit.prevent="saveProduct">
+                  <form class="add-product-wrapper"  @submit.prevent="editProduct">
                     <div class="col-md-8 text-center">
-                      <h2 class="description-container-title">Добавить продукт</h2>
+                      <h2 class="description-container-title">Изменить продукт</h2>
                     </div>
                     <div class="input">
                       <br/>
@@ -31,7 +31,7 @@
                           type="text"
                           name="image"
                           placeholder="Полное название изображения"
-                          v-model="product.image"
+                          v-model="currentProduct.image"
 
                       />
                     </div>
@@ -40,7 +40,7 @@
                       <input
                           type="text"
                           id="title"
-                          v-model="product.title"
+                          v-model="currentProduct.title"
                           placeholder="Заголовок"
                           required
                       />
@@ -52,14 +52,15 @@
                           id="description"
                           class="form-control"
                           placeholder="Описание"
-                          v-model="product.description"
+                          v-model="currentProduct.description"
                           required
                           style="height: 300px;"
+
                       />
                     </div>
                     <div class="input">
                       <label for="color">Цвет: </label>
-                      <select v-model="product.color" name="color" id="color" required>
+                      <select v-model="currentProduct.color" name="color" id="color" required>
                         <option value="Белый">Белый</option>
                         <option value="Золотой">Золотой</option>
                         <option value="Перламутровый">Перламутровый</option>
@@ -70,7 +71,7 @@
                     </div>
                     <div class="input">
                       <label for="volume">Объём: </label>
-                      <select v-model="product.volume" name="volume" id="volume" style="width: 150px;" required>
+                      <select v-model="currentProduct.volume" name="volume" id="volume" style="width: 150px;" required>
                         <option value="10">10 ml</option>
                         <option value="25">25 ml</option>
                         <option value="50">50 ml</option>
@@ -85,7 +86,7 @@
                           name="material"
                           id="material"
                           class="form-control"
-                          v-model="product.material"
+                          v-model="currentProduct.material"
                           placeholder="Материал"
                           required
                       />
@@ -96,22 +97,13 @@
                           id="complectation"
                           class="form-control"
                           name="complectation"
-                          v-model="product.complectation"
+                          v-model="currentProduct.complectation"
                           placeholder="Комплектация"
                           required
                       />
                     </div>
-
-                    <input type="submit" value="Добавить" id="addProductInput"  >
-
+                      <input type="submit" value="Сохранить изменения" id="addProductInput"  >
                   </form>
-
-                  <div class="add-product-wrapper" v-else>
-                    <br/>
-                    <h4>Товар был успешно добавлен!</h4>
-                    <button class="btn btn-success" @click="newProduct">Добавить еще один</button>
-                  </div>
-
                 </div>
               </div>
             </div>
@@ -127,79 +119,40 @@
 import Sidebar from "../components/Sidebar";
 
 import ProductsDataService from "../services/GoodsDataServices";
-import axios from "axios";
 
 export default {
+  name: "product",
   components: {
     Sidebar
   },
   data() {
     return {
-      product: {
-        id: null,
-        title: "",
-        description: "",
-        color: "",
-        volume: "",
-        material: "",
-        complectation: "",
-        image: ""
-
-      },
-      submitted: false
+      currentProduct: null,
+      message: ''
     };
   },
   methods: {
-    onFileChange(e) {
-      const selectedFile = e.target.files[0]; // accessing file
-      this.selectedFile = selectedFile;
-    },
-    saveProduct() {
 
-      const formData = new FormData();
-      formData.append("file", this.selectedFile); // appending file
-
-      // sending file to backend
-      axios
-          .post("http://localhost:8080/upload", formData, {
-            onUploadProgress: ProgressEvent => {
-              let progress =
-                  Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
-                  "%";
-              this.progress = progress;
-            }
-          })
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-
-      let data = {
-        title: this.product.title,
-        description: this.product.description,
-        color: this.product.color,
-        volume: this.product.volume,
-        material: this.product.material,
-        complectation: this.product.complectation,
-        image: this.product.image
-      };
-
-      ProductsDataService.create(data)
+    getProduct(id){
+      ProductsDataService.get(id)
           .then(response => {
-            this.product.id = response.data.id;
+            this.currentProduct = response.data;
             console.log(response.data);
-            this.submitted = true;
           })
           .catch(e => {
             console.log(e);
           });
     },
-    newProduct() {
-      this.submitted = false;
-      this.product = {};
+
+
+    Console(){
+      console.log('edit product page')
     }
+  },
+  mounted(){
+    this.Console();
+    this.message = '';
+    this.getProduct(this.$route.params.id);
   }
 }
 </script>
