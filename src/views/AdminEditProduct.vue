@@ -6,41 +6,34 @@
     <div id="add-product-card">
       <section class="ftco-section">
         <div class="container">
-          <div id="add-product-title-block" class="row justify-content-center">
-
-          </div>
-
           <div class="row justify-content-center">
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
                 <div id="test" class="col-lg-10">
 
-<!--                  <img :src="`http:/localhost:8080/app/images/${currentProduct.image}`" class="image" v-if='currentProduct.image !== ""'/>-->
-<!--                  <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>-->
-                  <button type="submit" @click="deleteImage">Удалить картинку</button>
-
                   <form class="add-product-wrapper" v-if="!edited" @submit.prevent="editProduct">
+
                     <div class="col-md-8 text-center">
                       <h2 class="description-container-title">Редактировать продукт</h2>
                     </div>
+
+                    <div class="product-image">
+                      <img src="../../app/images/tara-img.png" class="img-fluid" alt=""/>
+                      <!--                      <img src="../assets/Profile.png" class="img-fluid" alt=""/>-->
+<!--                      <img :src="`http:/localhost:8080/app/images/${currentProduct.image}`" class="img-fluid"-->
+<!--                           v-if='currentProduct.image !== ""'/>-->
+<!--                      <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>-->
+
+                    </div>
+                    <br/>
+                    <button type="submit" class="card-btn btn btn-danger" @click="deleteImage">Удалить картинку</button>
+
                     <div class="input">
                       <br/>
                       <!--                      <label for="image">Загрузите изображение</label>-->
                       <!--                      <input id="image-loader" type="file" @change="onFileChange"/>-->
-
-
                     </div>
-                    <div class="input">
-                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>
-                      <input
-                          id="image"
-                          type="text"
-                          name="image"
-                          placeholder="Полное название изображения"
-                          v-model="currentProduct.image"
 
-                      />
-                    </div>
                     <div class="input">
                       <label for="title">Заголовок</label>
                       <input
@@ -51,6 +44,7 @@
                           required
                       />
                     </div>
+
                     <div class="input">
                       <label for="description">Описание</label>
                       <textarea
@@ -64,6 +58,7 @@
 
                       />
                     </div>
+
                     <div class="input">
                       <label for="color">Цвет: </label>
                       <select v-model="currentProduct.color" name="color" id="color" required>
@@ -75,6 +70,7 @@
                         <option value="Прозрачный">Прозрачный</option>
                       </select>
                     </div>
+
                     <div class="input">
                       <label for="volume">Объём: </label>
                       <select v-model="currentProduct.volume" name="volume" id="volume" style="width: 150px;" required>
@@ -86,6 +82,7 @@
                         <option value="550">550 ml</option>
                       </select>
                     </div>
+
                     <div class="input">
                       <label for="material">Материал</label>
                       <input
@@ -97,6 +94,7 @@
                           required
                       />
                     </div>
+
                     <div class="input">
                       <label for="complectation">Комплектация</label>
                       <input
@@ -291,7 +289,7 @@ export default {
     height: 58px;
     color: white;
 
-    background: rgba(182, 12, 12, 0.8);
+    background: #00c851;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
 
@@ -333,6 +331,7 @@ export default {
   justify-content: center;
   align-items: center;
 
+
   @media (max-width: 992px) {
     //margin-top: 50px;
   }
@@ -366,6 +365,17 @@ export default {
 
 #image-loader {
   padding-top: 10px;
+}
+
+.product-image {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
+  margin-top:20px;
+
+  //margin-bottom: 40px;
 }
 
 </style>

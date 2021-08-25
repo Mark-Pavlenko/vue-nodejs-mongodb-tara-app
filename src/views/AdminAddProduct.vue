@@ -21,20 +21,10 @@
                     </div>
                     <div class="input">
                       <br/>
-                      <label for="image">Загрузите изображение</label>
+                      <label>Загрузите изображение</label>
                       <input id="image-loader" type="file" @change="onFileChange"/>
                     </div>
-<!--                    <div class="input">-->
-<!--                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>-->
-<!--                      <input-->
-<!--                          id="image"-->
-<!--                          type="text"-->
-<!--                          name="image"-->
-<!--                          placeholder="Полное название изображения"-->
-<!--                          v-model="product.image"-->
 
-<!--                      />-->
-<!--                    </div>-->
                     <div class="input">
                       <label for="title">Заголовок</label>
                       <input
