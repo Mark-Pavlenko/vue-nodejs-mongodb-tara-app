@@ -18,6 +18,9 @@ module.exports = app => {
   // Update a Tutorial with id
   router.put("/:id", tutorials.update);
 
+  // Update a Product's image (remove image name)
+  router.put("/:id", tutorials.updateImage);
+
   // Delete a Tutorial with id
   router.delete("/:id", tutorials.delete);
 

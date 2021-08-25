@@ -17,6 +17,11 @@ class TutorialDataService {
         return https.put(`/tutorials/${id}`, data);
     }
 
+    updateImage(id, data) {
+        return https.put(`/tutorials/${id}`, data);
+    }
+
+
     delete(id) {
         return https.delete(`/tutorials/${id}`);
     }
