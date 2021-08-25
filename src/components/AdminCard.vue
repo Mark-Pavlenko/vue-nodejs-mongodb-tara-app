@@ -14,7 +14,7 @@
         <p>Комплектация: {{ product.complectation }}</p>
         <div class="admin-cards-buttons">
           <router-link :to="{path: `/admin/edit/${product.id}`}" class="card-btn btn btn-info">Редактировать</router-link>
-          <router-link :to="{path: `/product/${product.id}`}" class="card-btn btn btn-danger">Удалить</router-link>
+          <button @click="deleteProduct(product.id)" class="card-btn btn btn-danger">Удалить</button>
         </div>
       </div>
     </div>
@@ -22,9 +22,27 @@
 </template>
 
 <script>
+
+import ProductDataService from "../services/GoodsDataServices";
+
 export default {
   name: 'product',
-  props: ['product']
+  props: ['product'],
+  methods:{
+    deleteProduct(id) {
+      ProductDataService.delete(id)
+          .then(response => {
+            console.log('product was deleted!');
+            // console.log(response.data);
+            window.location.reload()
+            // this.$router.push({ name: "products" });
+          })
+          .catch(e => {
+            console.log(e);
+
+          });
+    }
+  }
 }
 </script>
 
@@ -104,14 +122,24 @@ export default {
   margin-left: auto;
   margin-right: auto;
   margin-top:20px;
+
+  @media(max-width: 992px){
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+  }
+
+  @media(max-width: 768px){
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+  }
 }
 
 .card-btn {
   cursor: pointer;
-
-
-  width:35%;
   border-radius:10px;
+
 
 }
 
