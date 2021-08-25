@@ -7,7 +7,7 @@
           <div class="web">
             <div id="nav">
               <div class="menu_btn">
-                <router-link class="link" to="/admin/products">Все товары</router-link>
+                <router-link class="link" to="/admin/">Все товары</router-link>
               </div>
 
               <div class="menu_btn">

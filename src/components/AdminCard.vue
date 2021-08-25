@@ -8,11 +8,14 @@
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <p>Цвет: {{ product.color}}</p>
+        <p>Цвет: {{ product.color }}</p>
         <p>Объем: {{ product.volume }}</p>
         <p>Материал: {{ product.material }}</p>
         <p>Комплектация: {{ product.complectation }}</p>
-        <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
+        <div class="admin-cards-buttons">
+          <router-link :to="{path: `/admin/edit/${product.id}`}" class="card-btn btn btn-info">Редактировать</router-link>
+          <router-link :to="{path: `/product/${product.id}`}" class="card-btn btn btn-danger">Удалить</router-link>
+        </div>
       </div>
     </div>
   </div>
@@ -93,8 +96,23 @@ export default {
   color: #676767;
 }
 
-#card-btn {
+.admin-cards-buttons{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+}
+
+.card-btn {
   cursor: pointer;
+
+
+  width:35%;
+  border-radius:10px;
+
 }
 
 </style>
