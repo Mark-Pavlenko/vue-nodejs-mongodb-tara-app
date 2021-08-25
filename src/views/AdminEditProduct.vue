@@ -15,25 +15,31 @@
               <div class="row justify-content-center">
                 <div id="test" class="col-lg-10">
 
-                  <form class="add-product-wrapper" v-if="!edited"  @submit.prevent="editProduct">
+<!--                  <img :src="`http:/localhost:8080/app/images/${currentProduct.image}`" class="image" v-if='currentProduct.image !== ""'/>-->
+<!--                  <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>-->
+                  <button type="submit" @click="deleteImage">Удалить картинку</button>
+
+                  <form class="add-product-wrapper" v-if="!edited" @submit.prevent="editProduct">
                     <div class="col-md-8 text-center">
                       <h2 class="description-container-title">Редактировать продукт</h2>
                     </div>
                     <div class="input">
                       <br/>
-<!--                      <label for="image">Загрузите изображение</label>-->
-<!--                      <input id="image-loader" type="file" @change="onFileChange"/>-->
+                      <!--                      <label for="image">Загрузите изображение</label>-->
+                      <!--                      <input id="image-loader" type="file" @change="onFileChange"/>-->
+
+
                     </div>
                     <div class="input">
-<!--                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>-->
-<!--                      <input-->
-<!--                          id="image"-->
-<!--                          type="text"-->
-<!--                          name="image"-->
-<!--                          placeholder="Полное название изображения"-->
-<!--                          v-model="currentProduct.image"-->
+                      <label for="image">Введите полное название изображения (имена должны совпадать)! </label>
+                      <input
+                          id="image"
+                          type="text"
+                          name="image"
+                          placeholder="Полное название изображения"
+                          v-model="currentProduct.image"
 
-<!--                      />-->
+                      />
                     </div>
                     <div class="input">
                       <label for="title">Заголовок</label>
@@ -102,7 +108,7 @@
                           required
                       />
                     </div>
-                      <input type="submit" value="Сохранить изменения" id="editProductInput"  >
+                    <input type="submit" value="Сохранить изменения" id="editProductInput">
                   </form>
 
                   <div class="add-product-wrapper" v-else>
@@ -125,6 +131,7 @@
 import Sidebar from "../components/Sidebar";
 
 import ProductsDataService from "../services/GoodsDataServices";
+import axios from "axios";
 
 export default {
   name: "product",
@@ -140,7 +147,7 @@ export default {
   },
   methods: {
 
-    getProduct(id){
+    getProduct(id) {
       ProductsDataService.get(id)
           .then(response => {
             this.currentProduct = response.data;
@@ -150,7 +157,7 @@ export default {
             console.log(e);
           });
     },
-    editProduct(){
+    editProduct() {
       ProductsDataService.update(this.currentProduct.id, this.currentProduct)
           .then(response => {
             console.log(response.data);
@@ -160,10 +167,30 @@ export default {
           .catch(e => {
             console.log(e);
           });
+    },
+    deleteImage() {
+
+      const formData = this.currentProduct.image;
+      console.log(formData);
+
+      let dataOfDeletedImage = {
+        name: formData
+      }
+      // formData.append("file", ); // appending file
+
+      // sending file to backend
+      axios
+          .post("http:/localhost:8080/delete/image", dataOfDeletedImage,)
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
     }
 
   },
-  mounted(){
+  mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
   }
@@ -337,8 +364,8 @@ export default {
   margin-bottom: 10px;
 }
 
-#image-loader{
-  padding-top:10px;
+#image-loader {
+  padding-top: 10px;
 }
 
 </style>

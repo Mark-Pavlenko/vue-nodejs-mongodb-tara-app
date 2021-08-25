@@ -156,19 +156,13 @@ export default {
     },
     saveProduct() {
 
+      //save image mechanism
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
 
       // sending file to backend
       axios
-          .post("http://localhost:8080/upload", formData, {
-            onUploadProgress: ProgressEvent => {
-              let progress =
-                  Math.round((ProgressEvent.loaded / ProgressEvent.total) * 100) +
-                  "%";
-              this.progress = progress;
-            }
-          })
+          .post("http://localhost:8080/upload", formData, )
           .then(res => {
             console.log(res);
           })
