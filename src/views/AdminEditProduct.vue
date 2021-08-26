@@ -10,9 +10,9 @@
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
 
-                <div id="test" class="col-lg-10">
+                <div id="test" class="col-lg-10" v-if="!edited">
 
-<!--                  add/delete image functionality-->
+                  <!--                  add/delete image functionality-->
                   <div v-if="currentProduct.image !== ''">
 
                     <div class="text-center">
@@ -45,7 +45,7 @@
                   </div>
 
 
-                  <div class="add-product-wrapper" v-if="!edited" @submit.prevent="editProduct">
+                  <div class="add-product-wrapper" @submit.prevent="editProduct">
 
                     <div class="col-md-8 text-center">
                       <h2 class="description-container-title">Редактировать описание продукта</h2>
@@ -53,7 +53,7 @@
 
                     <!--form with main content-->
 
-                    <form class="add-product-wrapper" v-if="!edited" @submit.prevent="editProduct">
+                    <form class="add-product-wrapper"  @submit.prevent="editProduct">
 
                       <div class="input">
                         <label for="title">Заголовок</label>
@@ -133,11 +133,15 @@
                   </div>
 
 
-                  <!--                  <div class="add-product-wrapper" v-else>-->
-                  <!--                    <br/>-->
-                  <!--                    <h4>Товар был успешно отредактирован!</h4>-->
-                  <!--                    <router-link class="btn btn-success" to="/admin/">Вернуться на главную страницу</router-link>-->
-                  <!--                  </div>-->
+                </div>
+
+                <div class="add-product-wrapper" v-else>
+                  <br/>
+                  <h4>Товар был успешно отредактирован!</h4>
+                  <router-link class="btn btn-success" to="/admin/">Вернуться на главную страницу</router-link>
+                  <button class="btn btn-primary" @click="newProductEdition">Продолжить
+                    редактирование
+                  </button>
                 </div>
               </div>
             </div>
@@ -191,8 +195,9 @@ export default {
           .then(response => {
             console.log(response.data);
             this.message = 'The product was updated successfully!';
-            window.location.reload()
-            // this.edited = true;
+
+            // window.location.reload()
+            this.edited = true;
           })
           .catch(e => {
             console.log(e);
@@ -229,7 +234,8 @@ export default {
             console.log(this.currentProduct.image);
             console.log(response.data);
             // this.message = 'The product was updated successfully!';
-            window.location.reload()
+            window.location.reload();
+            // window.scrollTo(0, 0);
             this.edited = true;
           })
           .catch(e => {
@@ -239,12 +245,18 @@ export default {
     },
 
     addImage() {
+    },
+
+    newProductEdition(){
+        this.edited = false;
+        // this.product = {};
     }
 
   },
   mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
+
   }
 }
 </script>
@@ -438,13 +450,13 @@ export default {
   //margin-bottom: 40px;
 }
 
-.product-image-deleted{
+.product-image-deleted {
   width: 40%;
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
   //padding: 0px initial;
   margin: 30px auto;
   margin-bottom: 0px;
-  padding-top:10px;
+  padding-top: 10px;
   padding-bottom: 10px;
 
   @media (max-width: 480px) {
@@ -453,7 +465,7 @@ export default {
   }
 }
 
-.add-image-block{
+.add-image-block {
   margin-bottom: 20px;
 }
 

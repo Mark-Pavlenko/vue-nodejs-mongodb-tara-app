@@ -100,6 +100,7 @@
                     <br/>
                     <h4>Товар был успешно добавлен!</h4>
                     <button class="btn btn-success" @click="newProduct">Добавить еще один</button>
+                    <router-link class="btn btn-primary" to="/admin/">Вернуться на главную страницу</router-link>
                   </div>
 
                 </div>
