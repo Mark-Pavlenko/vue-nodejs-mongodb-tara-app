@@ -175,7 +175,7 @@ export default {
 
       // sending file to backend
       axios
-          .post("http://localhost:8080/upload", formData, )
+          .post("https://decoplastline.ua/upload", formData, )
           .then(res => {
             console.log(res);
           })

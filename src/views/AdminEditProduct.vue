@@ -20,7 +20,8 @@
                     </div>
 
                     <div class="product-image">
-                      <img src="../../app/images/test-tara.png" class="img-fluid" alt=""/>
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image}`" class="image"/>
+
                     </div>
 
                     <br/>
@@ -205,7 +206,7 @@ export default {
 
       // sending file to backend
       axios
-          .post("http://localhost:8080/upload", formData, )
+          .post("https://decoplastline.ua/upload", formData, )
           .then(res => {
             console.log(res);
           })
@@ -254,7 +255,7 @@ export default {
 
       // sending file to backend
       axios
-          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
+          .post("https://decoplastline.ua/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
 
