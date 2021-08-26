@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row footer-wrapper">
 
-        <div class="col-md-2 col-12 ">
+        <div class="col-sm col-12 ">
           <div class="footer-item">
             <div class="image">
               <img src="../assets/TimeFooter.png" alt="" />
@@ -14,7 +14,7 @@
           </div>
         </div>
 
-        <div class="col-md-2 col-12">
+        <div class="col-sm col-12">
           <div class="footer-item">
             <div class="image">
               <img src="../assets/LocationFooter.png" alt="" />
@@ -25,7 +25,7 @@
           </div>
         </div>
 
-        <div class="col-md-3 col-12">
+        <div class="col-sm col-12">
           <div class="footer-item">
             <div class="image">
               <img src="../assets/envelope-closed.png" alt="" width="50%"/>
@@ -38,7 +38,7 @@
           </div>
         </div>
 
-        <div class="col-md-2 col-12 ">
+        <div class="col-sm col-12 ">
           <div class="footer-item">
             <div class="image">
               <img src="../assets/CallingFooter.png" alt="" />
@@ -49,16 +49,16 @@
           </div>
         </div>
 
-        <div class="col-md-2 col-12 ">
-          <div class="footer-item">
-            <div class="image">
-              <img src="../assets/instagram-footer.png" alt=""  style="width: 50%"/>
-            </div>
-            <div class="text">
-              @decoplastline
-            </div>
-          </div>
-        </div>
+<!--        <div class="col-md-2 col-12 ">-->
+<!--          <div class="footer-item">-->
+<!--            <div class="image">-->
+<!--              <img src="../assets/instagram-footer.png" alt=""  style="width: 50%"/>-->
+<!--            </div>-->
+<!--            <div class="text">-->
+<!--              @decoplastline-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
       </div>
     </div>
@@ -73,7 +73,7 @@
 
 <style lang="scss" scoped>
 .footer {
-  width: 100%;
+  //width: 100%;
   height: auto;
   padding: 20px 0;
 
@@ -90,6 +90,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media(max-width:480px){
+    margin-left:30px;
+    font-size: 14px;
+  }
+
   @media (max-width: 678px) {
     margin-bottom: 20px;
     justify-content: unset;
@@ -107,15 +113,19 @@
 
   border-radius: 50%;
 
-  margin-right: 20px;
+  //margin-right: 20px;
 }
 .footer-wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 12px;
+  //width: 100%;
+  /* margin: 0 auto; */
+  margin-left: -40px;
+}
 
-  //max-width: 800px;
-  width: 100%;
-  margin: 0 auto;
+.text{
+  margin-left:15px;
 }
 </style>
