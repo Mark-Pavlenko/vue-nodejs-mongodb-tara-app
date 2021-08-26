@@ -28,17 +28,23 @@
             <!--                <swiper-slide class="slide-4"></swiper-slide>-->
             <!--                <swiper-slide class="slide-5"></swiper-slide>-->
             <!--              </swiper>-->
-            <Carousel/>
+            <swiper class="swiper" :options="swiperOption">
+              <!--    output images of added products from the hoisting-->
+              <!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
+              <!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
+              <!--    </swiper-slide>-->
+              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
+              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
+              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
+              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
+              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
+              <div class="swiper-button-prev" slot="button-prev"></div>
+              <div class="swiper-button-next" slot="button-next"></div>
+            </swiper>
           </div>
           <div class="col">
             <div class="description-wrapper">
-              Мы предлагаем Вам оригинальную тару для косметики и парфюмерии:<br/><br/>
-              — стеклянные флаконы с кисточками для лака (гель лака);<br/><br/>
-              — стеклянные и пластиковые флаконы для парфюмерии и
-              автопарфюмерии;<br/><br/>
-              — пластиковые, металлические, стеклянные баночки для кремов и
-              лосьонов;<br/><br/>
-              — триггеры, дозаторы, спреи, а также другие комплектующие.
+             {{currentProduct.description}}
             </div>
 
             <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
@@ -63,7 +69,7 @@ import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import AnchorRouterLink from 'vue-anchor-router-link';
 import 'swiper/css/swiper.css'
 
-import Carousel from "../components/ProductCarousel";
+
 
 import ProductDataService from "../services/GoodsDataServices";
 
@@ -74,31 +80,24 @@ export default {
     Footer,
     Swiper,
     SwiperSlide,
-    Carousel
   },
   data() {
     return {
       currentProduct: null,
       productImage: [],
       repeatedImages: [],
-
-      swiperOptionTop: {
+      swiperOption: {
+        slidesPerView: 1,
+        spaceBetween: 30,
         loop: true,
-        loopedSlides: 5, // looped slides should be the same
-        spaceBetween: 10,
+        pagination: {
+          el: '.swiper-pagination',
+          clickable: true
+        },
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      },
-      swiperOptionThumbs: {
-        loop: true,
-        loopedSlides: 5, // looped slides should be the same
-        spaceBetween: 10,
-        centeredSlides: true,
-        slidesPerView: 'auto',
-        touchRatio: 0.2,
-        slideToClickedSlide: true
       }
     }
   },
@@ -119,6 +118,17 @@ export default {
             console.log(e);
           });
     },
+    retrieveProducts() {
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data;
+            // console.log(response.data);
+
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
 
   },
   mounted() {
@@ -126,10 +136,7 @@ export default {
     this.getProduct(this.$route.params.id);
 
     this.$nextTick(() => {
-      const swiperTop = this.$refs.swiperTop.$swiper
-      const swiperThumbs = this.$refs.swiperThumbs.$swiper
-      swiperTop.controller.control = swiperThumbs
-      swiperThumbs.controller.control = swiperTop
+      this.retrieveProducts();
     })
   }
 }
