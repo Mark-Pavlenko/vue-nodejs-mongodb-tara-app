@@ -186,13 +186,12 @@ export default {
     },
 
     editProduct() {
-
-
       ProductsDataService.update(this.currentProduct.id, this.currentProduct)
           .then(response => {
             console.log(response.data);
             this.message = 'The product was updated successfully!';
-            this.edited = true;
+            window.location.reload()
+            // this.edited = true;
           })
           .catch(e => {
             console.log(e);
