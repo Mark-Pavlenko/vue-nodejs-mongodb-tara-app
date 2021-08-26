@@ -4,35 +4,32 @@
 
     <div id="main-container" class="container-fluid">
       <div id="catalog-back">
-        <p>Каталог</p>
+        <h2>Каталог</h2>
       </div>
       <div class="container">
         <div class="row">
-          <div class="col">
-            <div id="thumb-example" class="container--fluid">
+          <div id="thumb-example" class="container-fluid">
 
-              <!-- swiper1 -->
-<!--              <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">-->
-<!--                <swiper-slide class="slide-1"></swiper-slide>-->
-<!--                <swiper-slide class="slide-2"></swiper-slide>-->
-<!--                <swiper-slide class="slide-3"></swiper-slide>-->
-<!--                <swiper-slide class="slide-4"></swiper-slide>-->
-<!--                <swiper-slide class="slide-5"></swiper-slide>-->
-<!--                <div class="swiper-button-next swiper-button-white" slot="button-next"></div>-->
-<!--                <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>-->
-<!--              </swiper>-->
-<!--              &lt;!&ndash; swiper2 Thumbs &ndash;&gt;-->
-<!--              <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">-->
-<!--                <swiper-slide class="slide-1"></swiper-slide>-->
-<!--                <swiper-slide class="slide-2"></swiper-slide>-->
-<!--                <swiper-slide class="slide-3"></swiper-slide>-->
-<!--                <swiper-slide class="slide-4"></swiper-slide>-->
-<!--                <swiper-slide class="slide-5"></swiper-slide>-->
-<!--              </swiper>-->
-<Carousel/>
-            </div>
+            <!-- swiper1 -->
+            <!--              <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">-->
+            <!--                <swiper-slide class="slide-1"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-2"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-3"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-4"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-5"></swiper-slide>-->
+            <!--                <div class="swiper-button-next swiper-button-white" slot="button-next"></div>-->
+            <!--                <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>-->
+            <!--              </swiper>-->
+            <!--              &lt;!&ndash; swiper2 Thumbs &ndash;&gt;-->
+            <!--              <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">-->
+            <!--                <swiper-slide class="slide-1"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-2"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-3"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-4"></swiper-slide>-->
+            <!--                <swiper-slide class="slide-5"></swiper-slide>-->
+            <!--              </swiper>-->
+            <Carousel/>
           </div>
-
           <div class="col">
             <div class="description-wrapper">
               Мы предлагаем Вам оригинальную тару для косметики и парфюмерии:<br/><br/>
@@ -149,9 +146,9 @@ export default {
 }
 
 #thumb-example {
-  height: 480px;
+  //height: 480px;
   width: 710px;
-  background-color: #e3e3e3;
+  //background-color: #e3e3e3;
   margin-top: 25px;
   padding-bottom: 5px;
 }

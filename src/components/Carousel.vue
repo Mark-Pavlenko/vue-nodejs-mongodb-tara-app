@@ -66,11 +66,17 @@ export default {
 
 <style lang="scss" scoped>
 
-.swiper-wrapper{
+.swiper-slide{
+  width:75%;
 }
 
 .swiper-container {
   margin-top:40px;
+
+  @media(max-width: 920px){
+    height: 300px;
+  }
+
   @media (max-width: 850px){
     height: 300px;
   }
@@ -78,7 +84,7 @@ export default {
 
 .swiper-slide img{
 
-  max-width: 50%;
+  max-width: 30%;
 
 
   @media (max-width: 850px){
