@@ -4,12 +4,11 @@
 <!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
 <!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
 <!--    </swiper-slide>-->
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img.png"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/first.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/second.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/third.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/fourth.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/fifth.jpg"></swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
@@ -78,6 +77,10 @@ export default {
 }
 
 .swiper-slide img{
+
+  max-width: 50%;
+
+
   @media (max-width: 850px){
     height: 300px;
   }

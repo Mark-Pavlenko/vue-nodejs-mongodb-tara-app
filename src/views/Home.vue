@@ -75,7 +75,7 @@
                         <label>Моб. Телефон</label>
                         <input type="text"/>
                       </div>
-                      <button>Отправить</button>
+                      <button id="footer">Отправить</button>
                     </div>
                   </div>
                 </div>

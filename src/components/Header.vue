@@ -21,15 +21,27 @@
                 <div class="contacts">
                   <div class="contacts__description">
                     <img src="../assets/time.png" alt=""/>
-                    <p>9 - 19 сб - вс</p>
+                    <p>пн - пт 10:00 - 18:00 <br/> сб - вс Выходной</p>
                   </div>
                   <div class="contacts__description">
                     <img src="../assets/location.png" alt=""/>
-                    <p>Ул Пушкинка 666 - 2345</p>
+                    <p>г. Харьков</p>
+                  </div>
+                  <div class="contacts__description">
+                    <img src="../assets/email.png" alt="" style="width: 30px; "/>
+                    decoplastline@gmail.com
+                    <br/>
+                    banochkiopt@gmail.com
                   </div>
                   <div class="contacts__description">
                     <img src="../assets/calling.png" alt=""/>
-                    <p>8 800 555 35 35</p>
+                    <p>0631443406</p>
+                  </div>
+
+                  <div class="contacts__description">
+                    <img src="../assets/instagram.jpg" alt=""
+                         style="width: 30px;;margin-left: -5px; margin-right: 15px;"/>
+                    <a href="https://www.instagram.com/decoplastline/" style="">@decoplastline</a>
                   </div>
                 </div>
               </div>
@@ -69,7 +81,7 @@
                 <anchor-router-link :to="{name:'Home', hash:'#about-us'}" class="router-link">О Нас</anchor-router-link>
               </div>
               <div id="contacts-list-item" class="menu_btn">
-                <anchor-router-link class="router-link" :to="{name:'Home', hash:'#contacts-card'}">
+                <anchor-router-link class="router-link" :to="{name:'Home', hash:'#footer-contacts'}">
                   Контакты
                 </anchor-router-link>
               </div>
@@ -139,8 +151,15 @@ export default {
 }
 
 .logo {
+
+  @media(min-width: 750px) {
+    margin-top: 60px;
+    margin-left: 30px;
+  }
+
   @media (max-width: 992px) {
     line-height: 150px;
+
   }
 
   @media (max-width: 710px) {
@@ -169,6 +188,10 @@ export default {
   @media (max-width: 992px) {
     margin-top: 20px;
     margin-bottom: 20px;
+  }
+
+  @media (min-width: 992px) {
+    //margin-right: 10px;
   }
 
   &::after {
@@ -204,8 +227,8 @@ export default {
     }
 
     padding-left: 0px;
-    p {
-      width: 160px;
+    p, a {
+      //width: 160px;
     }
   }
 
@@ -217,6 +240,8 @@ export default {
     margin: 0;
     padding: 0;
   }
+
+
 
   img {
     margin-right: 18px;
@@ -306,13 +331,20 @@ export default {
   }
 }
 
-#header-cart-icon-block{
-  margin-top:-30px;
+#header-cart-icon-block {
+  margin-top: -30px;
   margin-left: 0 !important
 }
 
 #header-cart-icon {
   width: 25%;
+}
+
+.align-middle {
+  @media (min-width: 750px) {
+    margin-top: 60px;
+    margin-left: 30px;
+  }
 }
 
 </style>

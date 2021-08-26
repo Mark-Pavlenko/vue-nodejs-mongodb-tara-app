@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div id="footer-contacts" class="footer">
     <div class="container">
       <div class="row footer-wrapper">
         <div class="col-md-4 col-12 ">
@@ -8,7 +8,7 @@
               <img src="../assets/TimeFooter.png" alt="" />
             </div>
             <div class="text">
-              9 - 20 пн - вс
+              пн - пт 10:00 - 18:00
             </div>
           </div>
         </div>
@@ -18,7 +18,7 @@
               <img src="../assets/CallingFooter.png" alt="" />
             </div>
             <div class="text">
-              8 800 555 35 35
+              0631443406
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@
               <img src="../assets/LocationFooter.png" alt="" />
             </div>
             <div class="text">
-              Пушкинская 4
+              г. Харьков
             </div>
           </div>
         </div>
@@ -37,7 +37,11 @@
   </div>
 </template>
 
-<script setup></script>
+<script >
+  export default {
+    name: 'Footer'
+  }
+</script>
 
 <style lang="scss" scoped>
 .footer {

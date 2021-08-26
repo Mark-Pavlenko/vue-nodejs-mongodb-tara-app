@@ -175,12 +175,12 @@ export default {
 
       // sending file to backend
       axios
-          .post("https://decoplastline.ua/upload", formData, )
+          .post("http://localhost:8080/upload", formData, )
           .then(res => {
             console.log(res);
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
           });
 
     },

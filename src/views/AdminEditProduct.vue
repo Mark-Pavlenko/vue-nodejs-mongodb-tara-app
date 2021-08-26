@@ -196,22 +196,30 @@ export default {
 
     editProduct() {
 
+      ProductsDataService.update(this.currentProduct.id, this.currentProduct)
+          .then(response => {
+            console.log(response.data);
+            this.message = 'The product was updated successfully!';
+
+            // window.location.reload()
+            this.edited = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
       console.log(this.selectedFile.name);
 
-      let dataOfInsertedImage = {
-        name: formData
-      }
-
       // sending file to backend
       axios
-          .post("https://decoplastline.ua/upload", formData, )
+          .post("http://localhost:8080/upload", formData, )
           .then(res => {
             console.log(res);
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
           });
 
       //send empty string as a data to a query
@@ -231,17 +239,7 @@ export default {
             console.log(e);
           });
 
-      ProductsDataService.update(this.currentProduct.id, this.currentProduct)
-          .then(response => {
-            console.log(response.data);
-            this.message = 'The product was updated successfully!';
 
-            // window.location.reload()
-            this.edited = true;
-          })
-          .catch(e => {
-            console.log(e);
-          });
     },
 
     deleteImage() {
@@ -255,13 +253,13 @@ export default {
 
       // sending file to backend
       axios
-          .post("https://decoplastline.ua/delete/image", dataOfDeletedImage,)
+          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
 
           })
           .catch(err => {
-            console.log(err);
+            // console.log(err);
           });
 
 

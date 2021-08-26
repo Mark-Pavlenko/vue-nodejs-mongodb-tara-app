@@ -24,12 +24,32 @@
 <script>
 
 import ProductDataService from "../services/GoodsDataServices";
+import axios from "axios";
 
 export default {
   name: 'product',
   props: ['product'],
   methods:{
     deleteProduct(id) {
+
+      const formData = this.product.image;
+      console.log(formData);
+
+      let dataOfDeletedImage = {
+        name: formData
+      }
+
+      axios
+          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
+          .then(res => {
+            console.log(res);
+
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
+
       ProductDataService.delete(id)
           .then(response => {
             console.log('product was deleted!');
