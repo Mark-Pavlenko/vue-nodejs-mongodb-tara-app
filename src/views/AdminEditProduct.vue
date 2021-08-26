@@ -40,7 +40,6 @@
 
                     <br/>
                     <input id="image-loader" type="file" @change="onFileChange">
-                    <button type="submit" class="card-btn btn btn-success" @click="addImage">Сохранить</button>
 
                   </div>
 
@@ -179,6 +178,10 @@ export default {
       this.selectedFile = selectedFile;
     },
 
+    newProductEdition(){
+      this.edited = false;
+    },
+
     getProduct(id) {
       ProductsDataService.get(id)
           .then(response => {
@@ -191,6 +194,42 @@ export default {
     },
 
     editProduct() {
+
+      const formData = new FormData();
+      formData.append("file", this.selectedFile); // appending file
+      console.log(this.selectedFile.name);
+
+      let dataOfInsertedImage = {
+        name: formData
+      }
+
+      // sending file to backend
+      axios
+          .post("http://localhost:8080/upload", formData, )
+          .then(res => {
+            console.log(res);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+
+      //send empty string as a data to a query
+      let test = this.selectedFile.name;
+      this.currentProduct.image = test;
+      let obj = {image: test};
+      ProductsDataService.updateImage(this.currentProduct.id, obj)
+          .then(response => {
+            console.log(this.currentProduct.image);
+            console.log(response.data);
+            // this.message = 'The product was updated successfully!';
+            // window.location.reload();
+            // window.scrollTo(0, 0);
+            this.edited = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+
       ProductsDataService.update(this.currentProduct.id, this.currentProduct)
           .then(response => {
             console.log(response.data);
@@ -243,15 +282,6 @@ export default {
           });
 
     },
-
-    addImage() {
-    },
-
-    newProductEdition(){
-        this.edited = false;
-        // this.product = {};
-    }
-
   },
   mounted() {
     this.message = '';
@@ -451,7 +481,7 @@ export default {
 }
 
 .product-image-deleted {
-  width: 30%;
+  width: 40%;
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
   //padding: 0px initial;
   margin: 30px auto;
