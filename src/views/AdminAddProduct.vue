@@ -151,7 +151,6 @@ export default {
       formData.append("file", this.selectedFile); // appending file
       console.log(this.selectedFile.name);
 
-
       let data = {
         title: this.product.title,
         description: this.product.description,
