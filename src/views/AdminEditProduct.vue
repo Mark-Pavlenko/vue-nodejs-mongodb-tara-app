@@ -234,7 +234,7 @@ export default {
             console.log(this.currentProduct.image);
             console.log(response.data);
             // this.message = 'The product was updated successfully!';
-            window.location.reload();
+            // window.location.reload();
             // window.scrollTo(0, 0);
             this.edited = true;
           })
