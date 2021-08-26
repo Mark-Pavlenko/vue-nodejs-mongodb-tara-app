@@ -9,6 +9,7 @@
           <div class="row justify-content-center">
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
+
                 <div id="test" class="col-lg-10">
 
 <!--                  add/delete image functionality-->
@@ -212,6 +213,7 @@ export default {
           .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
+
           })
           .catch(err => {
             console.log(err);
@@ -227,6 +229,7 @@ export default {
             console.log(this.currentProduct.image);
             console.log(response.data);
             // this.message = 'The product was updated successfully!';
+            window.location.reload()
             this.edited = true;
           })
           .catch(e => {
