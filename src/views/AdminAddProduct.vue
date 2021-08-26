@@ -28,7 +28,7 @@
                     <div class="input">
                       <label for="title">Заголовок</label>
                       <input
-                          type="text"
+                          name="title"
                           id="title"
                           v-model="product.title"
                           placeholder="Заголовок"
