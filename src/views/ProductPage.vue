@@ -63,7 +63,7 @@ import {Swiper, SwiperSlide} from 'vue-awesome-swiper'
 import AnchorRouterLink from 'vue-anchor-router-link';
 import 'swiper/css/swiper.css'
 
-import Carousel from "../components/Carousel";
+import Carousel from "../components/ProductCarousel";
 
 import ProductDataService from "../services/GoodsDataServices";
 
