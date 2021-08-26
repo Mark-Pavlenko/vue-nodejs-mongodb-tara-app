@@ -28,7 +28,7 @@
                     <p>г. Харьков</p>
                   </div>
                   <div class="contacts__description">
-                    <img src="../assets/email.png" alt="" style="width: 30px; "/>
+                    <img src="../assets/envelope.png" alt="" style="width: 30px; "/>
                     decoplastline@gmail.com
                     <br/>
                     banochkiopt@gmail.com

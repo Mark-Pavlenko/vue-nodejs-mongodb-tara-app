@@ -2,27 +2,19 @@
   <div id="footer-contacts" class="footer">
     <div class="container">
       <div class="row footer-wrapper">
-        <div class="col-md-4 col-12 ">
+
+        <div class="col-md-2 col-12 ">
           <div class="footer-item">
             <div class="image">
               <img src="../assets/TimeFooter.png" alt="" />
             </div>
             <div class="text">
-              пн - пт 10:00 - 18:00
+              пн - пт <br/> 10:00 - 18:00
             </div>
           </div>
         </div>
-        <div class="col-md-4 col-12 ">
-          <div class="footer-item">
-            <div class="image">
-              <img src="../assets/CallingFooter.png" alt="" />
-            </div>
-            <div class="text">
-              0631443406
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-12">
+
+        <div class="col-md-2 col-12">
           <div class="footer-item">
             <div class="image">
               <img src="../assets/LocationFooter.png" alt="" />
@@ -32,6 +24,42 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-3 col-12">
+          <div class="footer-item">
+            <div class="image">
+              <img src="../assets/envelope-closed.png" alt="" width="50%"/>
+            </div>
+            <div class="text">
+              decoplastline@gmail.com
+              <br/>
+              banochkiopt@gmail.com
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 col-12 ">
+          <div class="footer-item">
+            <div class="image">
+              <img src="../assets/CallingFooter.png" alt="" />
+            </div>
+            <div class="text">
+              0631443406
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-2 col-12 ">
+          <div class="footer-item">
+            <div class="image">
+              <img src="../assets/instagram-footer.png" alt=""  style="width: 50%"/>
+            </div>
+            <div class="text">
+              @decoplastline
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -86,7 +114,7 @@
   align-items: center;
   justify-content: space-between;
 
-  max-width: 800px;
+  //max-width: 800px;
   width: 100%;
   margin: 0 auto;
 }
