@@ -16,7 +16,7 @@
                   <div v-if="currentProduct.image !== ''">
 
                     <div class="text-center">
-                      <h2 class="description-container-title">Удалить изображение</h2>
+                      <h2 class="description-container-title">Текущее изображение</h2>
                     </div>
 
                     <div class="product-image">
@@ -24,7 +24,7 @@
                     </div>
 
                     <br/>
-                    <button type="submit" class="card-btn btn btn-danger" @click="deleteImage">Удалить картинку</button>
+                    <button type="submit" class="card-btn btn btn-danger" @click="deleteImage">Удалить</button>
 
                   </div>
 
@@ -40,7 +40,7 @@
 
                     <br/>
                     <input id="image-loader" type="file" @change="onFileChange">
-                    <button type="submit" class="card-btn btn btn-success" @click="addImage">Сохранить картинку</button>
+                    <button type="submit" class="card-btn btn btn-success" @click="addImage">Сохранить</button>
 
                   </div>
 
@@ -451,7 +451,7 @@ export default {
 }
 
 .product-image-deleted {
-  width: 40%;
+  width: 30%;
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
   //padding: 0px initial;
   margin: 30px auto;
