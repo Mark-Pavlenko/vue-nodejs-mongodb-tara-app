@@ -351,6 +351,7 @@ export default {
   bottom: calc(15px);
   right: 15px;
   cursor: pointer;
+  z-index:100;
 }
 
 //

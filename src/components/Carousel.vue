@@ -1,9 +1,9 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-<!--    output images of added products from the hoisting-->
-<!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
-<!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
-<!--    </swiper-slide>-->
+    <!--    output images of added products from the hoisting-->
+    <!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
+    <!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
+    <!--    </swiper-slide>-->
     <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/first.jpg"></swiper-slide>
     <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/second.jpg"></swiper-slide>
     <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/third.jpg"></swiper-slide>
@@ -45,7 +45,7 @@ export default {
       }
     }
   },
-  methods:{
+  methods: {
     retrieveProducts() {
       ProductDataService.getAll()
           .then(response => {
@@ -66,34 +66,41 @@ export default {
 
 <style lang="scss" scoped>
 
-.swiper-slide{
-  width:75%;
+.swiper-slide {
+  width: 75%;
+
+  @media(min-width: 992px) {
+    img {
+      max-width: 50%;
+    }
+  }
 }
 
 .swiper-container {
-  margin-top:40px;
+  height: 500px;
+  margin-top: 40px;
 
-  @media(max-width: 920px){
+  @media(max-width: 920px) {
     height: 300px;
   }
 
-  @media (max-width: 850px){
+  @media (max-width: 850px) {
     height: 300px;
   }
 }
 
-.swiper-slide img{
+.swiper-slide img {
 
-  max-width: 30%;
+  //max-width: 30%;
 
 
-  @media (max-width: 850px){
+  @media (max-width: 850px) {
     height: 300px;
   }
 }
 
 .swiper-button-prev,
-.swiper-button-next{
-  color:black !important;
+.swiper-button-next {
+  color: black !important;
 }
 </style>
