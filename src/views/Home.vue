@@ -16,7 +16,7 @@
         Для її виробництва
         використовується якісна імпортна сировина.
         Вся продукція є сертифікованою.
-        Компанія DecoPlastLine виготовляє косметичну упаковку для виробників  косметики, фармацевтики, побутової хімії,
+        Компанія DecoPlastLine виготовляє косметичну упаковку для виробників косметики, фармацевтики, побутової хімії,
         автохімії, харчових добавок.
       </div>
     </div>
@@ -62,21 +62,37 @@
                   <div class="contacts-wrapper">
                     <h3 class="mb-4 text-center">Напишите нам, и мы обязательно с вами свяжемся!</h3>
 
-                    <div class="contacts-wrapper">
+                    <form  action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">
+
                       <div class="input">
                         <label>Имя</label>
-                        <input type="text"/>
+                        <input type="text" name="Имя" placeholder="Ваше имя" v-model="nameMsg" required/>
                       </div>
+
                       <div class="input">
                         <label>Электронный адрес</label>
-                        <input type="email"/>
+                        <input type="email" name="E-Mail" placeholder="Электронная почта" v-model="emailMsg" required/>
                       </div>
+
                       <div class="input">
                         <label>Моб. Телефон</label>
-                        <input type="text"/>
+                        <input type="phone" name="Номер телефона" placeholder="Номер телефона" v-model="mobileMsg" required/>
                       </div>
-                      <button id="footer">Отправить</button>
-                    </div>
+
+                      <div class="input">
+                        <label>Введите сообщение</label>
+                        <textarea type="text" name="Текст сообщения" placeholder="Текст сообщения" v-model="messageMsg" required/>
+                      </div>
+
+                      <button id="footer" type="submit" >Отправить</button>
+
+
+                      <div v-if="loadingTxt">
+                        <p class="mb-8 text-primary">Delivering your email...</p>
+                      </div>
+
+                    </form>
+
                   </div>
                 </div>
               </div>
@@ -108,6 +124,8 @@ import Footer from '../components/Footer.vue'
 
 import ProductDataService from "../services/GoodsDataServices";
 
+import axios from 'axios';
+
 export default {
 
   beforeDestroy() {
@@ -125,6 +143,11 @@ export default {
     return {
       windowTop: 0,
       products: [],
+      nameMsg: '',
+      emailMsg: '',
+      mobileMsg: '',
+      messageMsg: '',
+      loadingTxt: false,
     }
   },
   methods: {
@@ -142,15 +165,37 @@ export default {
     goToTop() {
       window.scrollTo(0, 0);
     },
-
     onScroll(e) {
       this.windowTop = e.target.documentElement.scrollTop;
+    },
+    sendEmail() {
+      this.loadingTxt = true;
+      axios.post('https://formspree.io/marik8998@gmail.com', {
+        name: this.nameMsg,
+        from: this.emailMsg,
+        _subject: `${this.nameMsg} `,
+        message: this.messageMsg,
+      }).then((response) => {
+        this.nameMsg = '';
+        this.emailMsg = '';
+        this.mobileMsg = '';
+        this.messageMsg = '';
+        this.loadingTxt = false;
+        //i redirect my app to '/success' route once payload completed.
+        this.$router.push({path: '/success'});
+      }).catch((error) => {
+        if (error.response) {
+// eslint-disable-next-line no-alert
+          alert(error);
+        }
+      });
     },
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
     this.retrieveProducts();
-  },
+  }
+  ,
   name: 'Home',
 }
 </script>
@@ -254,9 +299,10 @@ export default {
   flex-direction: column;
   margin-bottom: 30px;
 
-  input {
-    width: 342px;
-    height: 58px;
+  input,
+  textarea {
+    width: 450px;
+    height: 60px;
     background: #ffffff;
     box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
@@ -265,8 +311,21 @@ export default {
     padding-left: 20px;
   }
 
+  textarea {
+    padding-top: 10px;
+    padding-right: 15px;
+    height: 200px;
+  }
+
   label {
     margin-bottom: 10px;
+  }
+
+  @media(max-width: 450px) {
+    input,
+    textarea {
+      width: 350px;
+    }
   }
 }
 
@@ -351,7 +410,7 @@ export default {
   bottom: calc(15px);
   right: 15px;
   cursor: pointer;
-  z-index:100;
+  z-index: 100;
 }
 
 //

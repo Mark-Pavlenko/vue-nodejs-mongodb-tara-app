@@ -9,32 +9,11 @@
       <div class="container">
         <div class="row">
           <div id="thumb-example" class="container-fluid">
-
-            <!-- swiper1 -->
-            <!--              <swiper class="swiper gallery-top" :options="swiperOptionTop" ref="swiperTop">-->
-            <!--                <swiper-slide class="slide-1"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-2"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-3"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-4"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-5"></swiper-slide>-->
-            <!--                <div class="swiper-button-next swiper-button-white" slot="button-next"></div>-->
-            <!--                <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>-->
-            <!--              </swiper>-->
-            <!--              &lt;!&ndash; swiper2 Thumbs &ndash;&gt;-->
-            <!--              <swiper class="swiper gallery-thumbs" :options="swiperOptionThumbs" ref="swiperThumbs">-->
-            <!--                <swiper-slide class="slide-1"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-2"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-3"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-4"></swiper-slide>-->
-            <!--                <swiper-slide class="slide-5"></swiper-slide>-->
-            <!--              </swiper>-->
             <swiper class="swiper" :options="swiperOption">
               <!--    output images of added products from the hoisting-->
               <!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
               <!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
               <!--    </swiper-slide>-->
-              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
-              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
               <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
               <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
               <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
@@ -51,7 +30,6 @@
                                 class="buy-btn">
               Перезвоните Мне
             </anchor-router-link>
-
           </div>
         </div>
       </div>
