@@ -77,7 +77,7 @@ export default {
 }
 
 .swiper-container {
-  height: 500px;
+  height: 400px;
   margin-top: 40px;
 
   @media(max-width: 920px) {
@@ -96,6 +96,10 @@ export default {
 
   @media (max-width: 850px) {
     height: 300px;
+  }
+
+  @media(min-width:910px){
+    height: 400px;
   }
 }
 
