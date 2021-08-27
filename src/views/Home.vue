@@ -62,7 +62,8 @@
                   <div class="contacts-wrapper">
                     <h3 class="mb-4 text-center">Напишите нам, и мы обязательно с вами свяжемся!</h3>
 
-                    <form  action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">
+<!--                    <form action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">-->
+                    <form role="form" method="POST" @submit.prevent="sendEmail" class="contacts-wrapper">
 
                       <div class="input">
                         <label>Имя</label>
@@ -86,9 +87,12 @@
 
                       <button id="footer" type="submit" >Отправить</button>
 
+                      <div class="messageIsSending" v-if="loadingTxt === true">
+                        <p class="mb-8 text-primary">Подождите. Идет отправка сообшения...</p>
+                      </div>
 
-                      <div v-if="loadingTxt">
-                        <p class="mb-8 text-primary">Delivering your email...</p>
+                      <div class="add-product-wrapper" v-if="messageIsSent === true">
+                        <p>Сообщение было успешно отправлено!</p>
                       </div>
 
                     </form>
@@ -148,6 +152,7 @@ export default {
       mobileMsg: '',
       messageMsg: '',
       loadingTxt: false,
+      messageIsSent: false
     }
   },
   methods: {
@@ -170,19 +175,22 @@ export default {
     },
     sendEmail() {
       this.loadingTxt = true;
-      axios.post('https://formspree.io/marik8998@gmail.com', {
-        name: this.nameMsg,
-        from: this.emailMsg,
-        _subject: `${this.nameMsg} `,
-        message: this.messageMsg,
+
+      axios.post('https://formspree.io/f/myyllgkv', {
+        'Имя пользователя': this.nameMsg,
+        'E-mail пользователя': this.emailMsg,
+        _subject: `Форма обратной связи`,
+        'Мобильный телефон': this.mobileMsg,
+        'Текст сообщения': this.messageMsg,
       }).then((response) => {
         this.nameMsg = '';
         this.emailMsg = '';
         this.mobileMsg = '';
         this.messageMsg = '';
         this.loadingTxt = false;
+        this.messageIsSent = true;
         //i redirect my app to '/success' route once payload completed.
-        this.$router.push({path: '/success'});
+        // this.$router.push({path: '/success'});
       }).catch((error) => {
         if (error.response) {
 // eslint-disable-next-line no-alert
@@ -339,8 +347,8 @@ export default {
   align-items: center;
 
   button {
-    width: 342px;
-    height: 58px;
+    width: 350px;
+    height: 60px;
     color: white;
 
     background: rgba(182, 12, 12, 0.8);
@@ -350,8 +358,8 @@ export default {
     outline: none;
     border: none;
 
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 40px;
   }
 }
 
@@ -413,10 +421,31 @@ export default {
   z-index: 100;
 }
 
-//
 #contacts-title-block,
 #form-body {
   background-color: white;
+}
+
+.messageIsSending{
+  font-weight:bold;
+  font-size:18px;
+}
+
+.add-product-wrapper {
+  //padding: 0 10px 0 10px;
+  // width: 100%;
+  // height: 100%;
+  display: flex;
+  //flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  p{
+    font-weight:bold;
+    color: green;
+    font-size:18px;
+  }
 }
 
 </style>
