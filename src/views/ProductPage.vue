@@ -153,43 +153,22 @@ export default {
 }
 
 #thumb-example {
+
   //height: 480px;
   width: 710px;
   //background-color: #e3e3e3;
   margin-top: 25px;
   padding-bottom: 5px;
+
+  @media(max-width: 992px){
+    margin-top: 40px;
+  }
 }
 
 .swiper {
   .swiper-slide {
     background-size: cover;
     background-position: center;
-
-    &.slide-1 {
-      background-image: url('../assets/gold-bank.png');
-      margin-top: 5px;
-    }
-
-    &.slide-2 {
-      background-image: url('../assets/gold-bank.png');
-      margin-top: 5px;
-    }
-
-    &.slide-3 {
-      background-image: url('../assets/gold-bank.png');
-      margin-top: 5px;
-    }
-
-    &.slide-4 {
-      background-image: url('../assets/gold-bank.png');
-      margin-top: 5px;
-    }
-
-    &.slide-5 {
-      background-image: url('../assets/gold-bank.png');
-      margin-top: 5px;
-
-    }
   }
 
   &.gallery-top {
@@ -255,6 +234,41 @@ export default {
   @media (max-width: 710px) {
     line-height: 100px;
   }
+}
+
+.swiper-slide{
+  width:75%;
+
+}
+
+.swiper-container {
+  margin-top:40px;
+
+  //height: 250px;
+
+  @media(max-width: 920px){
+    height: 300px;
+    margin-top: -50px;
+  }
+
+  @media (max-width: 850px){
+    //height: 300px;
+  }
+}
+
+.swiper-slide img{
+
+  max-width: 75%;
+
+
+  @media (max-width: 850px){
+    height: 300px;
+  }
+}
+
+.swiper-button-prev,
+.swiper-button-next{
+  color:black !important;
 }
 
 </style>
