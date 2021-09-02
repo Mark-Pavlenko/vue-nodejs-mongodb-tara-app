@@ -8,11 +8,13 @@
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <p>Цвет: {{ product.color}}</p>
-        <p>Объем: {{ product.volume }}</p>
-        <p>Материал: {{ product.material }}</p>
-        <p>Комплектация: {{ product.complectation }}</p>
-        <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-success">Посмотреть / заказать</router-link>
+        <p>Колір: {{ product.color }}</p>
+        <p>Об'єм: {{ product.volume }}</p>
+        <p>Матеріал: {{ product.material }}</p>
+        <p>Комплектація: {{ product.complectation }}</p>
+        <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-light" >Переглянути /
+          замовити
+        </router-link>
       </div>
     </div>
   </div>
@@ -77,24 +79,29 @@ export default {
   background-color: #FFF;
   padding: 25px;
   margin: 0px -25px -25px;
-}
 
-.product-detail h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #676767;
-  margin-bottom: 15px;
-}
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #676767;
+    margin-bottom: 15px;
+  }
 
-.product-detail p {
-  font-size: 14px;
-  line-height: 1.5;
-  font-weight: 300;
-  color: #676767;
+  p {
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 300;
+    color: #676767;
+  }
 }
 
 #card-btn {
+  color: white;
+  background-color: rgba(182, 12, 12, 0.8) !important;
+  border-radius: 12px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+
 }
 
 </style>

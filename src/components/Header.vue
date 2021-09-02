@@ -55,7 +55,7 @@
               <div class="align-middle">
                 <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
                                     class="header__button">
-                  Перезвоните Мне
+                  Перезвоніть мені
                 </anchor-router-link>
               </div>
             </div>
@@ -72,17 +72,17 @@
 
             <div id="nav">
               <div class="menu_btn">
-                <router-link to="/" class="router-link">Главная</router-link>
+                <router-link to="/" class="router-link">Головна</router-link>
               </div>
               <div class="menu_btn">
                 <router-link to="/catalog" class="router-link">Каталог</router-link>
               </div>
               <div id="about" class="menu_btn">
-                <anchor-router-link :to="{name:'Home', hash:'#about-us'}" class="router-link">О Нас</anchor-router-link>
+                <anchor-router-link :to="{name:'Home', hash:'#about-us'}" class="router-link">Про нас</anchor-router-link>
               </div>
               <div id="contacts-list-item" class="menu_btn">
                 <anchor-router-link class="router-link" :to="{name:'Home', hash:'#footer-contacts'}">
-                  Контакты
+                  Контакти
                 </anchor-router-link>
               </div>
             </div>
