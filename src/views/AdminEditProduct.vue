@@ -13,14 +13,18 @@
                 <div id="test" class="col-lg-10" v-if="!edited">
 
                   <!--                  add/delete image functionality-->
-                  <div v-if="currentProduct.image !== ''">
+                  <div v-if="currentProduct.image_first !== ''">
 
                     <div class="text-center">
                       <h2 class="description-container-title">Текущее изображение</h2>
                     </div>
 
                     <div class="product-image">
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image}`" class="image"/>
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_first}`" class="image"/>
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`" class="image"/>
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`" class="image"/>
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`" class="image"/>
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`" class="image"/>
 
                     </div>
 
@@ -229,6 +233,8 @@ export default {
           });
     },
     deleteImage() {
+
+
       const formData = this.currentProduct.image;
       console.log(formData);
       let dataOfDeletedImage = {
@@ -267,7 +273,6 @@ export default {
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 
@@ -455,6 +460,10 @@ export default {
   margin-bottom: 0px;
 
   //margin-bottom: 40px;
+
+  img{
+    width:100%;
+  }
 }
 
 .product-image-deleted {

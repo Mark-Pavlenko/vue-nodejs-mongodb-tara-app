@@ -64,28 +64,17 @@ app.post('/delete/image', (req, res) => {
     console.log('image name for deleting: ' + deletedImage.name);
 
 
-        // here will be image name (sent like parameter)
-        const imgBaseUrl = `./app/images/${deletedImage.name}`
+    // here will be image name (sent like parameter)
+    const imgBaseUrl = `./app/images/${deletedImage.name}`
 
-        fs.unlink(imgBaseUrl, (err) => {
-            if (err) {
-                console.error(err)
-                return
-            } else {
-                console.log('Image was successfully deleted');
-            }
-        });
-
-
-// //function of delete img
-//     fs.unlink(imgBaseUrl, (err) => {
-//         if (err) {
-//             console.error(err)
-//             return
-//         } else {
-//             console.log('Image was successfully deleted');
-//         }
-//     });
+    fs.unlink(imgBaseUrl, (err) => {
+        if (err) {
+            console.error(err)
+            return
+        } else {
+            console.log('Image was successfully deleted');
+        }
+    });
 });
 
 // set port, listen for requests
