@@ -146,6 +146,7 @@ export default {
       console.log(this.selectedFile);
     },
     saveProduct() {
+
       //save image mechanism
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
@@ -161,29 +162,7 @@ export default {
           complectation: this.product.complectation,
           image: ''
         };
-
-        ProductsDataService.create(this.totalData)
-            .then(response => {
-              this.product.id = response.data.id;
-              console.log(response.data);
-              this.submitted = true;
-            })
-            .catch(e => {
-              console.log(e);
-            });
-
-        // sending file to backend
-        // axios
-        //     .post("http://localhost:8080/upload", formData,)
-        //     .then(res => {
-        //       console.log(res);
-        //     })
-        //     .catch(err => {
-        //       // console.log(err);
-        //     });
-
       } else {
-
         this.totalData = {
           title: this.product.title,
           description: this.product.description,
@@ -193,18 +172,20 @@ export default {
           complectation: this.product.complectation,
           image: this.selectedFile.name
         };
+      }
 
-        ProductsDataService.create(this.totalData)
-            .then(response => {
-              this.product.id = response.data.id;
-              console.log(response.data);
-              this.submitted = true;
-            })
-            .catch(e => {
-              console.log(e);
-            });
+      ProductsDataService.create(this.totalData)
+          .then(response => {
+            this.product.id = response.data.id;
+            console.log(response.data);
+            this.submitted = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
 
-        // sending file to backend
+      // sending image to backend (if it's exist)
+      if(this.totalData.image !== ''){
         axios
             .post("http://localhost:8080/upload", formData,)
             .then(res => {
@@ -213,8 +194,8 @@ export default {
             .catch(err => {
               // console.log(err);
             });
-
       }
+
 
 
     },
