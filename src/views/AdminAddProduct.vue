@@ -194,12 +194,53 @@ export default {
     saveProduct() {
 
       //save image mechanism
-      const formData = new FormData();
-      formData.append("file", this.selectedImgFirst);
-      formData.append("file", this.selectedImgSecond);
-      formData.append("file", this.selectedImgThird);
-      formData.append("file", this.selectedImgFourth);
-      formData.append("file", this.selectedImgFifth);
+      const formDataFirst = new FormData();
+      const formDataSecond = new FormData();
+      const formDataThird = new FormData();
+      const formDataFourth = new FormData();
+      const formDataFifth = new FormData();
+      formDataFirst.append("file", this.selectedImgFirst);
+      formDataSecond.append("file", this.selectedImgSecond);
+      formDataThird.append("file", this.selectedImgThird);
+      formDataFourth.append("file", this.selectedImgFourth);
+      formDataFifth.append("file", this.selectedImgFifth);
+
+      console.log(formDataFirst);
+      console.log(formDataSecond);
+      console.log(formDataThird);
+      console.log(formDataFourth);
+      console.log(formDataFifth);
+
+
+      let imagesDataArr = [
+        formDataFirst,
+        formDataSecond,
+        formDataThird,
+        formDataFourth,
+        formDataFifth
+      ];
+
+      console.log(imagesDataArr);
+
+      // console.log(this.selectedImgFirst)
+      // let imagesDataArr = [
+      //   this.selectedImgFirst,
+      //   this.selectedImgSecond,
+      //   this.selectedImgThird,
+      //   this.selectedImgFourth,
+      //   this.selectedImgFifth
+      // ]
+      //
+      // console.log(imagesDataArr);
+      // console.log(imagesDataArr.length);
+      //
+      // let filteredImagesDataArr = imagesDataArr.filter(function(x) {
+      //   return x !== undefined;
+      // });
+      //
+      // console.log(filteredImagesDataArr);
+
+
 
       //check if the img name is undefined
       let firstImage = (this.selectedImgFirst === undefined) ? '' : this.selectedImgFirst.name;
@@ -214,16 +255,15 @@ export default {
       // console.log(fourthImage);
       // console.log(fifthImage);
 
-      let imagesNames = [];
-      imagesNames.push(
-          firstImage,
-          secondImage,
-          thirdImage,
-          fourthImage,
-          fifthImage
-      );
-
-      console.log(imagesNames);
+      // let imagesNames = [];
+      // imagesNames.push(
+      //     firstImage,
+      //     secondImage,
+      //     thirdImage,
+      //     fourthImage,
+      //     fifthImage
+      // );
+      // console.log(imagesNames);
 
       //add images names to the db / load to the folder
 
@@ -250,18 +290,19 @@ export default {
           .catch(e => {
             console.log(e);
           });
-      //
+
       // // sending image to backend (if it's exist)
-      // if (this.totalData.image !== '') {
-      //   axios
-      //       .post("http://localhost:8080/upload", formData,)
-      //       .then(res => {
-      //         console.log(res);
-      //       })
-      //       .catch(err => {
-      //         // console.log(err);
-      //       });
-      // }
+
+      for(let i =0; i <  imagesDataArr.length; i++){
+        axios
+            .post("http://localhost:8080/upload", imagesDataArr[i])
+            .then(res => {
+              console.log(res);
+            })
+            .catch(err => {
+              // console.log(err);
+            });
+      }
 
     },
     newProduct() {
