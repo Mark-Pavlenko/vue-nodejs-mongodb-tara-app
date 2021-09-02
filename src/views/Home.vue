@@ -160,7 +160,8 @@ export default {
       ProductDataService.getAll()
           .then(response => {
             this.products = response.data;
-            // console.log(response.data);
+            this.products.length = 6;
+            console.log(this.products);
 
           })
           .catch(e => {
