@@ -24,31 +24,31 @@
                     <div class="input">
                       <br/>
                       <label>Загрузите изображение (1 из 5)</label>
-                      <input class="image-loader" type="file" @change="onFileChange"/>
+                      <input class="image-loader" type="file" @change="onFileChangeFirst"/>
                     </div>
 
                     <div class="input">
                       <br/>
                       <label>Загрузите изображение (2 из 5)</label>
-                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                      <input class="image-loader" type="file" @change="onFileChangeSecond"/>
                     </div>
 
                     <div class="input">
                       <br/>
                       <label>Загрузите изображение (3 из 5)</label>
-                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                      <input class="image-loader" type="file" @change="onFileChangeThird"/>
                     </div>
 
                     <div class="input">
                       <br/>
                       <label>Загрузите изображение (4 из 5)</label>
-                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                      <input class="image-loader" type="file" @change="onFileChangeFourth"/>
                     </div>
 
                     <div class="input">
                       <br/>
                       <label>Загрузите изображение (5 из 5)</label>
-                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                      <input class="image-loader" type="file" @change="onFileChangeFifth"/>
                     </div>
 
                     <div class="input">
@@ -142,8 +142,6 @@
 
 <script>
 import Sidebar from "../components/Sidebar";
-import ProductsDataService from "../services/GoodsDataServices";
-import axios from "axios";
 
 export default {
   components: {
@@ -159,69 +157,137 @@ export default {
         volume: "",
         material: "",
         complectation: "",
-        image: "",
+        selectedImgFirst: '',
+        selectedImgSecond: '',
+        selectedImgThird: '',
+        selectedImgFourth: '',
+        selectedImgFifth: '',
         totalData: {}
+
       },
       submitted: false
     };
   },
   methods: {
-    onFileChange(e) {
-      const selectedFile = e.target.files[0]; // accessing file
-      this.selectedFile = selectedFile;
-      console.log(this.selectedFile);
+
+    onFileChangeFirst(e) {
+      this.selectedImgFirst = e.target.files[0];
+    },
+
+    onFileChangeSecond(e) {
+      this.selectedImgSecond = e.target.files[0];
+    },
+
+    onFileChangeThird(e) {
+      this.selectedImgThird = e.target.files[0];
+    },
+
+    onFileChangeFourth(e) {
+      this.selectedImgFourth = e.target.files[0];
+    },
+
+    onFileChangeFifth(e) {
+      this.selectedImgFirst = e.target.files[0];
     },
     saveProduct() {
 
       //save image mechanism
       const formData = new FormData();
-      formData.append("file", this.selectedFile); // appending file
-      console.log(this.selectedFile);
+      formData.append("file", this.selectedImgFirst); // appending file
+      formData.append("file", this.selectedImgSecond); // appending file
+      formData.append("file", this.selectedImgThird); // appending file
+      formData.append("file", this.selectedImgFourth); // appending file
+      formData.append("file", this.selectedImgFifth); // appending file
 
-      if (this.selectedFile == undefined) {
-        this.totalData = {
-          title: this.product.title,
-          description: this.product.description,
-          color: this.product.color,
-          volume: this.product.volume,
-          material: this.product.material,
-          complectation: this.product.complectation,
-          image: ''
-        };
-      } else {
-        this.totalData = {
-          title: this.product.title,
-          description: this.product.description,
-          color: this.product.color,
-          volume: this.product.volume,
-          material: this.product.material,
-          complectation: this.product.complectation,
-          image: this.selectedFile.name
-        };
-      }
+      //if no img - undefined name
+      //working
+      // if (this.selectedImgFirst === undefined) {
+      //   this.selectedImgFirst = {
+      //     name: 'test'
+      //   }
+      // }
 
-      ProductsDataService.create(this.totalData)
-          .then(response => {
-            this.product.id = response.data.id;
-            console.log(response.data);
-            this.submitted = true;
-          })
-          .catch(e => {
-            console.log(e);
-          });
+      // console.log(this.selectedImgFirst);
+      // console.log(this.selectedImgSecond);
+      // console.log(this.selectedImgThird);
+      // console.log(this.selectedImgFourth);
+      // console.log(this.selectedImgFifth);
 
-      // sending image to backend (if it's exist)
-      if(this.totalData.image !== ''){
-        axios
-            .post("http://localhost:8080/upload", formData,)
-            .then(res => {
-              console.log(res);
-            })
-            .catch(err => {
-              // console.log(err);
-            });
-      }
+      // this.selectedImgFirst = typeof this.selectedImgFirst !== 'undefined' ? this.selectedImgFirst : "";
+      // this.selectedImgSecond = typeof this.selectedImgSecond !== 'undefined' ? this.selectedImgSecond : "";
+      // this.selectedImgThird = typeof this.selectedImgThird !== 'undefined' ? this.selectedImgThird : "";
+      // this.selectedImgFourth = typeof this.selectedImgFourth !== 'undefined' ? this.selectedImgFourth : "";
+      // this.selectedImgFifth = typeof this.selectedImgFifth !== 'undefined' ? this.selectedImgFifth : "";
 
+      this.selectedImgFirst = (this.selectedImgFirst === undefined) ? '' : this.selectedImgFirst.name;
+      this.selectedImgSecond = (this.selectedImgSecond === undefined) ? '' : this.selectedImgSecond.name;
+      this.selectedImgThird = (this.selectedImgThird === undefined) ?  '' : this.selectedImgThird.name;
+      this.selectedImgFourth = (this.selectedImgFourth === undefined) ?  '' : this.selectedImgFourth.name;
+      this.selectedImgFifth = (this.selectedImgFifth === undefined) ?  '' : this.selectedImgFifth.name;
+
+      console.log(this.selectedImgFirst);
+      console.log(this.selectedImgSecond);
+      console.log(this.selectedImgThird);
+      console.log(this.selectedImgFourth);
+      console.log(this.selectedImgFifth);
+
+      let imagesNames = [];
+      imagesNames.push(
+          this.selectedImgFirst,
+          this.selectedImgSecond,
+          this.selectedImgThird,
+          this.selectedImgFourth,
+          this.selectedImgFifth
+      );
+      console.log(imagesNames);
+
+
+      //write switch operator for data object
+
+      // if (this.selectedImgFirst == undefined) {
+      //
+      //   this.totalData = {
+      //     title: this.product.title,
+      //     description: this.product.description,
+      //     color: this.product.color,
+      //     volume: this.product.volume,
+      //     material: this.product.material,
+      //     complectation: this.product.complectation,
+      //     image: ''
+      //   };
+      // } else {
+      //   this.totalData = {
+      //     title: this.product.title,
+      //     description: this.product.description,
+      //     color: this.product.color,
+      //     volume: this.product.volume,
+      //     material: this.product.material,
+      //     complectation: this.product.complectation,
+      //     image: this.selectedImgFirst.name
+      //   };
+      // }
+      //
+      // ProductsDataService.create(this.totalData)
+      //     .then(response => {
+      //       this.product.id = response.data.id;
+      //       console.log(response.data);
+      //       this.submitted = true;
+      //     })
+      //     .catch(e => {
+      //       console.log(e);
+      //     });
+      //
+      // // sending image to backend (if it's exist)
+      // if (this.totalData.image !== '') {
+      //   axios
+      //       .post("http://localhost:8080/upload", formData,)
+      //       .then(res => {
+      //         console.log(res);
+      //       })
+      //       .catch(err => {
+      //         // console.log(err);
+      //       });
+      // }
 
 
     },
