@@ -2,19 +2,19 @@
   <div class="product">
     <div class='product-inner'>
       <div class="product-image-wrap">
-        <img :src="`https://decoplastline.ua/app/images/${product.image}`" class="image" v-if='product.image !== ""'/>
+        <img :src="`https://decoplastline.ua/app/images/${product.image_first}`" class="image" v-if='product.image_first !== ""'/>
         <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>
       </div>
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
         <p>{{ product.description }}</p>
-        <p>Цвет: {{ product.color }}</p>
-        <p>Объем: {{ product.volume }}</p>
-        <p>Материал: {{ product.material }}</p>
-        <p>Комплектация: {{ product.complectation }}</p>
+        <p>Колір: {{ product.color }}</p>
+        <p>Об'єм: {{ product.volume }}</p>
+        <p>Матеріал: {{ product.material }}</p>
+        <p>Комплектація: {{ product.complectation }}</p>
         <div class="admin-cards-buttons">
-          <router-link :to="{path: `/admin/edit/${product.id}`}" class="card-btn btn btn-info">Редактировать</router-link>
-          <button @click="deleteProduct(product.id)" class="card-btn btn btn-danger">Удалить</button>
+          <router-link :to="{path: `/admin/edit/${product.id}`}" class="card-btn btn btn-info">Редагувати</router-link>
+          <button @click="deleteProduct(product.id)" class="card-btn btn btn-danger">Видалити</button>
         </div>
       </div>
     </div>
@@ -32,35 +32,50 @@ export default {
   methods:{
     deleteProduct(id) {
 
-      const formData = this.product.image;
-      console.log(formData);
-
-      let dataOfDeletedImage = {
-        name: formData
-      }
-
-      axios
-          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
-          .then(res => {
-            console.log(res);
-
-          })
-          .catch(err => {
-            console.log(err);
-          });
-
-
       ProductDataService.delete(id)
           .then(response => {
             console.log('product was deleted!');
             // console.log(response.data);
-            window.location.reload()
+
             // this.$router.push({ name: "products" });
           })
           .catch(e => {
             console.log(e);
 
           });
+
+      let arr = [
+        this.product.image_first,
+        this.product.image_second,
+        this.product.image_third,
+        this.product.image_fourth,
+        this.product.image_fifth,
+      ];
+
+      let newArr = arr.filter((a) => a);
+      console.log(newArr);
+
+      for(let i=0; i < newArr.length; i++) {
+        const formData = newArr[i];
+        console.log(formData);
+
+        let dataOfDeletedImage = {
+          name: formData
+        }
+
+        axios
+            .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
+            .then(res => {
+              console.log(res);
+
+            })
+            .catch(err => {
+              console.log(err);
+            });
+
+        window.location.reload();
+
+      }
     }
   }
 }
