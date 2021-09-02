@@ -155,10 +155,8 @@
 
 <script>
 import Sidebar from "../components/Sidebar";
-
 import ProductsDataService from "../services/GoodsDataServices";
 import axios from "axios";
-
 export default {
   name: "product",
   components: {
@@ -172,17 +170,14 @@ export default {
     };
   },
   methods: {
-
     onFileChange(e) {
       // accessing file
       const selectedFile = e.target.files[0]; // accessing file
       this.selectedFile = selectedFile;
     },
-
     newProductEdition(){
       this.edited = false;
     },
-
     getProduct(id) {
       ProductsDataService.get(id)
           .then(response => {
@@ -193,25 +188,20 @@ export default {
             console.log(e);
           });
     },
-
     editProduct() {
-
       ProductsDataService.update(this.currentProduct.id, this.currentProduct)
           .then(response => {
             console.log(response.data);
             this.message = 'The product was updated successfully!';
-
             // window.location.reload()
             this.edited = true;
           })
           .catch(e => {
             console.log(e);
           });
-
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
       console.log(this.selectedFile.name);
-
       // sending file to backend
       axios
           .post("http://localhost:8080/upload", formData, )
@@ -221,7 +211,6 @@ export default {
           .catch(err => {
             // console.log(err);
           });
-
       //send empty string as a data to a query
       let test = this.selectedFile.name;
       this.currentProduct.image = test;
@@ -238,31 +227,22 @@ export default {
           .catch(e => {
             console.log(e);
           });
-
-
     },
-
     deleteImage() {
-
       const formData = this.currentProduct.image;
       console.log(formData);
-
       let dataOfDeletedImage = {
         name: formData
       }
-
       // sending file to backend
       axios
           .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
-
           })
           .catch(err => {
             // console.log(err);
           });
-
-
       //send empty string as a data to a query
       let test = '';
       this.currentProduct.image = test;
@@ -279,13 +259,11 @@ export default {
           .catch(e => {
             console.log(e);
           });
-
     },
   },
   mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
-
   }
 }
 </script>
