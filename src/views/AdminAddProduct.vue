@@ -23,31 +23,31 @@
 
                     <div class="input">
                       <br/>
-                      <label>Загрузите изображение (1 из 5)</label>
+                      <label>Основное (титульное) изображение товара </label>
                       <input class="image-loader" type="file" @change="onFileChangeFirst"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Загрузите изображение (2 из 5)</label>
+                      <label>Дополнительное изображение товара (1 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeSecond"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Загрузите изображение (3 из 5)</label>
+                      <label>Дополнительное изображение товара (2 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeThird"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Загрузите изображение (4 из 5)</label>
+                      <label>Дополнительное изображение товара (3 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeFourth"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Загрузите изображение (5 из 5)</label>
+                      <label>Дополнительное изображение товара (4 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeFifth"/>
                     </div>
 
