@@ -4,7 +4,7 @@
     <CardCarousel/>
     <!--description block -->
     <div class="description-container" ref="about">
-      <span id="about-us" class="description-container-title">О нас</span>
+      <span id="about-us" class="description-container-title">Про нас</span>
       <div class="logo">
         <img src="../assets/logo.png" class="img-fluid" alt=""/>
       </div>
@@ -22,7 +22,7 @@
     </div>
 
     <!--products-->
-    <span class="description-container-title">Каталог товаров</span>
+    <span class="description-container-title">Каталог товарів</span>
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between">
         <Card class="product-card" v-for="product in products"
@@ -38,7 +38,7 @@
         <div class="container">
           <div id="contacts-title-block" class="row justify-content-center">
             <div class="col-md-8 text-center">
-              <h2 class="description-container-title">Контакты</h2>
+              <h2 class="description-container-title">Контакти</h2>
             </div>
           </div>
 
@@ -60,39 +60,39 @@
                 </div>
                 <div id="test" class="col-lg-10">
                   <div class="contacts-wrapper">
-                    <h3 class="mb-4 text-center">Напишите нам, и мы обязательно с вами свяжемся!</h3>
+                    <h3 class="mb-4 text-center">Напишіть нам, и ми обов'язково з вами зв'яжемось!</h3>
 
 <!--                    <form action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">-->
                     <form role="form" method="POST" @submit.prevent="sendEmail" class="contacts-wrapper">
 
                       <div class="input">
-                        <label>Имя</label>
-                        <input type="text" name="Имя" placeholder="Ваше имя" v-model="nameMsg" required/>
+                        <label>Ім'я</label>
+                        <input type="text" name="Имя" placeholder="Ваше ім'я" v-model="nameMsg" required/>
                       </div>
 
                       <div class="input">
-                        <label>Электронный адрес</label>
-                        <input type="email" name="E-Mail" placeholder="Электронная почта" v-model="emailMsg" required/>
+                        <label>Електронна адреса</label>
+                        <input type="email" name="E-Mail" placeholder="Електронна адреса" v-model="emailMsg" required/>
                       </div>
 
                       <div class="input">
                         <label>Моб. Телефон</label>
-                        <input type="phone" name="Номер телефона" placeholder="Номер телефона" v-model="mobileMsg" required/>
+                        <input type="phone" name="Номер телефона" placeholder="Номер телефону" v-model="mobileMsg" required/>
                       </div>
 
                       <div class="input">
-                        <label>Введите сообщение</label>
-                        <textarea type="text" name="Текст сообщения" placeholder="Текст сообщения" v-model="messageMsg" required/>
+                        <label>Текст повідомлення</label>
+                        <textarea type="text" name="Текст сообщения" placeholder="Текст повідомлення" v-model="messageMsg" required/>
                       </div>
 
-                      <button id="footer" type="submit" >Отправить</button>
+                      <button id="footer" type="submit" >Відправити</button>
 
                       <div class="messageIsSending" v-if="loadingTxt === true">
-                        <p class="mb-8 text-primary">Подождите. Идет отправка сообшения...</p>
+                        <p class="mb-8 text-primary">Будь ласка, зачекайте. Відбувається відправка повідомлення...</p>
                       </div>
 
                       <div class="add-product-wrapper" v-if="messageIsSent === true">
-                        <p>Сообщение было успешно отправлено!</p>
+                        <p>Повідомлення було успішно відправлено!</p>
                       </div>
 
                     </form>

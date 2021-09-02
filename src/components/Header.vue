@@ -55,7 +55,7 @@
               <div class="align-middle">
                 <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
                                     class="header__button">
-                  Перезвоніть мені
+                  Передзвоніть мені
                 </anchor-router-link>
               </div>
             </div>

@@ -83,12 +83,12 @@
                       <div class="input">
                         <label for="color">Цвет: </label>
                         <select v-model="currentProduct.color" name="color" id="color" required>
-                          <option value="Белый">Белый</option>
-                          <option value="Золотой">Золотой</option>
-                          <option value="Перламутровый">Перламутровый</option>
-                          <option value="Серебрянный ">Серебрянный</option>
-                          <option value="Черный">Черный</option>
-                          <option value="Прозрачный">Прозрачный</option>
+                          <option value="Білий">Білий</option>
+                          <option value="Золотий">Золотий</option>
+                          <option value="Перламутровий">Перламутровий</option>
+                          <option value="Срібний ">Срібний</option>
+                          <option value="Чорний">Чорний</option>
+                          <option value="Прозорий">Прозорий</option>
                         </select>
                       </div>
 

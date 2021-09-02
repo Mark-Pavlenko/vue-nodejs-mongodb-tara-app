@@ -92,7 +92,7 @@
                       />
                     </div>
 
-                    <input type="submit" value="Добавить" id="addProductInput"  >
+                    <input type="submit" value="Добавить" id="addProductInput">
 
                   </form>
 
@@ -116,7 +116,6 @@
 
 <script>
 import Sidebar from "../components/Sidebar";
-
 import ProductsDataService from "../services/GoodsDataServices";
 import axios from "axios";
 
@@ -134,8 +133,8 @@ export default {
         volume: "",
         material: "",
         complectation: "",
-        image: ""
-
+        image: "",
+        totalData: {}
       },
       submitted: false
     };
@@ -144,44 +143,79 @@ export default {
     onFileChange(e) {
       const selectedFile = e.target.files[0]; // accessing file
       this.selectedFile = selectedFile;
+      console.log(this.selectedFile);
     },
     saveProduct() {
-
       //save image mechanism
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
-      console.log(this.selectedFile.name);
+      console.log(this.selectedFile);
 
-      let data = {
-        title: this.product.title,
-        description: this.product.description,
-        color: this.product.color,
-        volume: this.product.volume,
-        material: this.product.material,
-        complectation: this.product.complectation,
-        image: this.selectedFile.name
-      };
+      if (this.selectedFile == undefined) {
+        this.totalData = {
+          title: this.product.title,
+          description: this.product.description,
+          color: this.product.color,
+          volume: this.product.volume,
+          material: this.product.material,
+          complectation: this.product.complectation,
+          image: ''
+        };
 
-      ProductsDataService.create(data)
-          .then(response => {
-            this.product.id = response.data.id;
-            console.log(response.data);
-            this.submitted = true;
-          })
-          .catch(e => {
-            console.log(e);
-          });
+        ProductsDataService.create(this.totalData)
+            .then(response => {
+              this.product.id = response.data.id;
+              console.log(response.data);
+              this.submitted = true;
+            })
+            .catch(e => {
+              console.log(e);
+            });
 
+        // sending file to backend
+        // axios
+        //     .post("http://localhost:8080/upload", formData,)
+        //     .then(res => {
+        //       console.log(res);
+        //     })
+        //     .catch(err => {
+        //       // console.log(err);
+        //     });
 
-      // sending file to backend
-      axios
-          .post("http://localhost:8080/upload", formData, )
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            // console.log(err);
-          });
+      } else {
+
+        this.totalData = {
+          title: this.product.title,
+          description: this.product.description,
+          color: this.product.color,
+          volume: this.product.volume,
+          material: this.product.material,
+          complectation: this.product.complectation,
+          image: this.selectedFile.name
+        };
+
+        ProductsDataService.create(this.totalData)
+            .then(response => {
+              this.product.id = response.data.id;
+              console.log(response.data);
+              this.submitted = true;
+            })
+            .catch(e => {
+              console.log(e);
+            });
+
+        // sending file to backend
+        axios
+            .post("http://localhost:8080/upload", formData,)
+            .then(res => {
+              console.log(res);
+            })
+            .catch(err => {
+              // console.log(err);
+            });
+
+      }
+
 
     },
     newProduct() {
@@ -363,8 +397,8 @@ export default {
   margin-bottom: 10px;
 }
 
-#image-loader{
-  padding-top:10px;
+#image-loader {
+  padding-top: 10px;
 }
 
 </style>
