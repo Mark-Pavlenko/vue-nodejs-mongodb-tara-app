@@ -16,13 +16,39 @@
                 <div id="test" class="col-lg-10">
 
                   <form class="add-product-wrapper" v-if="!submitted" @submit.prevent="saveProduct">
+
                     <div class="col-md-8 text-center">
                       <h2 class="description-container-title">Добавить продукт</h2>
                     </div>
+
                     <div class="input">
                       <br/>
-                      <label>Загрузите изображение</label>
-                      <input id="image-loader" type="file" @change="onFileChange"/>
+                      <label>Загрузите изображение (1 из 5)</label>
+                      <input class="image-loader" type="file" @change="onFileChange"/>
+                    </div>
+
+                    <div class="input">
+                      <br/>
+                      <label>Загрузите изображение (2 из 5)</label>
+                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                    </div>
+
+                    <div class="input">
+                      <br/>
+                      <label>Загрузите изображение (3 из 5)</label>
+                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                    </div>
+
+                    <div class="input">
+                      <br/>
+                      <label>Загрузите изображение (4 из 5)</label>
+                      <input  class="image-loader" type="file" @change="onFileChange"/>
+                    </div>
+
+                    <div class="input">
+                      <br/>
+                      <label>Загрузите изображение (5 из 5)</label>
+                      <input  class="image-loader" type="file" @change="onFileChange"/>
                     </div>
 
                     <div class="input">
@@ -378,7 +404,7 @@ export default {
   margin-bottom: 10px;
 }
 
-#image-loader {
+.image-loader {
   padding-top: 10px;
 }
 

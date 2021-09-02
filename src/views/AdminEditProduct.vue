@@ -442,7 +442,7 @@ export default {
   margin-bottom: 10px;
 }
 
-#image-loader {
+.image-loader {
   padding-top: 10px;
 }
 

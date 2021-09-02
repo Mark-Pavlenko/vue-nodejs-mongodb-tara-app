@@ -18,7 +18,19 @@ module.exports = (sequelize, Sequelize) => {
             complectation: {
                 type: Sequelize.STRING
             },
-            image: {
+            image_first: {
+                type: Sequelize.STRING
+            },
+            image_second: {
+                type: Sequelize.STRING
+            },
+            image_third: {
+                type: Sequelize.STRING
+            },
+            image_fourth: {
+                type: Sequelize.STRING
+            },
+            image_fifth: {
                 type: Sequelize.STRING
             },
         },

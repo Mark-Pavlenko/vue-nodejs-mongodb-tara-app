@@ -159,6 +159,7 @@ export default {
     retrieveProducts() {
       ProductDataService.getAll()
           .then(response => {
+            console.log(response.data);
             this.products = response.data;
             this.products.length = 6;
             console.log(this.products);
