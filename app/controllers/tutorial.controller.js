@@ -20,7 +20,11 @@ exports.create = (req, res) => {
     volume: req.body.volume,
     material: req.body.material,
     complectation: req.body.complectation,
-    image: req.body.image
+    image_first: req.body.selectedImgFirst,
+    image_second: req.body.selectedImgSecond,
+    image_third: req.body.selectedImgThird,
+    image_fourth: req.body.selectedImgFourth,
+    image_fifth: req.body.selectedImgFifth
   };
 
   // Save Tutorial in the database

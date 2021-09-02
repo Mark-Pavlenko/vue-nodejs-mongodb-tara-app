@@ -142,6 +142,8 @@
 
 <script>
 import Sidebar from "../components/Sidebar";
+import ProductsDataService from "../services/GoodsDataServices";
+import axios from "axios";
 
 export default {
   components: {
@@ -193,89 +195,61 @@ export default {
 
       //save image mechanism
       const formData = new FormData();
-      formData.append("file", this.selectedImgFirst); // appending file
-      formData.append("file", this.selectedImgSecond); // appending file
-      formData.append("file", this.selectedImgThird); // appending file
-      formData.append("file", this.selectedImgFourth); // appending file
-      formData.append("file", this.selectedImgFifth); // appending file
+      formData.append("file", this.selectedImgFirst);
+      formData.append("file", this.selectedImgSecond);
+      formData.append("file", this.selectedImgThird);
+      formData.append("file", this.selectedImgFourth);
+      formData.append("file", this.selectedImgFifth);
 
-      //if no img - undefined name
-      //working
-      // if (this.selectedImgFirst === undefined) {
-      //   this.selectedImgFirst = {
-      //     name: 'test'
-      //   }
-      // }
+      //check if the img name is undefined
+      let firstImage = (this.selectedImgFirst === undefined) ? '' : this.selectedImgFirst.name;
+      let secondImage = (this.selectedImgSecond === undefined) ? '' : this.selectedImgSecond.name;
+      let thirdImage = (this.selectedImgThird === undefined) ?  '' : this.selectedImgThird.name;
+      let fourthImage = (this.selectedImgFourth === undefined) ?  '' : this.selectedImgFourth.name;
+      let fifthImage = (this.selectedImgFifth === undefined) ?  '' : this.selectedImgFifth.name;
 
-      // console.log(this.selectedImgFirst);
-      // console.log(this.selectedImgSecond);
-      // console.log(this.selectedImgThird);
-      // console.log(this.selectedImgFourth);
-      // console.log(this.selectedImgFifth);
-
-      // this.selectedImgFirst = typeof this.selectedImgFirst !== 'undefined' ? this.selectedImgFirst : "";
-      // this.selectedImgSecond = typeof this.selectedImgSecond !== 'undefined' ? this.selectedImgSecond : "";
-      // this.selectedImgThird = typeof this.selectedImgThird !== 'undefined' ? this.selectedImgThird : "";
-      // this.selectedImgFourth = typeof this.selectedImgFourth !== 'undefined' ? this.selectedImgFourth : "";
-      // this.selectedImgFifth = typeof this.selectedImgFifth !== 'undefined' ? this.selectedImgFifth : "";
-
-      this.selectedImgFirst = (this.selectedImgFirst === undefined) ? '' : this.selectedImgFirst.name;
-      this.selectedImgSecond = (this.selectedImgSecond === undefined) ? '' : this.selectedImgSecond.name;
-      this.selectedImgThird = (this.selectedImgThird === undefined) ?  '' : this.selectedImgThird.name;
-      this.selectedImgFourth = (this.selectedImgFourth === undefined) ?  '' : this.selectedImgFourth.name;
-      this.selectedImgFifth = (this.selectedImgFifth === undefined) ?  '' : this.selectedImgFifth.name;
-
-      console.log(this.selectedImgFirst);
-      console.log(this.selectedImgSecond);
-      console.log(this.selectedImgThird);
-      console.log(this.selectedImgFourth);
-      console.log(this.selectedImgFifth);
+      // console.log(firstImage);
+      // console.log(secondImage);
+      // console.log(thirdImage);
+      // console.log(fourthImage);
+      // console.log(fifthImage);
 
       let imagesNames = [];
       imagesNames.push(
-          this.selectedImgFirst,
-          this.selectedImgSecond,
-          this.selectedImgThird,
-          this.selectedImgFourth,
-          this.selectedImgFifth
+          firstImage,
+          secondImage,
+          thirdImage,
+          fourthImage,
+          fifthImage
       );
+
       console.log(imagesNames);
 
+      //add images names to the db / load to the folder
 
-      //write switch operator for data object
+      this.totalData = {
+        title: this.product.title,
+        description: this.product.description,
+        color: this.product.color,
+        volume: this.product.volume,
+        material: this.product.material,
+        complectation: this.product.complectation,
+        selectedImgFirst: firstImage,
+        selectedImgSecond: secondImage,
+        selectedImgThird: thirdImage,
+        selectedImgFourth: fourthImage,
+        selectedImgFifth: fifthImage
+      };
 
-      // if (this.selectedImgFirst == undefined) {
-      //
-      //   this.totalData = {
-      //     title: this.product.title,
-      //     description: this.product.description,
-      //     color: this.product.color,
-      //     volume: this.product.volume,
-      //     material: this.product.material,
-      //     complectation: this.product.complectation,
-      //     image: ''
-      //   };
-      // } else {
-      //   this.totalData = {
-      //     title: this.product.title,
-      //     description: this.product.description,
-      //     color: this.product.color,
-      //     volume: this.product.volume,
-      //     material: this.product.material,
-      //     complectation: this.product.complectation,
-      //     image: this.selectedImgFirst.name
-      //   };
-      // }
-      //
-      // ProductsDataService.create(this.totalData)
-      //     .then(response => {
-      //       this.product.id = response.data.id;
-      //       console.log(response.data);
-      //       this.submitted = true;
-      //     })
-      //     .catch(e => {
-      //       console.log(e);
-      //     });
+      ProductsDataService.create(this.totalData)
+          .then(response => {
+            this.product.id = response.data.id;
+            console.log(response.data);
+            this.submitted = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
       //
       // // sending image to backend (if it's exist)
       // if (this.totalData.image !== '') {
@@ -288,7 +262,6 @@ export default {
       //         // console.log(err);
       //       });
       // }
-
 
     },
     newProduct() {
