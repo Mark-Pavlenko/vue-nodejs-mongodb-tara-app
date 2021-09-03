@@ -280,9 +280,10 @@ export default {
     },
 
     newProductEdition() {
-      this.edited = false;
+      // this.edited = false;
+
       // this.additionalArrImagesExists = false;
-      // window.location.reload();
+      window.location.reload();
     },
 
     getProduct(id) {
@@ -423,63 +424,13 @@ export default {
           .then(response => {
             console.log(this.currentProduct.image_second);
             console.log(response.data);
-            // this.message = 'The product was updated successfully!';
-            // window.location.reload();
-            // window.scrollTo(0, 0);
+            this.message = 'The additional images were uploaded successfully!';
             this.edited = true;
+
           })
           .catch(e => {
             console.log(e);
           });
-
-      // for (const [key, value] of Object.entries(this.totalData)) {
-      //     console.log(key);
-      //
-      //   //filter keys arr from repeated values
-      //   this.keysArr.push(key);
-      //   this.keysArr = [...new Set(this.keysArr)];
-      //
-      //   console.log(this.keysArr)
-      // }
-
-
-
-      // const entries = new Map([
-      //   [key, emptyImgName]
-      // ]);
-      //
-      // let obj = Object.fromEntries(entries);
-      // console.log(obj);
-
-
-      //send image name as a data to a query (example with ONLY second image)
-      // let imgName = this.selectedImgSecond.name;
-      // this.currentProduct.image_second = imgName;
-      //
-      // //field in the db which will updated ---> name of the image
-      // let obj = {image_second: imgName};
-      // console.log(obj);
-
-
-
-
-
-
-
-
-      //
-      // ProductsDataService.update(this.totalData)
-      //     .then(response => {
-      //       this.product.id = response.data.id;
-      //       console.log(response.data);
-      //       this.submitted = true;
-      //     })
-      //     .catch(e => {
-      //       console.log(e);
-      //     });
-
-      // // sending image to backend (if it's exist)
-
 
 
     },
@@ -656,13 +607,14 @@ export default {
     outline: none;
     border: none;
     padding-left: 20px;
+    margin:0px auto;
 
     @media(max-width: 910px) {
       width: 500px;
     }
 
     @media(max-width: 710px) {
-      width: 300px;
+      width: 280px;
     }
 
 
@@ -679,7 +631,7 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 10px 0 10px;
+  padding: 0 10px 20px 10px;
   margin-bottom: 20px;
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
 
