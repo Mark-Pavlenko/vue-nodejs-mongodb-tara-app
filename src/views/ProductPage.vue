@@ -8,12 +8,12 @@
         <div class="container">
 
           <div class="text-center">
-            <h2 class="description-container-title">Дополнительные изображения</h2>
+            <h2 class="description-container-title">{{currentProduct.title}}</h2>
             <br/>
           </div>
 
-          <div class="row">
-            <div class="col-lg-6" style="  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);">
+          <div class="row justify-content-between">
+            <div class="col-5" style="  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);">
               <div class="product-image-additional">
                 <swiper class="swiper" :options="swiperOption">
                   <swiper-slide v-for="existImage in existedImages" :key="existImage.id" :product="existImage">
@@ -24,9 +24,10 @@
                 </swiper>
               </div>
             </div>
-            <div class="col-lg-6">
+            <div class="col-5">
               <div class="product-image-additional">
                 {{ this.currentProduct.description }}
+
               </div>
             </div>
           </div>
@@ -72,7 +73,8 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      }
+      },
+      currentProduct: ''
     }
   },
   methods: {
@@ -226,6 +228,11 @@ export default {
 #add-product-title-block,
 #form-body {
   background-color: white;
+}
+
+.container{
+  //display: flex;
+  align-content: space-between;
 }
 
 .description-container-title {
