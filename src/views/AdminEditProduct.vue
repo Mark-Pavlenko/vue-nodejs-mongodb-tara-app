@@ -42,7 +42,7 @@
                   </div>
 
                   <!--       output/delete all additional images           -->
-                  <div v-if="additionalImages.length !== 0">
+                  <div v-if="additionalArrImages.length !== 0">
 
                     <div id="product-image-additional-container" class="container">
                       <br/>
@@ -95,7 +95,9 @@
                       </div>
 
                       <br/>
-                      <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
+                      <button type="submit" class="card-btn btn btn-danger" @click="deleteAdditionalImages">Удалить все
+                        изображения
+                      </button>
                     </div>
 
                     <br/>
@@ -230,7 +232,8 @@ export default {
       currentProduct: null,
       message: '',
       edited: false,
-      additionalImages: []
+      additionalArrImages: [],
+      keysArr: []
     };
   },
   methods: {
@@ -246,14 +249,13 @@ export default {
             this.currentProduct = response.data;
             console.log(this.currentProduct);
 
-            this.additionalImages.push(
+            this.additionalArrImages.push(
                 this.currentProduct.image_second,
                 this.currentProduct.image_third,
                 this.currentProduct.image_fourth,
                 this.currentProduct.image_fifth,
             );
-            console.log(this.additionalImages)
-
+            console.log(this.additionalArrImages);
           })
           .catch(e => {
             console.log(e);
@@ -287,9 +289,9 @@ export default {
             // console.log(err);
           });
       //send empty string as a data to a query
-      let test = this.selectedFile.name;
-      this.currentProduct.image_first = test;
-      let obj = {image: test};
+      let emptyImgName = this.selectedFile.name;
+      this.currentProduct.image_first = emptyImgName;
+      let obj = {image: emptyImgName};
       ProductsDataService.updateImage(this.currentProduct.id, obj)
           .then(response => {
             console.log(this.currentProduct.image_first);
@@ -303,6 +305,7 @@ export default {
             console.log(e);
           });
     },
+
     deleteTitleImage() {
 
       const formData = this.currentProduct.image_first;
@@ -319,23 +322,84 @@ export default {
           .catch(err => {
             // console.log(err);
           });
+
       //send empty string as a data to a query
-      let test = '';
-      this.currentProduct.image_first = test;
-      let obj = {image_first: test};
+      let emptyImgName = '';
+      this.currentProduct.image_first = emptyImgName;
+      let obj = {image_first: emptyImgName};
       ProductsDataService.updateImage(this.currentProduct.id, obj)
           .then(response => {
             console.log(this.currentProduct.image_first);
             console.log(response.data);
-            // this.message = 'The product was updated successfully!';
-            // window.location.reload();
-            // window.scrollTo(0, 0);
             this.edited = true;
           })
           .catch(e => {
             console.log(e);
           });
     },
+
+    deleteAdditionalImages() {
+
+      //get existing images names
+      let filteredImagesArr = this.additionalArrImages.filter((a) => a);
+      console.log(filteredImagesArr);
+
+      //-----------------------
+
+      for (let i = 0; i < filteredImagesArr.length; i++) {
+
+        const formData = filteredImagesArr[i];
+        // console.log(formData);
+
+        let dataOfDeletedImages = {
+          name: formData
+        }
+
+        axios
+            .post("http://localhost:8080/delete/image", dataOfDeletedImages,)
+            .then(res => {
+              console.log(res);
+
+            })
+            .catch(err => {
+              console.log(err);
+            });
+
+        let emptyImgName = '';
+        filteredImagesArr[i] = emptyImgName;
+
+
+        // remove title image from object and get all keys of additional images
+        delete this.currentProduct.image_first;
+        for (const [key, value] of Object.entries(this.currentProduct)) {
+          if (formData === value) {
+            console.log(key);
+
+            //filter keys arr from repeated values
+            this.keysArr.push(key);
+            this.keysArr = [...new Set(this.keysArr)];
+
+            const entries = new Map([
+                [key, emptyImgName]
+            ]);
+
+            let obj = Object.fromEntries(entries);
+            console.log(obj);
+
+            ProductsDataService.updateImage(this.currentProduct.id, obj)
+                .then(response => {
+                  console.log(response.data);
+                  this.edited = true;
+                })
+                .catch(e => {
+                  console.log(e);
+                });
+
+            console.log(obj);
+          }
+        }
+      }
+    }
   },
   mounted() {
     this.message = '';
