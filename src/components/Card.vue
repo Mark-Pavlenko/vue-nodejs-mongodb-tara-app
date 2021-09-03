@@ -2,7 +2,7 @@
   <div class="product">
     <div class='product-inner'>
       <div class="product-image-wrap">
-        <img :src="`https://decoplastline.ua/app/images/${product.image_first}`" class="image" v-if='product.image !== ""'/>
+        <img :src="`https://decoplastline.ua/app/images/${product.image_first}`" class="image" v-if='product.image_first !== ""'/>
         <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>
       </div>
       <div class="product-detail">

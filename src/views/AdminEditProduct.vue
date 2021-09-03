@@ -16,27 +16,27 @@
                   <div v-if="currentProduct.image_first !== ''">
 
                     <div class="text-center">
-                      <h2 class="description-container-title">Текущее изображение</h2>
+                      <h2 class="description-container-title">Титульное изображение</h2>
                     </div>
 
                     <div class="product-image">
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_first}`" class="image"/>
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`" class="image"/>
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`" class="image"/>
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`" class="image"/>
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`" class="image"/>
 
+                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_first}`" class="image"/>
+                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`" class="image"/>-->
+                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`" class="image"/>-->
+                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`" class="image"/>-->
+                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`" class="image"/>-->
                     </div>
 
                     <br/>
-                    <button type="submit" class="card-btn btn btn-danger" @click="deleteImage">Удалить</button>
+                    <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
 
                   </div>
 
                   <div class="add-image-block" v-else>
 
                     <div class="text-center">
-                      <h2 class="description-container-title">Загрузить изображение</h2>
+                      <h2 class="description-container-title">Титульное изображение</h2>
                     </div>
 
                     <div class="product-image-deleted">
@@ -57,7 +57,7 @@
 
                     <!--form with main content-->
 
-                    <form class="add-product-wrapper"  @submit.prevent="editProduct">
+                    <form class="add-product-wrapper" @submit.prevent="editProduct">
 
                       <div class="input">
                         <label for="title">Заголовок</label>
@@ -161,6 +161,7 @@
 import Sidebar from "../components/Sidebar";
 import ProductsDataService from "../services/GoodsDataServices";
 import axios from "axios";
+
 export default {
   name: "product",
   components: {
@@ -179,7 +180,7 @@ export default {
       const selectedFile = e.target.files[0]; // accessing file
       this.selectedFile = selectedFile;
     },
-    newProductEdition(){
+    newProductEdition() {
       this.edited = false;
     },
     getProduct(id) {
@@ -208,7 +209,7 @@ export default {
       console.log(this.selectedFile.name);
       // sending file to backend
       axios
-          .post("http://localhost:8080/upload", formData, )
+          .post("http://localhost:8080/upload", formData,)
           .then(res => {
             console.log(res);
           })
@@ -232,10 +233,9 @@ export default {
             console.log(e);
           });
     },
-    deleteImage() {
+    deleteTitleImage() {
 
-
-      const formData = this.currentProduct.image;
+      const formData = this.currentProduct.image_first;
       console.log(formData);
       let dataOfDeletedImage = {
         name: formData
@@ -251,11 +251,11 @@ export default {
           });
       //send empty string as a data to a query
       let test = '';
-      this.currentProduct.image = test;
-      let obj = {image: test};
+      this.currentProduct.image_first = test;
+      let obj = {image_first: test};
       ProductsDataService.updateImage(this.currentProduct.id, obj)
           .then(response => {
-            console.log(this.currentProduct.image);
+            console.log(this.currentProduct.image_first);
             console.log(response.data);
             // this.message = 'The product was updated successfully!';
             // window.location.reload();
@@ -461,8 +461,8 @@ export default {
 
   //margin-bottom: 40px;
 
-  img{
-    width:100%;
+  img {
+    width: 100%;
   }
 }
 
