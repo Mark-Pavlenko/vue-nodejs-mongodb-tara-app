@@ -41,8 +41,45 @@
                     </div>
                   </div>
 
-                  <div v-if='this.currentProduct.image_second == "" && this.currentProduct.image_third == "" && this.currentProduct.image_fourth == "" && this.currentProduct.image_fifth == ""'>
-                    <h1>Here will be form to add all additional images</h1>
+                  <div id="product-image-additional-container" class="container"
+                       v-if='this.currentProduct.image_second == "" && this.currentProduct.image_third == "" && this.currentProduct.image_fourth == "" && this.currentProduct.image_fifth == ""'
+                       style="margin-bottom:20px;">
+
+                    <form id="add-images-form" class="add-product-wrapper" v-if="!edited"
+                          @submit.prevent="saveAdditionalImages">
+
+                      <div class="col-md-8 text-center">
+                        <h2 class="description-container-title">Загрузить дополнительные изображения</h2>
+                      </div>
+
+                      <div class="input">
+                        <br/>
+                        <label>Дополнительное изображение товара (1 из 4)</label>
+                        <input class="image-loader" type="file" @change="onFileChangeSecond"/>
+                      </div>
+
+                      <div class="input">
+                        <br/>
+                        <label>Дополнительное изображение товара (2 из 4)</label>
+                        <input class="image-loader" type="file" @change="onFileChangeThird"/>
+                      </div>
+
+                      <div class="input">
+                        <br/>
+                        <label>Дополнительное изображение товара (3 из 4)</label>
+                        <input class="image-loader" type="file" @change="onFileChangeFourth"/>
+                      </div>
+
+                      <div class="input">
+                        <br/>
+                        <label>Дополнительное изображение товара (4 из 4)</label>
+                        <input class="image-loader" type="file" @change="onFileChangeFifth"/>
+                      </div>
+
+                      <input type="submit" value="Добавить" id="addProductInput">
+
+                    </form>
+
                   </div>
 
                   <div v-else>
@@ -105,8 +142,6 @@
 
                     <br/>
                   </div>
-
-
 
 
                   <!--form to edit product description-->
@@ -243,11 +278,13 @@ export default {
     onFileChange(e) {
       this.selectedFile = e.target.files[0];
     },
+
     newProductEdition() {
       this.edited = false;
       // this.additionalArrImagesExists = false;
       // window.location.reload();
     },
+
     getProduct(id) {
       ProductsDataService.get(id)
           .then(response => {
@@ -271,6 +308,23 @@ export default {
           });
     },
 
+    //images uploaders
+    onFileChangeSecond(e) {
+      this.selectedImgSecond = e.target.files[0];
+    },
+
+    onFileChangeThird(e) {
+      this.selectedImgThird = e.target.files[0];
+    },
+
+    onFileChangeFourth(e) {
+      this.selectedImgFourth = e.target.files[0];
+    },
+
+    onFileChangeFifth(e) {
+      this.selectedImgFifth = e.target.files[0];
+    },
+
     editProduct() {
 
       //update product desc fields
@@ -289,6 +343,7 @@ export default {
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
       console.log(this.selectedFile.name);
+
       // sending file to backend
       axios
           .post("http://localhost:8080/upload", formData,)
@@ -298,10 +353,11 @@ export default {
           .catch(err => {
             // console.log(err);
           });
-      //send empty string as a data to a query
-      let emptyImgName = this.selectedFile.name;
-      this.currentProduct.image_first = emptyImgName;
-      let obj = {image: emptyImgName};
+
+      //send image as a data to a query
+      let imgName = this.selectedFile.name;
+      this.currentProduct.image_first = imgName;
+      let obj = {image: imgName};
       ProductsDataService.updateImage(this.currentProduct.id, obj)
           .then(response => {
             console.log(this.currentProduct.image_first);
@@ -314,6 +370,65 @@ export default {
           .catch(e => {
             console.log(e);
           });
+    },
+
+
+    saveAdditionalImages() {
+
+      const formDataSecond = new FormData();
+      const formDataThird = new FormData();
+      const formDataFourth = new FormData();
+      const formDataFifth = new FormData();
+
+      formDataSecond.append("file", this.selectedImgSecond);
+      formDataThird.append("file", this.selectedImgThird);
+      formDataFourth.append("file", this.selectedImgFourth);
+      formDataFifth.append("file", this.selectedImgFifth);
+
+      let imagesDataArr = [
+        formDataSecond,
+        formDataThird,
+        formDataFourth,
+        formDataFifth
+      ];
+
+      for (let i = 0; i < imagesDataArr.length; i++) {
+        axios
+            .post("http://localhost:8080/upload", imagesDataArr[i])
+            .then(res => {
+              console.log(res);
+            })
+            .catch(err => {
+              // console.log(err);
+            });
+      }
+
+      let secondImage = (this.selectedImgSecond === undefined) ? '' : this.selectedImgSecond.name;
+      let thirdImage = (this.selectedImgThird === undefined) ? '' : this.selectedImgThird.name;
+      let fourthImage = (this.selectedImgFourth === undefined) ? '' : this.selectedImgFourth.name;
+      let fifthImage = (this.selectedImgFifth === undefined) ? '' : this.selectedImgFifth.name;
+
+      // this.totalData = {
+      //   selectedImgSecond: secondImage,
+      //   selectedImgThird: thirdImage,
+      //   selectedImgFourth: fourthImage,
+      //   selectedImgFifth: fifthImage
+      // };
+      //
+      // ProductsDataService.update(this.totalData)
+      //     .then(response => {
+      //       this.product.id = response.data.id;
+      //       console.log(response.data);
+      //       this.submitted = true;
+      //     })
+      //     .catch(e => {
+      //       console.log(e);
+      //     });
+
+      // // sending image to backend (if it's exist)
+
+
+
     },
 
     deleteTitleImage() {
@@ -347,8 +462,6 @@ export default {
             console.log(e);
           });
     },
-
-
     deleteAdditionalImages() {
 
       //get existing images names
@@ -622,6 +735,7 @@ export default {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   margin-top: 10px;
   padding-bottom: 25px;
+  padding-top: 25px;
 }
 
 .product-image-additional {
@@ -665,6 +779,12 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#add-images-form {
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 30px;
 }
 
 </style>

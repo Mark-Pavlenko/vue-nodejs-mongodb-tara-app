@@ -189,7 +189,7 @@ export default {
     },
 
     onFileChangeFifth(e) {
-      this.selectedImgFirst = e.target.files[0];
+      this.selectedImgFifth = e.target.files[0];
     },
     saveProduct() {
 
