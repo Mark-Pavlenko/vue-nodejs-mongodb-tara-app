@@ -46,6 +46,7 @@
 
                     <div id="product-image-additional-container" class="container">
                       <br/>
+
                       <div class="text-center">
                         <h2 class="description-container-title">Дополнительные изображения</h2>
                       </div>
@@ -54,15 +55,19 @@
                         <div class="col-lg-6">
                           <div class="product-image-additional">
                             <h5>1 из 4</h5>
-                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`"
+                            <img v-if="currentProduct.image_second !== ''"
+                                 :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`"
                                  class="image"/>
+                            <img v-else :src="`https://decoplastline.ua/no-image.png`" class="image"/>
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="product-image-additional">
                             <h5>2 из 4</h5>
-                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`"
+                            <img v-if="currentProduct.image_third !== ''"
+                                 :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`"
                                  class="image"/>
+                            <img v-else :src="`https://decoplastline.ua/no-image.png`" class="image"/>
                           </div>
                         </div>
                       </div>
@@ -71,15 +76,20 @@
                         <div class="col-lg-6">
                           <div class="product-image-additional">
                             <h5>3 из 4</h5>
-                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`"
-                                 class="image"/>
+                            <img
+                                v-if="currentProduct.image_fourth !== ''"
+                                :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`"
+                                class="image"/>
+                            <img v-else :src="`https://decoplastline.ua/no-image.png`" class="image"/>
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="product-image-additional">
                             <h5>4 из 4</h5>
-                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`"
+                            <img v-if="currentProduct.image_fifth !== ''"
+                                 :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`"
                                  class="image"/>
+                            <img v-else :src="`https://decoplastline.ua/no-image.png`" class="image"/>
                           </div>
                         </div>
                       </div>
@@ -87,6 +97,7 @@
                       <br/>
                       <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
                     </div>
+
                     <br/>
                   </div>
 
@@ -547,7 +558,8 @@ export default {
   }
 
   img {
-    width: 100%;
+    width: 95%;
+    margin-bottom: 20px;
   }
 }
 
