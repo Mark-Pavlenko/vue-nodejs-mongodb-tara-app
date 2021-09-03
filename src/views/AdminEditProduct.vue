@@ -76,7 +76,7 @@
                         <input class="image-loader" type="file" @change="onFileChangeFifth"/>
                       </div>
 
-                      <input type="submit" value="Добавить" id="addProductInput">
+                      <input type="submit" value="Загрузить изображения" id="addAdditionalImages">
 
                     </form>
 
@@ -422,7 +422,7 @@ export default {
 
       ProductsDataService.updateImage(this.currentProduct.id, this.totalData)
           .then(response => {
-            console.log(this.currentProduct.image_second);
+            // console.log(this.currentProduct.image_second);
             console.log(response.data);
             this.message = 'The additional images were uploaded successfully!';
             this.edited = true;
@@ -607,7 +607,7 @@ export default {
     outline: none;
     border: none;
     padding-left: 20px;
-    margin:0px auto;
+    margin: 0px auto;
 
     @media(max-width: 910px) {
       width: 500px;
@@ -792,6 +792,23 @@ export default {
   margin-top: 20px;
   padding-top: 10px;
   padding-bottom: 30px;
+}
+
+#addAdditionalImages {
+  width: 342px;
+  height: 58px;
+  color: white;
+
+  background: rgba(182, 12, 12, 0.8);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+
+  outline: none;
+  border: none;
+
+  margin-top: 30px;
+  margin-bottom: 50px;
+
 }
 
 </style>

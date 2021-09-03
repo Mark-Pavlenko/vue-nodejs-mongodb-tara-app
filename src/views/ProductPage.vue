@@ -11,19 +11,18 @@
           <div id="thumb-example" class="container-fluid">
             <swiper class="swiper" :options="swiperOption">
               <!--    output images of added products from the hoisting-->
-              <!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
-              <!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
-              <!--    </swiper-slide>-->
-              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
-              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
-              <swiper-slide><img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image}`"></swiper-slide>
+                  <swiper-slide v-for="existImage in existedImages" :key="existImage.id" :product="existImage">
+                    <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${existImage}`">
+                  </swiper-slide>
+<!--              <swiper-slide>-->
+<!--                <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${currentProduct.image_first}`">-->
+<!--              </swiper-slide>-->
               <div class="swiper-button-prev" slot="button-prev"></div>
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
           </div>
           <div class="col">
             <div class="description-wrapper">
-             {{currentProduct.description}}
             </div>
 
             <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
@@ -48,7 +47,6 @@ import AnchorRouterLink from 'vue-anchor-router-link';
 import 'swiper/css/swiper.css'
 
 
-
 import ProductDataService from "../services/GoodsDataServices";
 
 export default {
@@ -61,9 +59,8 @@ export default {
   },
   data() {
     return {
-      currentProduct: null,
       productImage: [],
-      repeatedImages: [],
+      existedImages: [],
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 30,
@@ -84,38 +81,34 @@ export default {
       ProductDataService.get(id)
           .then(response => {
             this.currentProduct = response.data;
-            console.log(response.data);
+            console.log(this.currentProduct);
+
+            let totalImagesList = [
+              this.currentProduct.image_first,
+              this.currentProduct.image_second,
+              this.currentProduct.image_third,
+              this.currentProduct.image_fourth,
+              this.currentProduct.image_fifth,
+            ];
+
+            this.existedImages = totalImagesList.filter((a) => a);
+            console.log(this.existedImages)
 
             //get five images
-            for (let i = 0; i < 5; i++) {
-              this.repeatedImages.push(this.currentProduct.image);
-              // console.log(this.repeatedImages);
-            }
+            // for (let i = 0; i < 5; i++) {
+            //   this.existedImages.push(this.currentProduct.image);
+            //   // console.log(this.existedImages);
+            // }
           })
           .catch(e => {
             console.log(e);
           });
     },
-    retrieveProducts() {
-      ProductDataService.getAll()
-          .then(response => {
-            this.products = response.data;
-            // console.log(response.data);
 
-          })
-          .catch(e => {
-            console.log(e);
-          });
-    },
 
   },
   mounted() {
-
     this.getProduct(this.$route.params.id);
-
-    this.$nextTick(() => {
-      this.retrieveProducts();
-    })
   }
 }
 </script>
@@ -138,7 +131,7 @@ export default {
   margin-top: 25px;
   padding-bottom: 5px;
 
-  @media(max-width: 992px){
+  @media(max-width: 992px) {
     margin-top: 40px;
   }
 }
@@ -214,39 +207,39 @@ export default {
   }
 }
 
-.swiper-slide{
-  width:75%;
+.swiper-slide {
+  width: 75%;
 
 }
 
 .swiper-container {
-  margin-top:40px;
+  margin-top: 40px;
 
   //height: 250px;
 
-  @media(max-width: 920px){
+  @media(max-width: 920px) {
     height: 300px;
     margin-top: -50px;
   }
 
-  @media (max-width: 850px){
+  @media (max-width: 850px) {
     //height: 300px;
   }
 }
 
-.swiper-slide img{
+.swiper-slide img {
 
   max-width: 75%;
 
 
-  @media (max-width: 850px){
+  @media (max-width: 850px) {
     height: 300px;
   }
 }
 
 .swiper-button-prev,
-.swiper-button-next{
-  color:black !important;
+.swiper-button-next {
+  color: black !important;
 }
 
 </style>

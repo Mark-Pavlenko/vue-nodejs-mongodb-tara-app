@@ -1,14 +1,9 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-    <!--    output images of added products from the hoisting-->
-    <!--    <swiper-slide v-for="product in products" :key="product.id" :product="product">-->
-    <!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image}`">-->
-    <!--    </swiper-slide>-->
-    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/first.jpg"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/second.jpg"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/third.jpg"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/fourth.jpg"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/fifth.jpg"></swiper-slide>
+<!--        output images of added products from the hoisting-->
+        <swiper-slide v-for="product in products" :key="product.id" :product="product">
+          <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image_first}`">
+        </swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
