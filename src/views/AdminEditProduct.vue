@@ -10,7 +10,7 @@
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
 
-                <div class="col-lg-10" v-if="!edited">
+                <div class="col-lg-11" v-if="!edited">
 
                   <div id="product-image-main-container">
                     <!--delete title image functionality -->
@@ -41,25 +41,26 @@
                     </div>
                   </div>
 
-                  <!--       delete all additional images           -->
-                  <div v-if="currentProduct.image_first !== ''">
-
-                    <div class="text-center">
-                      <h2 class="description-container-title">Дополнительные изображения</h2>
-                    </div>
-
+                  <!--       output/delete all additional images           -->
+                  <div v-if="additionalImages.length !== 0">
 
                     <div id="product-image-additional-container" class="container">
+                      <br/>
+                      <div class="text-center">
+                        <h2 class="description-container-title">Дополнительные изображения</h2>
+                      </div>
 
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="product-image-additional">
+                            <h5>1 из 4</h5>
                             <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`"
                                  class="image"/>
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="product-image-additional">
+                            <h5>2 из 4</h5>
                             <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`"
                                  class="image"/>
                           </div>
@@ -69,21 +70,28 @@
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="product-image-additional">
+                            <h5>3 из 4</h5>
                             <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`"
                                  class="image"/>
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="product-image-additional">
+                            <h5>4 из 4</h5>
                             <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`"
                                  class="image"/>
                           </div>
                         </div>
                       </div>
+
                       <br/>
                       <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
                     </div>
                     <br/>
+                  </div>
+
+                  <div v-else>
+                    <h1>Here will be form to add all additional images</h1>
                   </div>
 
 
@@ -514,10 +522,11 @@ export default {
   }
 }
 
-#product-image-main-container{
+#product-image-main-container {
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  padding-top:10px;
-  margin-top: 10px;
+  padding-top: 10px;
+  margin-top: 40px;
+  margin-bottom: 20px;
   padding-bottom: 25px;
 }
 
@@ -533,6 +542,10 @@ export default {
   margin: 30px auto;
   margin-bottom: 0px;
 
+  h5{
+    padding-top:10px;
+  }
+
   img {
     width: 100%;
   }
@@ -541,14 +554,15 @@ export default {
 .product-image-deleted {
   width: 40%;
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
-  //padding: 0px initial;
   margin: 30px auto;
   margin-bottom: 0px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px;
+
+  img {
+    width: 100%;
+  }
 
   @media (max-width: 480px) {
-
     width: 80%;
   }
 }
