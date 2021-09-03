@@ -10,45 +10,84 @@
             <div id="form-body" class="wrapper">
               <div class="row justify-content-center">
 
-                <div id="test" class="col-lg-10" v-if="!edited">
+                <div class="col-lg-10" v-if="!edited">
 
-                  <!--                  add/delete image functionality-->
+                  <div id="product-image-main-container">
+                    <!--delete title image functionality -->
+                    <div v-if="currentProduct.image_first !== ''">
+
+                      <div class="text-center">
+                        <h2 class="description-container-title">Титульное изображение</h2>
+                      </div>
+
+                      <div class="product-image">
+                        <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_first}`" class="image"/>
+                      </div>
+
+                      <br/>
+                      <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
+
+                    </div>
+                    <!--download new title image instead of deleted-->
+                    <div class="add-image-block" v-else>
+                      <div class="text-center">
+                        <h2 class="description-container-title">Титульное изображение</h2>
+                      </div>
+                      <div class="product-image-deleted">
+                        <img :src="`https://decoplastline.ua/no-image.png`" class="image-fluid"/>
+                      </div>
+                      <br/>
+                      <input id="image-loader" type="file" @change="onFileChange">
+                    </div>
+                  </div>
+
+                  <!--       delete all additional images           -->
                   <div v-if="currentProduct.image_first !== ''">
 
                     <div class="text-center">
-                      <h2 class="description-container-title">Титульное изображение</h2>
+                      <h2 class="description-container-title">Дополнительные изображения</h2>
                     </div>
 
-                    <div class="product-image">
 
-                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_first}`" class="image"/>
-                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`" class="image"/>-->
-                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`" class="image"/>-->
-                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`" class="image"/>-->
-                      <!--                      <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`" class="image"/>-->
+                    <div id="product-image-additional-container" class="container">
+
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="product-image-additional">
+                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`"
+                                 class="image"/>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="product-image-additional">
+                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`"
+                                 class="image"/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-6">
+                          <div class="product-image-additional">
+                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`"
+                                 class="image"/>
+                          </div>
+                        </div>
+                        <div class="col-lg-6">
+                          <div class="product-image-additional">
+                            <img :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`"
+                                 class="image"/>
+                          </div>
+                        </div>
+                      </div>
+                      <br/>
+                      <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
                     </div>
-
                     <br/>
-                    <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
-
                   </div>
 
-                  <div class="add-image-block" v-else>
 
-                    <div class="text-center">
-                      <h2 class="description-container-title">Титульное изображение</h2>
-                    </div>
-
-                    <div class="product-image-deleted">
-                      <img :src="`https://decoplastline.ua/no-image.png`" class="image-fluid"/>
-                    </div>
-
-                    <br/>
-                    <input id="image-loader" type="file" @change="onFileChange">
-
-                  </div>
-
-
+                  <!--form to edit product description-->
                   <div class="add-product-wrapper" @submit.prevent="editProduct">
 
                     <div class="col-md-8 text-center">
@@ -171,14 +210,13 @@ export default {
     return {
       currentProduct: null,
       message: '',
-      edited: false
+      edited: false,
+      additionalImages: []
     };
   },
   methods: {
     onFileChange(e) {
-      // accessing file
-      const selectedFile = e.target.files[0]; // accessing file
-      this.selectedFile = selectedFile;
+      this.selectedFile = e.target.files[0];
     },
     newProductEdition() {
       this.edited = false;
@@ -187,13 +225,24 @@ export default {
       ProductsDataService.get(id)
           .then(response => {
             this.currentProduct = response.data;
-            console.log(response.data);
+            console.log(this.currentProduct);
+
+            this.additionalImages.push(
+                this.currentProduct.image_second,
+                this.currentProduct.image_third,
+                this.currentProduct.image_fourth,
+                this.currentProduct.image_fifth,
+            );
+            console.log(this.additionalImages)
+
           })
           .catch(e => {
             console.log(e);
           });
     },
     editProduct() {
+
+      //update product desc fields
       ProductsDataService.update(this.currentProduct.id, this.currentProduct)
           .then(response => {
             console.log(response.data);
@@ -204,6 +253,8 @@ export default {
           .catch(e => {
             console.log(e);
           });
+
+      //update img
       const formData = new FormData();
       formData.append("file", this.selectedFile); // appending file
       console.log(this.selectedFile.name);
@@ -444,7 +495,7 @@ export default {
 
 .description-container-title {
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .image-loader {
@@ -452,14 +503,35 @@ export default {
 }
 
 .product-image {
-  //
-  width: 50%;
+
+  width: 60%;
   box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
-  //padding: 0px initial;
   margin: 30px auto;
   margin-bottom: 0px;
 
-  //margin-bottom: 40px;
+  img {
+    width: 100%;
+  }
+}
+
+#product-image-main-container{
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  padding-top:10px;
+  margin-top: 10px;
+  padding-bottom: 25px;
+}
+
+#product-image-additional-container {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  margin-top: 10px;
+  padding-bottom: 25px;
+}
+
+.product-image-additional {
+  width: 100%;
+  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
+  margin: 30px auto;
+  margin-bottom: 0px;
 
   img {
     width: 100%;
