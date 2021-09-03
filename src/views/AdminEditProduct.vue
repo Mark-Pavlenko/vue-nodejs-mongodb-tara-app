@@ -354,10 +354,11 @@ export default {
             // console.log(err);
           });
 
-      //send image as a data to a query
+      //send image name as a data to a query
       let imgName = this.selectedFile.name;
       this.currentProduct.image_first = imgName;
       let obj = {image: imgName};
+
       ProductsDataService.updateImage(this.currentProduct.id, obj)
           .then(response => {
             console.log(this.currentProduct.image_first);
@@ -370,6 +371,7 @@ export default {
           .catch(e => {
             console.log(e);
           });
+
     },
 
 
@@ -408,12 +410,63 @@ export default {
       let fourthImage = (this.selectedImgFourth === undefined) ? '' : this.selectedImgFourth.name;
       let fifthImage = (this.selectedImgFifth === undefined) ? '' : this.selectedImgFifth.name;
 
-      // this.totalData = {
-      //   selectedImgSecond: secondImage,
-      //   selectedImgThird: thirdImage,
-      //   selectedImgFourth: fourthImage,
-      //   selectedImgFifth: fifthImage
-      // };
+      this.totalData = {
+        image_second: secondImage,
+        image_third: thirdImage,
+        image_fourth: fourthImage,
+        image_fifth: fifthImage
+      };
+
+      console.log(this.totalData);
+
+      ProductsDataService.updateImage(this.currentProduct.id, this.totalData)
+          .then(response => {
+            console.log(this.currentProduct.image_second);
+            console.log(response.data);
+            // this.message = 'The product was updated successfully!';
+            // window.location.reload();
+            // window.scrollTo(0, 0);
+            this.edited = true;
+          })
+          .catch(e => {
+            console.log(e);
+          });
+
+      // for (const [key, value] of Object.entries(this.totalData)) {
+      //     console.log(key);
+      //
+      //   //filter keys arr from repeated values
+      //   this.keysArr.push(key);
+      //   this.keysArr = [...new Set(this.keysArr)];
+      //
+      //   console.log(this.keysArr)
+      // }
+
+
+
+      // const entries = new Map([
+      //   [key, emptyImgName]
+      // ]);
+      //
+      // let obj = Object.fromEntries(entries);
+      // console.log(obj);
+
+
+      //send image name as a data to a query (example with ONLY second image)
+      // let imgName = this.selectedImgSecond.name;
+      // this.currentProduct.image_second = imgName;
+      //
+      // //field in the db which will updated ---> name of the image
+      // let obj = {image_second: imgName};
+      // console.log(obj);
+
+
+
+
+
+
+
+
       //
       // ProductsDataService.update(this.totalData)
       //     .then(response => {
@@ -495,6 +548,7 @@ export default {
 
         // remove title image from object and get all keys of additional images
         delete this.currentProduct.image_first;
+
         for (const [key, value] of Object.entries(this.currentProduct)) {
           if (formData === value) {
             console.log(key);
@@ -513,8 +567,8 @@ export default {
             ProductsDataService.updateImage(this.currentProduct.id, obj)
                 .then(response => {
                   console.log(response.data);
-
                   this.edited = true;
+
                 })
                 .catch(e => {
                   console.log(e);
@@ -526,6 +580,7 @@ export default {
       }
     },
   },
+
   mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
