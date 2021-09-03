@@ -41,9 +41,12 @@
                     </div>
                   </div>
 
-                  <!--       output/delete all additional images           -->
-                  <div v-if="additionalArrImages.length !== 0">
+                  <div v-if='this.currentProduct.image_second == "" && this.currentProduct.image_third == "" && this.currentProduct.image_fourth == "" && this.currentProduct.image_fifth == ""'>
+                    <h1>Here will be form to add all additional images</h1>
+                  </div>
 
+                  <div v-else>
+                    <!--                      {{additionalArrImages.}}-->
                     <div id="product-image-additional-container" class="container">
                       <br/>
 
@@ -103,9 +106,7 @@
                     <br/>
                   </div>
 
-                  <div v-else>
-                    <h1>Here will be form to add all additional images</h1>
-                  </div>
+
 
 
                   <!--form to edit product description-->
@@ -233,7 +234,9 @@ export default {
       message: '',
       edited: false,
       additionalArrImages: [],
-      keysArr: []
+      keysArr: [],
+      additionalArrImagesExists: true
+
     };
   },
   methods: {
@@ -242,25 +245,32 @@ export default {
     },
     newProductEdition() {
       this.edited = false;
+      // this.additionalArrImagesExists = false;
+      // window.location.reload();
     },
     getProduct(id) {
       ProductsDataService.get(id)
           .then(response => {
-            this.currentProduct = response.data;
-            console.log(this.currentProduct);
+                this.currentProduct = response.data;
+                console.log(this.currentProduct);
 
-            this.additionalArrImages.push(
-                this.currentProduct.image_second,
-                this.currentProduct.image_third,
-                this.currentProduct.image_fourth,
-                this.currentProduct.image_fifth,
-            );
-            console.log(this.additionalArrImages);
-          })
+                this.additionalArrImages.push(
+                    this.currentProduct.image_second,
+                    this.currentProduct.image_third,
+                    this.currentProduct.image_fourth,
+                    this.currentProduct.image_fifth,
+                );
+
+                console.log(this.additionalArrImages);
+                // console.log(this.additionalArrImages.length);
+
+              }
+          )
           .catch(e => {
             console.log(e);
           });
     },
+
     editProduct() {
 
       //update product desc fields
@@ -338,6 +348,7 @@ export default {
           });
     },
 
+
     deleteAdditionalImages() {
 
       //get existing images names
@@ -380,7 +391,7 @@ export default {
             this.keysArr = [...new Set(this.keysArr)];
 
             const entries = new Map([
-                [key, emptyImgName]
+              [key, emptyImgName]
             ]);
 
             let obj = Object.fromEntries(entries);
@@ -389,6 +400,7 @@ export default {
             ProductsDataService.updateImage(this.currentProduct.id, obj)
                 .then(response => {
                   console.log(response.data);
+
                   this.edited = true;
                 })
                 .catch(e => {
@@ -399,11 +411,12 @@ export default {
           }
         }
       }
-    }
+    },
   },
   mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
+
   }
 }
 </script>
