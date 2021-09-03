@@ -218,11 +218,11 @@ export default {
           });
       //send empty string as a data to a query
       let test = this.selectedFile.name;
-      this.currentProduct.image = test;
+      this.currentProduct.image_first = test;
       let obj = {image: test};
       ProductsDataService.updateImage(this.currentProduct.id, obj)
           .then(response => {
-            console.log(this.currentProduct.image);
+            console.log(this.currentProduct.image_first);
             console.log(response.data);
             // this.message = 'The product was updated successfully!';
             // window.location.reload();
