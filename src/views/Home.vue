@@ -161,7 +161,9 @@ export default {
           .then(response => {
             console.log(response.data);
             this.products = response.data;
-            this.products.length = 6;
+            if(this.products.length > 6){
+              this.products.length = 6;
+            }
             console.log(this.products);
 
           })
