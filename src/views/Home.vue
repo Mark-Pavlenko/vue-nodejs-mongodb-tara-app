@@ -38,7 +38,7 @@
         <div class="container">
           <div id="contacts-title-block" class="row justify-content-center">
             <div class="col-md-8 text-center">
-              <h2 class="description-container-title">Контакти</h2>
+              <h2 class="description-container-title">Зворотній зв'язок</h2>
             </div>
           </div>
 
@@ -60,7 +60,7 @@
                 </div>
                 <div id="test" class="col-lg-10">
                   <div class="contacts-wrapper">
-                    <h3 class="mb-4 text-center">Напишіть нам, и ми обов'язково з вами зв'яжемось!</h3>
+                    <h3 class="mb-4 text-center">Напишіть нам, і ми обов'язково зв'яжемося з вами найближчим часом!</h3>
 
 <!--                    <form action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">-->
                     <form role="form" method="POST" @submit.prevent="sendEmail" class="contacts-wrapper">

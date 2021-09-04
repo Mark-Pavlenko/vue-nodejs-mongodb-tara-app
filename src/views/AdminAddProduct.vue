@@ -18,36 +18,36 @@
                   <form class="add-product-wrapper" v-if="!submitted" @submit.prevent="saveProduct">
 
                     <div class="col-md-8 text-center">
-                      <h2 class="description-container-title">Добавить продукт</h2>
+                      <h2 class="description-container-title">Додати новий товар</h2>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Основное (титульное) изображение товара </label>
+                      <label>Основне (титульне) зображення </label>
                       <input class="image-loader" type="file" @change="onFileChangeFirst"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Дополнительное изображение товара (1 из 4)</label>
+                      <label>Додаткове зображення товара (1 з 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeSecond"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Дополнительное изображение товара (2 из 4)</label>
+                      <label>Додаткове зображення товару (2 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeThird"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Дополнительное изображение товара (3 из 4)</label>
+                      <label>Додаткове зображення товару (3 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeFourth"/>
                     </div>
 
                     <div class="input">
                       <br/>
-                      <label>Дополнительное изображение товара (4 из 4)</label>
+                      <label>Додаткове зображення товару (4 из 4)</label>
                       <input class="image-loader" type="file" @change="onFileChangeFifth"/>
                     </div>
 
@@ -62,19 +62,19 @@
                       />
                     </div>
                     <div class="input">
-                      <label for="description">Описание</label>
+                      <label for="description">Опис товару</label>
                       <textarea
                           name="description"
                           id="description"
                           class="form-control"
-                          placeholder="Описание"
+                          placeholder="Опис товару"
                           v-model="product.description"
                           required
                           style="height: 300px;"
                       />
                     </div>
                     <div class="input">
-                      <label for="color">Цвет: </label>
+                      <label for="color">Колір: </label>
                       <select v-model="product.color" name="color" id="color" required>
                         <option value="Білий">Білий</option>
                         <option value="Золотий">Золотий</option>
@@ -85,7 +85,7 @@
                       </select>
                     </div>
                     <div class="input">
-                      <label for="volume">Объём: </label>
+                      <label for="volume">Об'єм: </label>
                       <select v-model="product.volume" name="volume" id="volume" style="width: 150px;" required>
                         <option value="10">10 ml</option>
                         <option value="25">25 ml</option>
@@ -96,37 +96,37 @@
                       </select>
                     </div>
                     <div class="input">
-                      <label for="material">Материал</label>
+                      <label for="material">Матеріал</label>
                       <input
                           name="material"
                           id="material"
                           class="form-control"
                           v-model="product.material"
-                          placeholder="Материал"
+                          placeholder="Матеріал"
                           required
                       />
                     </div>
                     <div class="input">
-                      <label for="complectation">Комплектация</label>
+                      <label for="complectation">Комплектація</label>
                       <input
                           id="complectation"
                           class="form-control"
                           name="complectation"
                           v-model="product.complectation"
-                          placeholder="Комплектация"
+                          placeholder="Комплектація"
                           required
                       />
                     </div>
 
-                    <input type="submit" value="Добавить" id="addProductInput">
+                    <input type="submit" value="Додати товар" id="addProductInput">
 
                   </form>
 
                   <div class="add-product-wrapper" v-else>
                     <br/>
-                    <h4>Товар был успешно добавлен!</h4>
-                    <button class="btn btn-success" @click="newProduct">Добавить еще один</button>
-                    <router-link class="btn btn-primary" to="/admin/">Вернуться на главную страницу</router-link>
+                    <h4>Товар був успішно доданий!</h4>
+                    <button class="btn btn-success" @click="newProduct">Додати ще один</button>
+                    <router-link class="btn btn-primary" to="/admin/">Повернутися на головну сторінку</router-link>
                   </div>
 
                 </div>

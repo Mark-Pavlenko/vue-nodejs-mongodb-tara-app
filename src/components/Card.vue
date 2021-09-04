@@ -7,11 +7,11 @@
       </div>
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
-        <p>{{ product.description }}</p>
-        <p>Колір: {{ product.color }}</p>
-        <p>Об'єм: {{ product.volume }}</p>
-        <p>Матеріал: {{ product.material }}</p>
-        <p>Комплектація: {{ product.complectation }}</p>
+        <p><span>Опис товару</span> <br/> <br/>{{ product.description }}</p>
+        <p><span>Колір:</span> {{ product.color }}</p>
+        <p><span>Об'єм:</span> {{ product.volume }} мл</p>
+        <p><span>Матеріал:</span> {{ product.material }}</p>
+        <p><span>Комплектація:</span> {{ product.complectation }}</p>
         <router-link :to="{path: `/product/${product.id}`}" id="card-btn" class="btn btn-light" >Переглянути /
           замовити
         </router-link>
@@ -92,6 +92,11 @@ export default {
     line-height: 1.5;
     font-weight: 300;
     color: #676767;
+  }
+
+  span{
+    font-weight: bold;
+    font-size:16px;
   }
 }
 

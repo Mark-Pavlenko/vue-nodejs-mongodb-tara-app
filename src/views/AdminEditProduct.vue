@@ -17,7 +17,7 @@
                     <div v-if="currentProduct.image_first !== ''">
 
                       <div class="text-center">
-                        <h2 class="description-container-title">Титульное изображение</h2>
+                        <h2 class="description-container-title">Титульне зображення</h2>
                       </div>
 
                       <div class="product-image">
@@ -25,13 +25,13 @@
                       </div>
 
                       <br/>
-                      <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Удалить</button>
+                      <button type="submit" class="card-btn btn btn-danger" @click="deleteTitleImage">Видалити</button>
 
                     </div>
                     <!--download new title image instead of deleted-->
                     <div class="add-image-block" v-else>
                       <div class="text-center">
-                        <h2 class="description-container-title">Титульное изображение</h2>
+                        <h2 class="description-container-title">Титульне зображення</h2>
                       </div>
                       <div class="product-image-deleted">
                         <img :src="`https://decoplastline.ua/no-image.png`" class="image-fluid"/>
@@ -49,34 +49,34 @@
                           @submit.prevent="saveAdditionalImages">
 
                       <div class="col-md-8 text-center">
-                        <h2 class="description-container-title">Загрузить дополнительные изображения</h2>
+                        <h2 class="description-container-title">Завантажити додаткові зображення</h2>
                       </div>
 
                       <div class="input">
                         <br/>
-                        <label>Дополнительное изображение товара (1 из 4)</label>
+                        <label>Додаткове зображення товару (1 з 4)</label>
                         <input class="image-loader" type="file" @change="onFileChangeSecond"/>
                       </div>
 
                       <div class="input">
                         <br/>
-                        <label>Дополнительное изображение товара (2 из 4)</label>
+                        <label>Додаткове зображення товару (2 з 4)</label>
                         <input class="image-loader" type="file" @change="onFileChangeThird"/>
                       </div>
 
                       <div class="input">
                         <br/>
-                        <label>Дополнительное изображение товара (3 из 4)</label>
+                        <label>Додаткове зображення товару (3 з 4)</label>
                         <input class="image-loader" type="file" @change="onFileChangeFourth"/>
                       </div>
 
                       <div class="input">
                         <br/>
-                        <label>Дополнительное изображение товара (4 из 4)</label>
+                        <label>Додаткове зображення товару (4 з 4)</label>
                         <input class="image-loader" type="file" @change="onFileChangeFifth"/>
                       </div>
 
-                      <input type="submit" value="Загрузить изображения" id="addAdditionalImages">
+                      <input type="submit" value="Завантажити зображення" id="addAdditionalImages">
 
                     </form>
 
@@ -88,13 +88,13 @@
                       <br/>
 
                       <div class="text-center">
-                        <h2 class="description-container-title">Дополнительные изображения</h2>
+                        <h2 class="description-container-title">Додаткові зображення</h2>
                       </div>
 
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="product-image-additional">
-                            <h5>1 из 4</h5>
+                            <h5>1 з 4</h5>
                             <img v-if="currentProduct.image_second !== ''"
                                  :src="`https://decoplastline.ua/app/images/${currentProduct.image_second}`"
                                  class="image"/>
@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="product-image-additional">
-                            <h5>2 из 4</h5>
+                            <h5>2 з 4</h5>
                             <img v-if="currentProduct.image_third !== ''"
                                  :src="`https://decoplastline.ua/app/images/${currentProduct.image_third}`"
                                  class="image"/>
@@ -115,7 +115,7 @@
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="product-image-additional">
-                            <h5>3 из 4</h5>
+                            <h5>3 з 4</h5>
                             <img
                                 v-if="currentProduct.image_fourth !== ''"
                                 :src="`https://decoplastline.ua/app/images/${currentProduct.image_fourth}`"
@@ -125,7 +125,7 @@
                         </div>
                         <div class="col-lg-6">
                           <div class="product-image-additional">
-                            <h5>4 из 4</h5>
+                            <h5>4 з 4</h5>
                             <img v-if="currentProduct.image_fifth !== ''"
                                  :src="`https://decoplastline.ua/app/images/${currentProduct.image_fifth}`"
                                  class="image"/>
@@ -135,8 +135,8 @@
                       </div>
 
                       <br/>
-                      <button type="submit" class="card-btn btn btn-danger" @click="deleteAdditionalImages">Удалить все
-                        изображения
+                      <button type="submit" class="card-btn btn btn-danger" @click="deleteAdditionalImages">Видалити всі
+                        зображення
                       </button>
                     </div>
 
@@ -148,7 +148,7 @@
                   <div class="add-product-wrapper" @submit.prevent="editProduct">
 
                     <div class="col-md-8 text-center">
-                      <h2 class="description-container-title">Редактировать описание продукта</h2>
+                      <h2 class="description-container-title">Редагувати опис товару</h2>
                     </div>
 
                     <!--form with main content-->
@@ -167,12 +167,12 @@
                       </div>
 
                       <div class="input">
-                        <label for="description">Описание</label>
+                        <label for="description">Опис товару</label>
                         <textarea
                             name="description"
                             id="description"
                             class="form-control"
-                            placeholder="Описание"
+                            placeholder="Опис товару"
                             v-model="currentProduct.description"
                             required
                             style="height: 300px;"
@@ -181,7 +181,7 @@
                       </div>
 
                       <div class="input">
-                        <label for="color">Цвет: </label>
+                        <label for="color">Колір: </label>
                         <select v-model="currentProduct.color" name="color" id="color" required>
                           <option value="Білий">Білий</option>
                           <option value="Золотий">Золотий</option>
@@ -193,7 +193,7 @@
                       </div>
 
                       <div class="input">
-                        <label for="volume">Объём: </label>
+                        <label for="volume">Об'єм: </label>
                         <select v-model="currentProduct.volume" name="volume" id="volume" style="width: 150px;"
                                 required>
                           <option value="10">10 ml</option>
@@ -206,7 +206,7 @@
                       </div>
 
                       <div class="input">
-                        <label for="material">Материал</label>
+                        <label for="material">Матеріал</label>
                         <input
                             name="material"
                             id="material"
@@ -218,7 +218,7 @@
                       </div>
 
                       <div class="input">
-                        <label for="complectation">Комплектация</label>
+                        <label for="complectation">Комплектація</label>
                         <input
                             id="complectation"
                             class="form-control"
@@ -228,7 +228,7 @@
                             required
                         />
                       </div>
-                      <input type="submit" value="Сохранить изменения" id="editProductInput">
+                      <input type="submit" value="Зберігти зміни" id="editProductInput">
                     </form>
                   </div>
 
@@ -237,10 +237,9 @@
 
                 <div class="add-product-wrapper" v-else>
                   <br/>
-                  <h4>Товар был успешно отредактирован!</h4>
-                  <router-link class="btn btn-success" to="/admin/">Вернуться на главную страницу</router-link>
-                  <button class="btn btn-primary" @click="newProductEdition">Продолжить
-                    редактирование
+                  <h4>Товар був успішно відредагований!</h4>
+                  <router-link class="btn btn-success" to="/admin/">Повернутися на головну сторінку</router-link>
+                  <button class="btn btn-primary" @click="newProductEdition">Продовжити редагування
                   </button>
                 </div>
               </div>

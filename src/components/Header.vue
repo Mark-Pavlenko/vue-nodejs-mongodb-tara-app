@@ -21,11 +21,11 @@
                 <div class="contacts">
                   <div class="contacts__description">
                     <img src="../assets/time.png" alt=""/>
-                    <p>пн - пт 10:00 - 18:00 <br/> сб - вс Выходной</p>
+                    <p>Пн - Пт 10:00 - 18:00 <br/> Cб - Нд Вихідний</p>
                   </div>
                   <div class="contacts__description">
                     <img src="../assets/location.png" alt=""/>
-                    <p>г. Харьков</p>
+                    <p>м. Харків</p>
                   </div>
                   <div class="contacts__description">
                     <img src="../assets/envelope.png" alt="" style="width: 30px; "/>
@@ -75,16 +75,23 @@
                 <router-link to="/" class="router-link">Головна</router-link>
               </div>
               <div class="menu_btn">
-                <router-link to="/catalog" class="router-link">Каталог</router-link>
+                <router-link to="/catalog" class="router-link">Електроний каталог</router-link>
+              </div>
+              <div class="menu_btn">
+                <a class="router-link" href="https://decoplastline.ua/decoplastline-catalog.pdf" target="_blank">
+                  Паперовий каталог
+                </a>
               </div>
               <div id="about" class="menu_btn">
-                <anchor-router-link :to="{name:'Home', hash:'#about-us'}" class="router-link">Про нас</anchor-router-link>
+                <anchor-router-link :to="{name:'Home', hash:'#about-us'}" class="router-link">Про нас
+                </anchor-router-link>
               </div>
               <div id="contacts-list-item" class="menu_btn">
                 <anchor-router-link class="router-link" :to="{name:'Home', hash:'#footer-contacts'}">
                   Контакти
                 </anchor-router-link>
               </div>
+
             </div>
           </div>
         </div>
@@ -242,7 +249,6 @@ export default {
   }
 
 
-
   img {
     margin-right: 18px;
   }
@@ -251,10 +257,15 @@ export default {
 
 .menu__wrapper {
   width: 100%;
-  height: 81px;
+  height: 90px;
   background: #f6f6f6;
   box-sizing: border-box;
   box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+
+  @media(max-width: 450px) {
+    height: 300px !important;
+  }
+
 }
 
 .menu {
@@ -277,7 +288,7 @@ export default {
 
   @media (max-width: 992px) {
     margin-top: 30px;
-    margin-left: 70px;
+    //margin-left: 70px;
   }
 
   @media (max-width: 710px) {
@@ -287,7 +298,9 @@ export default {
 
 #nav {
   display: flex;
-  justify-content: center;
+  //justify-content: center;
+  font-size: 14px;
+  justify-content: space-around;
 
   @media (max-width: 992px) {
     padding: 0 !important;
@@ -297,23 +310,31 @@ export default {
   @media (max-width: 710px) {
     margin-left: -10px;
   }
+
+  @media(max-width: 450px) {
+    margin-top: -20px;
+    display: block;
+  }
 }
 
 .menu_btn {
-  margin-right: 170px;
-  cursor: pointer;
+  margin-right: 100px;
+
 
   @media(max-width: 1200px) {
-    margin-right: 140px;
+    margin-right: 30px;
   }
-  @media(max-width: 992px) {
-    margin-right: 100px;
-  }
+
   @media(max-width: 710px) {
     font-size: 14px;
     margin-right: 30px;
     //margin-left:-10px;
   }
+  @media (max-width: 450px) {
+    font-size: 16px;
+    padding: 15px;
+  }
+
 }
 
 .router-link {

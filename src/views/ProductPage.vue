@@ -1,42 +1,44 @@
 <template>
-  <div>
+  <div class="page">
     <Header/>
 
-    <!--add-product-->
-    <div id="add-product-card">
-      <section class="ftco-section">
-        <div class="container">
-
-          <div class="text-center">
-            <h2 class="description-container-title">{{currentProduct.title}}</h2>
-            <br/>
+    <div id="main-container">
+      <div id="catalog-back">
+        <h2>{{ currentProduct.title }}</h2>
+      </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div id="thumb-example">
+            <swiper class="swiper" :options="swiperOption">
+              <swiper-slide v-for="existImage in existedImages" :key="existImage.id" :product="existImage">
+                <img :src="`https://decoplastline.ua/app/images/${existImage}`">
+              </swiper-slide>
+              <div class="swiper-button-prev" slot="button-prev"></div>
+              <div class="swiper-button-next" slot="button-next"></div>
+            </swiper>
           </div>
+          <div class="col">
+            <div class="product-detail">
 
-          <div class="row justify-content-between">
-            <div class="col-5" style="  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);">
-              <div class="product-image-additional">
-                <swiper class="swiper" :options="swiperOption">
-                  <swiper-slide v-for="existImage in existedImages" :key="existImage.id" :product="existImage">
-                    <img :src="`https://decoplastline.ua/app/images/${existImage}`">
-                  </swiper-slide>
-                  <div class="swiper-button-prev" slot="button-prev"></div>
-                  <div class="swiper-button-next" slot="button-next"></div>
-                </swiper>
-              </div>
+              <p><span>Опис товару</span> <br/><br/>{{ currentProduct.description }}</p>
+              <p><span>Колір:</span> {{ currentProduct.color }}</p>
+              <p><span>Об'єм:</span> {{ currentProduct.volume }}</p>
+              <p><span>Матеріал:</span> {{ currentProduct.material }}</p>
+              <p><span>Комплектація:</span> {{ currentProduct.complectation }}</p>
             </div>
-            <div class="col-5">
-              <div class="product-image-additional">
-                {{ this.currentProduct.description }}
 
-              </div>
-            </div>
+            <anchor-router-link :to="{name:'Home', hash:'#contacts-card'}" id="contacts"
+                                class="buy-btn">
+              Передзвоніть мені
+            </anchor-router-link>
           </div>
-
         </div>
-      </section>
+      </div>
     </div>
+
     <Footer/>
   </div>
+
 </template>
 
 <script>
@@ -93,13 +95,8 @@ export default {
             ];
 
             this.existedImages = totalImagesList.filter((a) => a);
-            console.log(this.existedImages)
+            console.log(this.existedImages);
 
-            //get five images
-            // for (let i = 0; i < 5; i++) {
-            //   this.existedImages.push(this.currentProduct.image);
-            //   // console.log(this.existedImages);
-            // }
           })
           .catch(e => {
             console.log(e);
@@ -116,325 +113,189 @@ export default {
 
 <style lang="scss" scoped>
 
-
-.products {
-  display: flex;
-  max-width: 1280px;
-  padding: 25px;
-  margin: 0 auto;
-}
-
-//add-product
-.ftco-section {
-  margin-top: 50px;
+#main-container {
   margin-bottom: 50px;
+  padding: 10px;
+}
 
-  //box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+#catalog-back {
+  margin-top: 40px;
+
   @media(max-width: 992px) {
-
+    margin-bottom: 70px;
   }
 }
 
-#add-product-card-body {
-  padding-bottom: 10px;
-}
+#thumb-example {
 
-.input, {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 30px;
+  //height: 480px;
+  width: 710px;
+  //background-color: #e3e3e3;
+  margin-top: 25px;
+  padding-bottom: 5px;
 
-  input,
-  textarea {
-    width: 800px;
-    height: 50px;
-    background: #ffffff;
-    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 12px;
-    outline: none;
-    border: none;
-    padding-left: 20px;
+  @media(max-width: 992px) {
     margin: 0px auto;
+  }
+}
 
-    @media(max-width: 910px) {
-      width: 500px;
-    }
+.swiper {
+  .swiper-slide {
+    background-size: cover;
+    background-position: center;
+  }
 
-    @media(max-width: 710px) {
-      width: 280px;
-    }
+  &.gallery-top {
+    height: 80%;
+    width: 100%;
+  }
 
+  &.gallery-thumbs {
+    height: 20%;
+    box-sizing: border-box;
+    //padding: 5px;
+    cursor: pointer;
+  }
+
+  &.gallery-thumbs .swiper-slide {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+  }
+
+  &.gallery-thumbs .swiper-slide-active {
+    opacity: 1;
 
   }
 
-  label {
-    margin-bottom: 10px;
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: black !important;
+    width: calc(var(--swiper-navigation-size) / 27 * 20);
+
+
+    @media(max-width: 992px) {
+      width: calc(var(--swiper-navigation-size) / 200 * 20)
+    }
   }
 }
 
 
-.add-product-user {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-bottom: 20px;
+.col {
+  //box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
 }
 
-.add-product-desc {
+.description-wrapper {
+
+  //width: 80%;
+  //margin-left: 40px;
+  margin-top: 50px;
+  padding: 15px;
+
+  span {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  @media(max-width: 992px) {
+    width: 100%;
+    margin-left: 0px !important;
+    margin-top: 0px !important;
+  }
+}
+
+.buy-btn {
+
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 21px;
-  line-height: 25px;
-  text-align: center;
-  color: rgba(0, 0, 0, 0.85);
-  width: 345px;
+  color: #f6f6f6;
 
-  @media (max-width: 992px) {
-    display: none;
-  }
-}
+  line-height: 100px;
 
-.add-product-image {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  background: rgba(182, 12, 12, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
 
-
-  @media (max-width: 992px) {
-    //margin-top: 50px;
-  }
-}
-
-//go to top btn
-.go-top-button {
-  display: flex;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  width: 70px;
-  height: 70px;
-  background-color: rgba(182, 12, 12, 0.8);
-  border-radius: 100%;
-  bottom: calc(15px);
-  right: 15px;
   cursor: pointer;
-}
 
-//
-#add-product-title-block,
-#form-body {
-  background-color: white;
-}
+  padding: 10px;
+  text-decoration: none;
 
-.container{
-  //display: flex;
-  align-content: space-between;
-}
+  @media (max-width: 992px) {
+    line-height: 150px;
+  }
 
-.description-container-title {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.image-loader {
-  padding-top: 10px;
-}
-
-.product-image {
-
-  width: 60%;
-  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.5);
-  margin: 30px auto;
-  margin-bottom: 0px;
-
-  img {
-    width: 100%;
+  @media (max-width: 710px) {
+    line-height: 100px;
   }
 }
 
-#product-image-main-container {
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  padding-top: 10px;
+.swiper-slide {
+  width: 75%;
+
+}
+
+.swiper-container {
   margin-top: 40px;
-  margin-bottom: 20px;
-  padding-bottom: 25px;
-}
 
-#product-image-additional-container {
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  margin-top: 10px;
-  padding-bottom: 25px;
-  padding-top: 25px;
-}
+  //height: 250px;
 
-.product-image-additional {
-  width: 100%;
-  margin: 30px auto;
-  margin-bottom: 0px;
-
-  h5 {
-    padding-top: 10px;
+  @media(max-width: 920px) {
+    height: 300px;
+    margin-top: -50px;
   }
 
-  img {
-    width: 95%;
-    margin-bottom: 20px;
+  @media (max-width: 850px) {
+    //height: 300px;
   }
 }
 
+.swiper-slide img {
 
-.add-image-block {
-  margin-bottom: 20px;
+  max-width: 75%;
+
+
+  @media (max-width: 850px) {
+    height: 300px;
+  }
+
+  @media (max-width: 450px) {
+    max-width: 100%;
+  }
 }
-
-#editProductForm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#add-images-form {
-  margin-top: 20px;
-  padding-top: 10px;
-  padding-bottom: 30px;
-}
-
 
 .swiper-button-prev,
 .swiper-button-next {
   color: black !important;
 }
 
+.product-detail {
+  background-color: #FFF;
+  padding: 25px;
+  //margin: 0px -25px -25px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    //color: #676767;
+    margin-bottom: 15px;
+  }
+
+  p {
+    //font-size: 14px;
+    line-height: 1.5;
+    font-weight: 300;
+    //color: #676767;
+  }
+
+  span {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
 </style>
-
-<!--<style lang="scss" scoped>-->
-
-<!--#main-container {-->
-<!--  margin-bottom: 50px-->
-<!--}-->
-
-<!--#catalog-back {-->
-<!--  margin-top: 20px;-->
-<!--}-->
-
-<!--#thumb-example {-->
-
-<!--  //height: 480px;-->
-<!--  width: 710px;-->
-<!--  //background-color: #e3e3e3;-->
-<!--  margin-top: 25px;-->
-<!--  padding-bottom: 5px;-->
-
-<!--  @media(max-width: 992px) {-->
-<!--    margin-top: 40px;-->
-<!--  }-->
-<!--}-->
-
-<!--.swiper {-->
-<!--  .swiper-slide {-->
-<!--    background-size: cover;-->
-<!--    background-position: center;-->
-<!--  }-->
-
-<!--  &.gallery-top {-->
-<!--    height: 80%;-->
-<!--    width: 100%;-->
-<!--  }-->
-
-<!--  &.gallery-thumbs {-->
-<!--    height: 20%;-->
-<!--    box-sizing: border-box;-->
-<!--    //padding: 5px;-->
-<!--    cursor: pointer;-->
-<!--  }-->
-
-<!--  &.gallery-thumbs .swiper-slide {-->
-<!--    width: 25%;-->
-<!--    height: 100%;-->
-<!--    opacity: 0.4;-->
-<!--  }-->
-
-<!--  &.gallery-thumbs .swiper-slide-active {-->
-<!--    opacity: 1;-->
-
-<!--  }-->
-
-<!--  .swiper-button-prev,-->
-<!--  .swiper-button-next {-->
-<!--    color: black !important;-->
-<!--  }-->
-<!--}-->
-
-<!--.description-wrapper {-->
-<!--  width: 80%;-->
-<!--  margin-left: 40px;-->
-<!--  margin-top: 50px !important;-->
-<!--}-->
-
-<!--.buy-btn {-->
-
-<!--  font-family: Roboto;-->
-<!--  font-style: normal;-->
-<!--  font-weight: normal;-->
-<!--  font-size: 21px;-->
-<!--  color: #f6f6f6;-->
-
-<!--  line-height: 100px;-->
-
-<!--  background: rgba(182, 12, 12, 0.8);-->
-<!--  border: 1px solid rgba(0, 0, 0, 0.1);-->
-<!--  box-sizing: border-box;-->
-<!--  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);-->
-<!--  border-radius: 20px;-->
-
-<!--  cursor: pointer;-->
-
-<!--  padding: 10px;-->
-<!--  text-decoration: none;-->
-
-<!--  @media (max-width: 992px) {-->
-<!--    line-height: 150px;-->
-<!--  }-->
-
-<!--  @media (max-width: 710px) {-->
-<!--    line-height: 100px;-->
-<!--  }-->
-<!--}-->
-
-<!--.swiper-slide {-->
-<!--  width: 75%;-->
-
-<!--}-->
-
-<!--.swiper-container {-->
-<!--  margin-top: 40px;-->
-
-<!--  //height: 250px;-->
-
-<!--  @media(max-width: 920px) {-->
-<!--    height: 300px;-->
-<!--    margin-top: -50px;-->
-<!--  }-->
-
-<!--  @media (max-width: 850px) {-->
-<!--    //height: 300px;-->
-<!--  }-->
-<!--}-->
-
-<!--.swiper-slide img {-->
-
-<!--  max-width: 75%;-->
-
-
-<!--  @media (max-width: 850px) {-->
-<!--    height: 300px;-->
-<!--  }-->
-<!--}-->
-
-
-<!--</style>-->

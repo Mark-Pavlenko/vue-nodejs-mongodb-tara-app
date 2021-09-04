@@ -1,9 +1,9 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-<!--        output images of added products from the hoisting-->
-        <swiper-slide v-for="product in products" :key="product.id" :product="product">
-          <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${product.image_first}`">
-        </swiper-slide>
+    <!--        output images of added products from the hoisting-->
+    <swiper-slide v-for="productTitleImage in allExistingImages" :key="allExistingImages.id" :product="allExistingImages">
+      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${productTitleImage}`">
+    </swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
@@ -37,7 +37,9 @@ export default {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev'
         }
-      }
+      },
+      allFirstImages: [],
+      allExistingImages: []
     }
   },
   methods: {
@@ -47,6 +49,14 @@ export default {
             this.products = response.data;
             // console.log(response.data);
 
+            for (let i = 0; i < this.products.length; i++) {
+              this.allFirstImages.push(this.products[i].image_first);
+            }
+
+          // console.log(this.allFirstImages);
+
+          this.allExistingImages =  this.allFirstImages.filter(e =>  e);
+            // console.log(this.allExistingImages);
           })
           .catch(e => {
             console.log(e);
@@ -93,7 +103,7 @@ export default {
     height: 300px;
   }
 
-  @media(min-width:910px){
+  @media(min-width: 910px) {
     height: 400px;
   }
 }

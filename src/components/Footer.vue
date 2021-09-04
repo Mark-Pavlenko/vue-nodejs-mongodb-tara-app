@@ -9,7 +9,7 @@
               <img src="../assets/TimeFooter.png" alt="" />
             </div>
             <div class="text">
-              пн - пт <br/> 10:00 - 18:00
+              Пн - Пт <br/> 10:00 - 18:00
             </div>
           </div>
         </div>
@@ -20,7 +20,7 @@
               <img src="../assets/LocationFooter.png" alt="" />
             </div>
             <div class="text">
-              г. Харьков
+              м. Харків
             </div>
           </div>
         </div>

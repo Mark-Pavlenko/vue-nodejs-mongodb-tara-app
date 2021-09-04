@@ -8,7 +8,7 @@
             class="dropdown-select"
             :options="colorsOptions"
             @input="getColorParams"
-            placeholder="Выберите цвет"
+            placeholder="Оберіть колір"
         ></v-select>
       </div>
       <div class="p-2">
@@ -16,7 +16,7 @@
             class="dropdown-select"
             :options="volumeOptions"
             @input="getVolumeParams"
-            placeholder="Выберите объем"
+            placeholder="Оберіть об'єм (мл)"
         ></v-select>
       </div>
     </div>
@@ -37,7 +37,7 @@
             <img :src="`https://decoplastline.ua/no-image.png`" class="image"/>
           </div>
           <div class="product-detail">
-            <h2>Продукты с выбранными характеристиками отсутствуют!</h2>
+            <h2>Товари з обраними характеристиками відсутні!</h2>
           </div>
         </div>
       </div>
@@ -300,7 +300,7 @@ export default {
   padding: 25px;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
   perspective: 1000px;
-  width: 75%;
+  width: 70%;
   margin: 0px auto;
 }
 
