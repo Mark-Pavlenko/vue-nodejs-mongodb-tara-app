@@ -346,7 +346,7 @@ export default {
 
       // sending file to backend
       axios
-          .post("http://localhost:8080/upload", formData,)
+          .post("https://decoplastline.ua/upload", formData,)
           .then(res => {
             console.log(res);
           })
@@ -396,7 +396,7 @@ export default {
 
       for (let i = 0; i < imagesDataArr.length; i++) {
         axios
-            .post("http://localhost:8080/upload", imagesDataArr[i])
+            .post("https://decoplastline.ua/upload", imagesDataArr[i])
             .then(res => {
               console.log(res);
             })
@@ -443,7 +443,7 @@ export default {
       }
       // sending file to backend
       axios
-          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
+          .post("https://decoplastline.ua/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
           })
@@ -483,7 +483,7 @@ export default {
         }
 
         axios
-            .post("http://localhost:8080/delete/image", dataOfDeletedImages,)
+            .post("https://decoplastline.ua/delete/image", dataOfDeletedImages,)
             .then(res => {
               console.log(res);
 
