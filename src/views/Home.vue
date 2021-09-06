@@ -21,14 +21,47 @@
       </div>
     </div>
 
-    <!--products-->
-    <span class="description-container-title">Каталог товарів</span>
+    <!--icons block-->
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between">
-        <Card class="product-card" v-for="product in products"
-              :key="product.id"
-              :product="product"
-        />
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="icon">
+              <img src="../assets/icons/icon1.png" alt="" class="lazyloaded">
+              <div class="icon-text">Висока якість від національного виробник</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="icon">
+              <img src="../assets/icons/icon2.png" alt="" class="lazyloaded">
+              <div class="icon-text">Повний виробничий цикл</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="icon">
+              <img src="../assets/icons/icon3.png" alt="" class="lazyloaded">
+              <div class="icon-text">Індивідуальний підхід до кожного клієнту</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="icon">
+              <img src="../assets/icons/icon4.png" alt="" class="lazyloaded" data-ll-status="loaded">
+              <div class="icon-text">Можливість замовлення малих партій</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="icon">
+              <img src="../assets/icons/icon5.png" alt="" class="lazyloaded" data-ll-status="loaded">
+              <div class="icon-text">Продукція сертифікована в Україні</div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 col-12">
+            <div class="icon">
+              <img src="../assets/icons/icon6.png" alt="" class="lazyloaded" data-ll-status="loaded">
+              <div class="icon-text">Широкий вибір асортименту</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -62,7 +95,7 @@
                   <div class="contacts-wrapper">
                     <h3 class="mb-4 text-center">Напишіть нам, і ми обов'язково зв'яжемося з вами найближчим часом!</h3>
 
-<!--                    <form action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">-->
+                    <!--                    <form action="https://formspree.io/f/xpzkkaqz" method="POST"  class="contacts-wrapper">-->
                     <form role="form" method="POST" @submit.prevent="sendEmail" class="contacts-wrapper">
 
                       <div class="input">
@@ -77,15 +110,17 @@
 
                       <div class="input">
                         <label>Моб. Телефон</label>
-                        <input type="phone" name="Номер телефона" placeholder="Номер телефону" v-model="mobileMsg" required/>
+                        <input type="phone" name="Номер телефона" placeholder="Номер телефону" v-model="mobileMsg"
+                               required/>
                       </div>
 
                       <div class="input">
                         <label>Текст повідомлення</label>
-                        <textarea type="text" name="Текст сообщения" placeholder="Текст повідомлення" v-model="messageMsg" required/>
+                        <textarea type="text" name="Текст сообщения" placeholder="Текст повідомлення"
+                                  v-model="messageMsg" required/>
                       </div>
 
-                      <button id="footer" type="submit" >Відправити</button>
+                      <button id="footer" type="submit">Відправити</button>
 
                       <div class="messageIsSending" v-if="loadingTxt === true">
                         <p class="mb-8 text-primary">Будь ласка, зачекайте. Відбувається відправка повідомлення...</p>
@@ -161,7 +196,7 @@ export default {
           .then(response => {
             console.log(response.data);
             this.products = response.data;
-            if(this.products.length > 6){
+            if (this.products.length > 6) {
               this.products.length = 6;
             }
             console.log(this.products);
@@ -248,18 +283,24 @@ export default {
 //products
 
 #goods-list {
-  //min-height: 100vh;
   overflow: hidden;
-  //background-color: #EEE;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 30px;
+}
+
+.icon {
+  padding-bottom: 20px;
+}
+
+.icon-text {
+  font-size: 20px;
+  margin-top: 30px;
 }
 
 #contacts-card {
-  //min-height: 100vh;
   overflow: hidden;
-  //background-color: #EEE;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -430,9 +471,9 @@ export default {
   background-color: white;
 }
 
-.messageIsSending{
-  font-weight:bold;
-  font-size:18px;
+.messageIsSending {
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .add-product-wrapper {
@@ -445,10 +486,10 @@ export default {
   align-items: center;
   margin-bottom: 20px;
 
-  p{
-    font-weight:bold;
+  p {
+    font-weight: bold;
     color: green;
-    font-size:18px;
+    font-size: 18px;
   }
 }
 
