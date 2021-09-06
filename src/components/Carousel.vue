@@ -1,9 +1,13 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
     <!--        output images of added products from the hoisting-->
-    <swiper-slide v-for="productTitleImage in allExistingImages" :key="allExistingImages.id" :product="allExistingImages">
-      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${productTitleImage}`">
-    </swiper-slide>
+<!--    <swiper-slide v-for="productTitleImage in allExistingImages" :key="allExistingImages.id" :product="allExistingImages">-->
+<!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${productTitleImage}`">-->
+<!--    </swiper-slide>-->
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img-1.png"></swiper-slide>
+<!--    <swiper-slide><img class="img-fluid" src="../assets/tara-img-2.jpg"></swiper-slide>-->
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img-3.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/tara-img-4.jpg"></swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
@@ -28,7 +32,12 @@ export default {
       swiperOption: {
         slidesPerView: 1,
         spaceBetween: 30,
+        centeredSlides: true,
         loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false
+        },
         pagination: {
           el: '.swiper-pagination',
           clickable: true

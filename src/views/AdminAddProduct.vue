@@ -79,9 +79,10 @@
                         <option value="Білий">Білий</option>
                         <option value="Золотий">Золотий</option>
                         <option value="Перламутровий">Перламутровий</option>
-                        <option value="Срібний ">Срібний</option>
-                        <option value="Чорний">Чорний</option>
                         <option value="Прозорий">Прозорий</option>
+                        <option value="Срібний">Срібний</option>
+                        <option value="Червоний">Червоний</option>
+                        <option value="Чорний">Чорний</option>
                       </select>
                     </div>
                     <div class="input">
