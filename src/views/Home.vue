@@ -28,7 +28,7 @@
           <div class="col-lg-4 col-md-6 col-12">
             <div class="icon">
               <img src="../assets/icons/icon1.png" alt="" class="lazyloaded">
-              <div class="icon-text">Висока якість від національного виробник</div>
+              <div class="icon-text">Висока якість від національного виробника</div>
             </div>
           </div>
           <div class="col-lg-4 col-md-6 col-12">
@@ -292,11 +292,27 @@ export default {
 
 .icon {
   padding-bottom: 20px;
+
+  img {
+    width: 33%;
+  }
+
+  @media (max-width: 450px) {
+    img {
+      width: 50% !important;
+    }
+
+  }
 }
 
 .icon-text {
   font-size: 20px;
   margin-top: 30px;
+
+  @media (max-width: 450px) {
+    font-size: 18px;
+    padding-bottom: 25px;
+  }
 }
 
 #contacts-card {
