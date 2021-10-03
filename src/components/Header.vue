@@ -8,7 +8,9 @@
           <div class="dbox w-100 text-center">
             <div>
               <div class="logo">
-                <img src="../assets/logo.png" class="img-fluid" alt=""/>
+                <router-link to="/">
+                  <img src="../assets/logo.png" class="img-fluid" alt=""/>
+                </router-link>
               </div>
             </div>
           </div>
@@ -29,13 +31,16 @@
                   </div>
                   <div class="contacts__description">
                     <img src="../assets/envelope.png" alt="" style="width: 30px; "/>
-                    decoplastline@gmail.com
-                    <br/>
-                    banochkiopt@gmail.com
+                    <div class="header-links">
+                      <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSPFdJlWbcXPXkPwGSRKcBPgsqTHjqdQVqRRfwTNHhPbLgqxNMvsRBtgvJWMllrgBrcDgJGd" target="_blank">decoplastline@gmail.com</a>
+                      <a href="https://mail.google.com/mail/u/0/#inbox?compose=VpCqJWJCqnxJcbfjNqGbgQTBrrjdrkTkqTdjzKwLZSBDXZpfvfQDwLmSJdfdVZmGNKKdWVl" target="_blank" style="display: block">banochkiopt@gmail.com</a>
+
+                    </div>
+
                   </div>
                   <div class="contacts__description">
                     <img src="../assets/calling.png" alt=""/>
-                    <p>0631443406</p>
+                    <p>+38(063) 144 34 06</p>
                   </div>
 
                   <div class="contacts__description">
@@ -214,6 +219,8 @@ export default {
     }
   }
 
+  //a{ color: black;}
+
 }
 
 .contacts__description {
@@ -224,6 +231,10 @@ export default {
 
   span {
     font-weight: bold;
+  }
+
+  a{
+    flex-direction: column;
   }
 
 
@@ -367,5 +378,9 @@ export default {
     margin-left: 30px;
   }
 }
+
+//.header-links a{
+//  color: black;
+//}
 
 </style>

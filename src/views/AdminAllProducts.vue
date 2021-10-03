@@ -2,6 +2,34 @@
   <div class="home">
     <Sidebar/>
 
+    <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap">
+      <div class="p-3">
+        <v-select
+            class="dropdown-select"
+            :options="colorsOptions"
+            @input="getColorParams"
+            placeholder="Оберіть колір"
+        ></v-select>
+      </div>
+      <div class="p-3">
+        <v-select
+            class="dropdown-select"
+            :options="volumeOptions"
+            @input="getVolumeParams"
+            placeholder="Оберіть об'єм (мл)"
+        ></v-select>
+      </div>
+      <div class="p-3">
+        <v-select
+            class="dropdown-select"
+            :options="[{label:'Найдавніші', value:'asc'}, {label:'Найсвіжіші', value:'desc'}]"
+            @input="getDataParams"
+            placeholder="Сортувати за датою"
+        ></v-select>
+      </div>
+    </div>
+
+
     <!--    goods cards block-->
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between" v-if="this.products.length !== 0">
@@ -17,7 +45,7 @@
             <img :src="`https://decoplastline.ua/no-image.png`" class="image"/>
           </div>
           <div class="product-detail">
-            <h2>На данный момент никаких товаров нет!</h2>
+            <h2>Товари з обраними характеристиками відсутні!</h2>
           </div>
         </div>
       </div>
@@ -45,6 +73,15 @@ export default {
       products: [],
       currentProduct: null,
       product: null,
+      colorsOptions: [],
+      volumeOptions: [],
+      selectedDropdownColor: "",
+      selectedDropdownVolume: null,
+      repeatedColorsOptions: [],
+      repeatedVolumeOptions: [],
+      filteredByColorProducts: [],
+      filteredByVolumeProducts: [],
+
     }
   },
   methods: {
@@ -54,11 +91,123 @@ export default {
             this.products = response.data;
             console.log(response.data);
 
+            this.products.sort(function compare(a, b) {
+              let dateA = new Date(a.createdAt);
+              let dateB = new Date(b.createdAt);
+              return dateA - dateB;
+            });
+
+
+            for (let i = 0; i < this.products.length; i++) {
+              this.repeatedColorsOptions.push(this.products[i].color);
+              this.repeatedVolumeOptions.push(this.products[i].volume)
+            }
+
+            //filter repeated params in dropdowns
+            function filter(data) {
+              return data.filter((value, index) => data.indexOf(value) === index);
+            }
+
+            this.colorsOptions = filter(this.repeatedColorsOptions.sort());
+            this.volumeOptions = filter(this.repeatedVolumeOptions.sort((a, b) => a - b));
+
+            // console.log(this.colorsOptions);
+            // console.log(this.volumeOptions);
+
           })
           .catch(e => {
             console.log(e);
           });
     },
+
+    getColorParams(selectedColor) {
+      this.selectedDropdownColor = selectedColor;
+      // console.log(this.selectedDropdownColor);
+
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
+
+            // console.log(this.products);
+
+            // let test = [];
+            // console.log(this.selectedDropdownColor);
+            let selectedColorParam = this.selectedDropdownColor;
+            let selectedVolumeParam = this.selectedDropdownVolume;
+
+
+            if (!this.selectedDropdownVolume) {
+
+              // console.log('no volume was chosen!');
+
+              let selectedProductsByColor = this.products.filter(function (filteredElem) {
+
+                // console.log(filteredElem.color);
+                // console.log(selectedColorParam);
+
+                return filteredElem.color === selectedColorParam;
+              });
+
+              // console.log(selectedProductsByColor)
+              this.products = selectedProductsByColor;
+
+            } else {
+              // console.log(`volume was chosen:${this.selectedDropdownVolume}`);
+
+              let selectedProductsByColor = this.products.filter(function (filteredElem) {
+                return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam;
+              });
+
+              // console.log(selectedProductsByColor);
+              this.products = selectedProductsByColor;
+              console.log(this.products);
+            }
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+
+    getVolumeParams(selectedVolume) {
+      this.selectedDropdownVolume = selectedVolume;
+      // console.log(this.selectedDropdownVolume);
+
+      ProductDataService.getAll()
+          .then(response => {
+            this.products = response.data.sort((a, b) => (a.color > b.color) ? 1 : -1);
+
+            let selectedColorParam = this.selectedDropdownColor;
+            let selectedVolumeParam = this.selectedDropdownVolume;
+
+            if (!this.selectedDropdownColor) {
+
+              // console.log('no color was chosen!');
+
+              let selectedProductsByVolume = this.products.filter(function (filteredElem) {
+                return filteredElem.volume === selectedVolumeParam;
+              });
+
+              // console.log(selectedProductsByVolume)
+              this.products = selectedProductsByVolume;
+            } else {
+              // console.log(`color was chosen:${this.selectedDropdownColor}`)
+
+              let selectedProductsByVolume = this.products.filter(function (filteredElem) {
+                return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam;
+              });
+
+              // console.log(selectedProductsByVolume)
+              this.products = selectedProductsByVolume;
+              console.log(this.products);
+            }
+
+
+          })
+          .catch(e => {
+            console.log(e);
+          });
+    },
+
     deleteProduct(id) {
       ProductDataService.delete(id)
           .then(response => {
@@ -70,7 +219,27 @@ export default {
             console.log(e);
 
           });
+    },
+
+    getDataParams(selectedData) {
+
+      if (selectedData.value === 'desc') {
+        this.products.sort(function (a, b) {
+          let dateA = new Date(a.createdAt);
+          let dateB = new Date(b.createdAt);
+          return dateB - dateA;
+        });
+      } else if (selectedData.value === 'asc') {
+        this.products.sort(function compare(a, b) {
+          let dateA = new Date(a.createdAt);
+          let dateB = new Date(b.createdAt);
+          return dateA - dateB;
+        });
+      }
+
     }
+
+
   },
   mounted() {
     this.retrieveTutorials();

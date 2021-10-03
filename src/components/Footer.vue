@@ -31,9 +31,8 @@
               <img src="../assets/envelope-closed.png" alt="" width="50%"/>
             </div>
             <div class="text">
-              decoplastline@gmail.com
-              <br/>
-              banochkiopt@gmail.com
+              <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcSPFdJlWbcXPXkPwGSRKcBPgsqTHjqdQVqRRfwTNHhPbLgqxNMvsRBtgvJWMllrgBrcDgJGd" target="_blank">decoplastline@gmail.com</a>
+              <a href="https://mail.google.com/mail/u/0/#inbox?compose=VpCqJWJCqnxJcbfjNqGbgQTBrrjdrkTkqTdjzKwLZSBDXZpfvfQDwLmSJdfdVZmGNKKdWVl" target="_blank" style="display: block">banochkiopt@gmail.com</a>
             </div>
           </div>
         </div>
@@ -48,18 +47,6 @@
             </div>
           </div>
         </div>
-
-<!--        <div class="col-md-2 col-12 ">-->
-<!--          <div class="footer-item">-->
-<!--            <div class="image">-->
-<!--              <img src="../assets/instagram-footer.png" alt=""  style="width: 50%"/>-->
-<!--            </div>-->
-<!--            <div class="text">-->
-<!--              @decoplastline-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-
       </div>
     </div>
   </div>
@@ -119,10 +106,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
-  //width: 100%;
-  /* margin: 0 auto; */
+  font-size: 14px;
   margin-left: -40px;
+
+  @media(max-width: 992px){
+    font-size: 12px;
+  }
 }
 
 .text{

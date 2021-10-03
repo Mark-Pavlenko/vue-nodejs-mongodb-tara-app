@@ -3,7 +3,7 @@
     <Header/>
 
     <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap">
-      <div class="p-2">
+      <div class="p-3">
         <v-select
             class="dropdown-select"
             :options="colorsOptions"
@@ -11,7 +11,7 @@
             placeholder="Оберіть колір"
         ></v-select>
       </div>
-      <div class="p-2">
+      <div class="p-3">
         <v-select
             class="dropdown-select"
             :options="volumeOptions"
@@ -19,11 +19,18 @@
             placeholder="Оберіть об'єм (мл)"
         ></v-select>
       </div>
+      <div class="p-3">
+        <v-select
+            class="dropdown-select"
+            :options="[{label:'Найдавніші', value:'asc'}, {label:'Найсвіжіші', value:'desc'}]"
+            @input="getDataParams"
+            placeholder="Сортувати за датою"
+        ></v-select>
+      </div>
     </div>
 
     <!--    goods cards block-->
     <div id="goods-list">
-      <!--      <div class="catalog__wrapper row justify-content-between" v-if="this.products.length !== 0" >-->
       <div class="catalog__wrapper row justify-content-between" v-if="this.products.length !== 0">
         <Card class="product-card" v-for="product in products"
               :key="product.id"
@@ -56,7 +63,6 @@ import dropdown from 'vue-dropdowns';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ProductDataService from "../services/GoodsDataServices";
-
 import 'vue-select/dist/vue-select.css';
 
 export default {
@@ -71,26 +77,32 @@ export default {
       products: [],
 
       repeatedColorsOptions: [],
-      colorsOptions: [],
-
       repeatedVolumeOptions: [],
+
+      colorsOptions: [],
       volumeOptions: [],
 
       filteredByColorProducts: [],
       filteredByVolumeProducts: [],
 
       selectedDropdownColor: "",
-      selectedDropdownVolume: null
+      selectedDropdownVolume: null,
     }
   },
   methods: {
     retrieveProducts() {
       ProductDataService.getAll()
           .then(response => {
+            this.products = response.data;
+            // console.log(this.products);
 
-            //sort products
-            this.products = response.data.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
-            console.log(this.products);
+            // sort products for date by asc and desc
+            //default data output - from old to new
+            this.products.sort(function compare(a, b) {
+              let dateA = new Date(a.createdAt);
+              let dateB = new Date(b.createdAt);
+              return dateA - dateB;
+            });
 
             for (let i = 0; i < this.products.length; i++) {
               this.repeatedColorsOptions.push(this.products[i].color);
@@ -104,7 +116,6 @@ export default {
 
             this.colorsOptions = filter(this.repeatedColorsOptions.sort());
             this.volumeOptions = filter(this.repeatedVolumeOptions.sort((a, b) => a - b));
-
             // console.log(this.colorsOptions);
             // console.log(this.volumeOptions);
           })
@@ -121,37 +132,21 @@ export default {
           .then(response => {
             this.products = response.data.sort((a, b) => (a.volume > b.volume) ? 1 : -1);
 
-            // console.log(this.products);
-
-            // let test = [];
-            // console.log(this.selectedDropdownColor);
             let selectedColorParam = this.selectedDropdownColor;
             let selectedVolumeParam = this.selectedDropdownVolume;
 
-
             if (!this.selectedDropdownVolume) {
 
-              // console.log('no volume was chosen!');
-
               let selectedProductsByColor = this.products.filter(function (filteredElem) {
-
-                // console.log(filteredElem.color);
-                // console.log(selectedColorParam);
-
                 return filteredElem.color === selectedColorParam;
               });
 
-              // console.log(selectedProductsByColor)
               this.products = selectedProductsByColor;
 
             } else {
-              // console.log(`volume was chosen:${this.selectedDropdownVolume}`);
-
               let selectedProductsByColor = this.products.filter(function (filteredElem) {
                 return filteredElem.color === selectedColorParam && filteredElem.volume === selectedVolumeParam;
               });
-
-              // console.log(selectedProductsByColor);
               this.products = selectedProductsByColor;
               console.log(this.products);
             }
@@ -200,6 +195,24 @@ export default {
             console.log(e);
           });
     },
+
+    getDataParams(selectedData) {
+
+      if (selectedData.value === 'desc') {
+        this.products.sort(function (a, b) {
+          let dateA = new Date(a.createdAt);
+          let dateB = new Date(b.createdAt);
+          return dateB - dateA;
+        });
+      } else if (selectedData.value === 'asc') {
+        this.products.sort(function compare(a, b) {
+          let dateA = new Date(a.createdAt);
+          let dateB = new Date(b.createdAt);
+          return dateA - dateB;
+        });
+      }
+
+    }
 
   },
   mounted() {
@@ -324,7 +337,7 @@ export default {
   z-index: 1;
   transform-origin: center;
   width: 75%;
-  margin:0px auto;
+  margin: 0px auto;
   //margin-bottom: 25px;
   //background-color: blue;
 }

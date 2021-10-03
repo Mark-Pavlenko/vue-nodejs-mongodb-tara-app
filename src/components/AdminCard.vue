@@ -2,8 +2,12 @@
   <div class="product">
     <div class='product-inner'>
       <div class="product-image-wrap">
-        <img :src="`https://decoplastline.ua/app/images/${product.image_first}`" class="image" v-if='product.image_first !== ""'/>
-        <img :src="`https://decoplastline.ua/no-image.png`" class="image" v-else/>
+        <router-link :to="{path: `/admin/edit/${product.id}`}"  v-if='product.image_first !== ""'>
+          <img :src="`https://decoplastline.ua/app/images/${product.image_first}`" class="image"/>
+        </router-link>
+        <router-link :to="{path: `/admin/edit/${product.id}`}" v-else>
+        <img :src="`https://decoplastline.ua/no-image.png`" class="image" />
+        </router-link>
       </div>
       <div class="product-detail">
         <h2>{{ product.title }}</h2>
@@ -64,7 +68,7 @@ export default {
         }
 
         axios
-            .post("https://decoplastline.ua/delete/image", dataOfDeletedImage,)
+            .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
             .then(res => {
               console.log(res);
 

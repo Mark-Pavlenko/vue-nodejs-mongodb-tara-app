@@ -1,13 +1,8 @@
 <template>
   <swiper class="swiper" :options="swiperOption">
-    <!--        output images of added products from the hoisting-->
-<!--    <swiper-slide v-for="productTitleImage in allExistingImages" :key="allExistingImages.id" :product="allExistingImages">-->
-<!--      <img class="img-fluid" :src="`https://decoplastline.ua/app/images/${productTitleImage}`">-->
-<!--    </swiper-slide>-->
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img-1.png"></swiper-slide>
-<!--    <swiper-slide><img class="img-fluid" src="../assets/tara-img-2.jpg"></swiper-slide>-->
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img-3.jpg"></swiper-slide>
-    <swiper-slide><img class="img-fluid" src="../assets/tara-img-4.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/first.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/second.jpg"></swiper-slide>
+    <swiper-slide><img class="img-fluid" src="../assets/home-slider-images/third.jpg"></swiper-slide>
     <div class="swiper-button-prev" slot="button-prev"></div>
     <div class="swiper-button-next" slot="button-next"></div>
   </swiper>
@@ -91,15 +86,19 @@ export default {
 }
 
 .swiper-container {
-  height: 400px;
+  //height: 400px;
   margin-top: 40px;
 
   @media(max-width: 920px) {
-    height: 300px;
+    //height: 300px;
   }
 
   @media (max-width: 850px) {
-    height: 300px;
+    //height: 300px;
+  }
+
+  @media(max-width:450px){
+    height: auto;
   }
 }
 
@@ -109,11 +108,11 @@ export default {
 
 
   @media (max-width: 850px) {
-    height: 300px;
+    //height: 300px;
   }
 
   @media(min-width: 910px) {
-    height: 400px;
+    //height: 400px;
   }
 }
 

@@ -296,7 +296,7 @@ export default {
 
       for(let i =0; i <  imagesDataArr.length; i++){
         axios
-            .post("https://decoplastline.ua/upload", imagesDataArr[i])
+            .post("http://localhost:8080/upload", imagesDataArr[i])
             .then(res => {
               console.log(res);
             })
