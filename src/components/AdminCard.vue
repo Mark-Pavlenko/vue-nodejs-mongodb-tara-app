@@ -68,7 +68,7 @@ export default {
         }
 
         axios
-            .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
+            .post("https://decoplastline.ua/delete/image", dataOfDeletedImage,)
             .then(res => {
               console.log(res);
 

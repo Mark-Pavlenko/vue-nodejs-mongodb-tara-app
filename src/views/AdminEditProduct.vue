@@ -358,7 +358,7 @@ export default {
 
       // sending file to backend
       axios
-          .post("http://localhost:8080/upload", formData,)
+          .post("https://decoplastline.ua/upload", formData,)
           .then(res => {
             console.log(res);
           })
@@ -455,7 +455,7 @@ export default {
       }
       // sending file to backend
       axios
-          .post("http://localhost:8080/delete/image", dataOfDeletedImage,)
+          .post("https://decoplastline.ua/delete/image", dataOfDeletedImage,)
           .then(res => {
             console.log(res);
           })
