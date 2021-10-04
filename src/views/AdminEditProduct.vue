@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.email && this.password">
+  <div v-if="jwt">
     <Sidebar/>
 
     <!--add-product-->
@@ -281,8 +281,7 @@ export default {
       additionalArrImages: [],
       keysArr: [],
       additionalArrImagesExists: true,
-      email: '',
-      password: ''
+      jwt: ''
     };
   },
   methods: {
@@ -546,8 +545,7 @@ export default {
   mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
-    this.email = localStorage.email;
-    this.password = localStorage.password;
+    this.jwt = localStorage.jwt;
   }
 }
 </script>

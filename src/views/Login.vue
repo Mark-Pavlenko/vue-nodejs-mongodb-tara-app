@@ -54,15 +54,23 @@ export default {
     };
   },
   methods: {
+
+    makeKey(length) {
+      let result = '';
+      let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() *
+            charactersLength));
+      }
+      return result;
+    },
+
     async loginUser() {
+      console.log(this.makeKey(20));
       try {
-
-        if(this.email && this.password !== ""){
-          localStorage.email = "DecoplastlineAdmin@gmail.com";
-          localStorage.password = "c8E87df5YC";
-        }
-
-        if (this.email === localStorage.email && this.password === localStorage.password) {
+        if (this.email === 'DecoplastlineAdmin@gmail.com' && this.password === 'kq3FM1C293r4gm6leSzU') {
+          localStorage.jwt = this.makeKey(30);
           await swal("Успіх", "Логін та пароль коректні!", "success");
           await this.$router.push("/admin/all");
         } else {

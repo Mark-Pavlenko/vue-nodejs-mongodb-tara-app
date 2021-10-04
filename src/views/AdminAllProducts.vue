@@ -1,5 +1,5 @@
 <template>
-  <div class="home" v-if="this.email && this.password">
+  <div class="home" v-if="this.jwt">
     <Sidebar/>
 
     <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap">
@@ -92,8 +92,7 @@ export default {
       repeatedVolumeOptions: [],
       filteredByColorProducts: [],
       filteredByVolumeProducts: [],
-      email: '',
-      password: ''
+      jwt: ''
 
     }
   },
@@ -256,8 +255,7 @@ export default {
   },
   mounted() {
     this.retrieveTutorials();
-    this.email = localStorage.email;
-    this.password = localStorage.password;
+    this.jwt = localStorage.jwt;
   }
 }
 </script>

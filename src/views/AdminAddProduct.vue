@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.email && this.password" >
+  <div v-if="this.jwt" >
     <Sidebar/>
 
     <!--add-product-->
@@ -178,8 +178,7 @@ export default {
         totalData: {},
       },
       submitted: false,
-      email: '',
-      password: ''
+      jwt: ''
     };
   },
   methods: {
@@ -285,12 +284,10 @@ export default {
     }
   },
   mounted() {
-    this.email = localStorage.email;
-    this.password = localStorage.password;
+    this.jwt = localStorage.jwt;
   }
 }
 </script>
-
 
 <style lang="scss" scoped>
 
