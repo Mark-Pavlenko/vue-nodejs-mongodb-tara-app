@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="this.email && this.password">
     <Sidebar/>
 
     <!--add-product-->
@@ -251,6 +251,16 @@
     </div>
 
   </div>
+  <div class="home" v-else>
+    <div class='product-inner' style="margin-top:30px">
+      <div class="product-image-wrap">
+        <img :src="`https://decoplastline.ua/lock.png`" class="image"/>
+      </div>
+      <div class="product-detail">
+        <h2>Виконайте авторизацію для перегляду даної сторінки!</h2>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -270,8 +280,9 @@ export default {
       edited: false,
       additionalArrImages: [],
       keysArr: [],
-      additionalArrImagesExists: true
-
+      additionalArrImagesExists: true,
+      email: '',
+      password: ''
     };
   },
   methods: {
@@ -535,7 +546,8 @@ export default {
   mounted() {
     this.message = '';
     this.getProduct(this.$route.params.id);
-
+    this.email = localStorage.email;
+    this.password = localStorage.password;
   }
 }
 </script>
@@ -809,6 +821,50 @@ export default {
   margin-top: 30px;
   margin-bottom: 50px;
 
+}
+
+.product-inner {
+  position: relative;
+  padding: 25px;
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  perspective: 1000px;
+  width: 75%;
+  margin: 0px auto;
+}
+
+.product-image-wrap {
+  position: relative;
+  z-index: 1;
+  transform-origin: center;
+  width: 75%;
+  margin: 0px auto;
+  //margin-bottom: 25px;
+  //background-color: blue;
+}
+
+.product-image-wrap .image {
+  width: 100%;
+  filter: drop-shadow(0px 0px 12px rgba(0, 0, 0, 0.25));
+}
+
+.product-detail {
+  background-color: #FFF;
+  padding: 25px;
+  margin: 0px -25px -25px;
+}
+
+.product-detail h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #676767;
+  margin-bottom: 15px;
+}
+
+.product-detail p {
+  font-size: 14px;
+  line-height: 1.5;
+  font-weight: 300;
+  color: #676767;
 }
 
 </style>

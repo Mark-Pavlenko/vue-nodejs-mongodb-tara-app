@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" v-if="this.email && this.password">
     <Sidebar/>
 
     <div id="dropdowns-container" class="d-flex justify-content-around flex-wrap">
@@ -29,7 +29,6 @@
       </div>
     </div>
 
-
     <!--    goods cards block-->
     <div id="goods-list">
       <div class="catalog__wrapper row justify-content-between" v-if="this.products.length !== 0">
@@ -56,12 +55,24 @@
     <Footer/>
 
   </div>
+  <div class="home" v-else>
+    <div class='product-inner' style="margin-top:30px">
+      <div class="product-image-wrap">
+        <img :src="`https://decoplastline.ua/lock.png`" class="image"/>
+      </div>
+      <div class="product-detail">
+        <h2>Виконайте авторизацію для перегляду даної сторінки!</h2>
+      </div>
+    </div>
+  </div>
 </template>
+
 
 <script>
 import AdminCard from '../components/AdminCard'
 import Sidebar from '../components/Sidebar'
 import ProductDataService from "../services/GoodsDataServices";
+
 
 export default {
   components: {
@@ -81,6 +92,8 @@ export default {
       repeatedVolumeOptions: [],
       filteredByColorProducts: [],
       filteredByVolumeProducts: [],
+      email: '',
+      password: ''
 
     }
   },
@@ -243,6 +256,8 @@ export default {
   },
   mounted() {
     this.retrieveTutorials();
+    this.email = localStorage.email;
+    this.password = localStorage.password;
   }
 }
 </script>

@@ -7,29 +7,29 @@
           <div class="web">
             <div id="nav">
               <div class="menu_btn">
-                <router-link class="link" to="/admin/">Усі товари</router-link>
+                <router-link class="link" to="/admin/all">Усі товари</router-link>
               </div>
-
               <div class="menu_btn">
                 <router-link class="link" to="/admin/add">Додати новий товар</router-link>
+              </div>
+              <div class="menu_btn">
+                <p @click="logOut" style="font-weight: bold;  cursor: pointer">Вийти</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
-
-
-
-
   </div>
 </template>
 
 <script>
 export default {
-  setup() {
-    return {}
+  methods: {
+    logOut(){
+      localStorage.clear();
+      this.$router.push("/admin");
+    }
   }
 }
 </script>
@@ -44,6 +44,11 @@ export default {
   background: rgba(182, 12, 12, 0.8);
   box-sizing: border-box;
   box-shadow: 0px -5px 5px -5px rgba(34, 60, 80, 0.6) inset;
+
+  @media (max-width: 710px) {
+    height: 200px !important;
+  }
+
 }
 
 .menu {
@@ -53,6 +58,8 @@ export default {
   //margin-left: 40px;
   //width: 100%;
   height: 81px;
+
+
 
   &__wrapper {
     width: 100%;
@@ -84,10 +91,14 @@ export default {
   }
 
   @media (max-width: 710px) {
-    //margin-left: -10px;
+    flex-direction: column;
+
+    .menu_btn{
+      margin-bottom: 30px;
+    }
   }
 
-  a{
+  a, p{
     color: white;
   }
 }
